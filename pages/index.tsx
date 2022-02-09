@@ -1,16 +1,17 @@
 import { gql } from '@apollo/client'
 import type { InferGetServerSidePropsType } from 'next'
+import { Layout } from '../containers/Layout/Layout';
 import { addApolloState, initializeApollo } from '../graphql/apollo'
 import { POSTS } from '../graphql/ssrQuery';
 
 type IndexProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const Home = (props: IndexProps) => {
-  console.log(props)
+  console.log(props.data.data)
   return (
-    <div >
+    <Layout>
       test
-    </div>
+    </Layout>
   )
 }
 
@@ -18,7 +19,7 @@ export const getServerSideProps = async () => {
 
   const apolloClient = initializeApollo({});
 
-  const result = await apolloClient.query({
+  const data = await apolloClient.query({
     query: POSTS,
     variables: {
       input: {
@@ -27,10 +28,10 @@ export const getServerSideProps = async () => {
       }
     }
   })
-  
+
   return addApolloState(apolloClient, {
     props: {
-      result
+      data
     }
   })
 }
