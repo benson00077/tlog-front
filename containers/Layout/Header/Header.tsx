@@ -5,6 +5,9 @@ import * as S from './styled'
 export default function Header() {
   return (
     <S.NavBar>
+      <Link href="/" passHref>
+        logo
+      </Link>
       <S.NavBarLinks>
         <Link href="/">
           <a>
@@ -14,6 +17,16 @@ export default function Header() {
         <Link href="/post">
           <a>
             Blog
+          </a>
+        </Link>
+        <Link href="/archive">
+          <a>
+            Archive
+          </a>
+        </Link>
+        <Link href="/about">
+          <a>
+            About
           </a>
         </Link>
       </S.NavBarLinks>
