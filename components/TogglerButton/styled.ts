@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { GlobalThemeProps } from "../../styled/golbalStyles";
 
 export const Container = styled.div`
+  position: fixed;
+  top: 0.75rem;
+  right: 2.4rem;
+
   .switch {
     position: relative;
     display: inline-block;

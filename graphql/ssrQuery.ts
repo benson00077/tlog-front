@@ -17,6 +17,8 @@ fragment PostFragment on Post {
 }
 `;
 
+// TODO query shoult not have 'get' in prefix , confusing
+// when receive data back (data.getPosts) -> confusing
 export const POSTS = gql`
   query GetPosts($input: PaginationInput!) {
     getPosts(input: $input) {

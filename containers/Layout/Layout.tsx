@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { Footer } from "./Footer/Footer";
 import Header from "./Header/Header";
 import * as S from './styled'
 
@@ -14,7 +14,7 @@ export function Layout({title, children}: LayoutProps) {
     <S.Layouts>
       <Header />
       <S.Main>{children}</S.Main>
-
+      <Footer/>
     </S.Layouts>
   )
 }
