@@ -34,7 +34,6 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
 
 function createApolloClient() {
-  console.log(process.env.NEXT_PUBLIC_API_URL)
 
   return new ApolloClient({
     ssrMode: isServer,

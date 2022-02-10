@@ -7,7 +7,6 @@ import { POSTS } from '../graphql/ssrQuery';
 type IndexProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 const Index = (props: IndexProps) => {
-  console.log(props.posts)
   return (
     <Layout>
       <Home />
