@@ -34,18 +34,20 @@ export default function PostList() {
   return (
     <>
       <S.Wrapper>
-        {postsData
-          ? (
-            postsData.posts.items.map((post, i) => (
-              <PostCard post={post} key={i} />
-            ))
-          ) : (
-            <div>Loading Post Card...</div>
-          )
-        }
-
-        <div>
+        <div className="tags">
           <TagCloud tags={tagsData ? tagsData.getAllTags.tags : []} />
+        </div>
+
+        <div className="posts">
+          {postsData
+            ? (
+              postsData.posts.items.map((post, i) => (
+                <PostCard post={post} key={i} />
+              ))
+            ) : (
+              <div>Loading Post Card...</div>
+            )
+          }
         </div>
       </S.Wrapper>
     </>

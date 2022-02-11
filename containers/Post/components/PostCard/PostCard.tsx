@@ -20,21 +20,33 @@ export default function PostCard({ post }: Props) {
 
   return (
     <S.Box onClick={(e) => goToPost(e)}>
-      <div className="imgBox">
+
+      <S.postPoster>
         <img src={posterUrl} alt={title} />
-      </div>
-      <div className="postInfo">
-        <p>{formatDate(createdAt)}</p>
-        <h3>{title}</h3>
-        <div>
-          <span>{pv}</span>
-          <span>{like}</span>
-          <span>{tags}</span>
-        </div>
-        <S.SummaryParagraph>
+      </S.postPoster>
+
+      <S.postInfo>
+        <span className="date">{formatDate(createdAt)}</span>
+        <h2>{title}</h2>
+        <p className="summary">
           {summary}
-        </S.SummaryParagraph>
-      </div>
+        </p>
+        <div className="secondaryInfo">
+          <div>
+            <span>Preview: {pv}</span>
+          </div>
+          <div>
+            <span>Likes: {like}</span>
+          </div>
+          <div>
+            {/* {tags.map((tag) => (
+              <span>{tag}</span>
+            ))} */}
+            <span> {tags[0]} </span>
+          </div>
+        </div>
+      </S.postInfo>
+
     </S.Box>
   )
 }
