@@ -1,19 +1,22 @@
-import { useLazyQuery, useQuery } from "@apollo/client"
+import { useLazyQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import PostCard from "../components/PostCard/PostCard"
 import TagCloud from "../components/TagCloud"
-import { POSTS, GET_ALL_TAGS } from "../typeDefs"
-import { GetAllTagsQuery, PostQuery, PostVars } from "../types"
+import { POSTS } from "../typeDefs"
+import { IPost, PostQuery, PostVars } from "../types"
 import * as S from './styled'
 
+type PostListProps = {
+  tags: string[]
+  SSGposts: IPost
+}
 
-export default function PostList() {
+export default function PostList({ tags, SSGposts } : PostListProps) {
 
   const { query: { tag: targetTag } } = useRouter()  //TODO: tags cloud to click
 
   const [getPosts, { data: postsData }] = useLazyQuery<PostQuery, PostVars>(POSTS, { notifyOnNetworkStatusChange: true })
-  const { data: tagsData } = useQuery<GetAllTagsQuery>(GET_ALL_TAGS, { notifyOnNetworkStatusChange: true })
 
   function fetchPosts(currPage = 1, tag?: string) {
     getPosts({
@@ -31,19 +34,20 @@ export default function PostList() {
     fetchPosts(1, targetTag as string)
   }, [targetTag])
 
+  const posts = targetTag ? postsData?.posts : SSGposts
+
   return (
     <>
       <S.Wrapper>
         <div className="tags">
-          <TagCloud tags={tagsData ? tagsData.getAllTags.tags : []} />
+          <TagCloud tags={tags} />
         </div>
 
         <div className="posts">
-          {postsData
-            ? (
-              postsData.posts.items.map((post, i) => (
-                <PostCard post={post} key={i} />
-              ))
+          { posts 
+            ? (posts.items.map((post, i) => (
+              <PostCard post={post} key={i} />
+            ))
             ) : (
               <div>Loading Post Card...</div>
             )

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { MouseEvent } from "react";
 import { formatDate } from "../../../../shared/utils";
 import { IPostItem } from "../../types";
 import * as S from './styled'
@@ -13,7 +14,7 @@ export default function PostCard({ post }: Props) {
 
   const router = useRouter()
 
-  const goToPost = (e: any) => {
+  const goToPost = (e: MouseEvent) => {
     e.preventDefault()
     router.push(`/post/${_id}`)
   }
