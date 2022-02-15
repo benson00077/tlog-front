@@ -18,5 +18,10 @@ export const Wrapper = styled.section`
 
   .tags {
     width: 50vw;
+
+    h3 {
+      padding-bottom: 2rem;
+      text-align: center;
+    }
   }
 `;

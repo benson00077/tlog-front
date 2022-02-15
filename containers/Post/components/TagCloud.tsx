@@ -4,11 +4,6 @@ import { GlobalThemeProps } from "../../../styled/golbalStyles";
 
 // styled
 
-const STitle = styled.h3`
-  padding-bottom: 2rem;
-  text-align: center;
-`
-
 const STag = styled.span`
   display: inline-block;
   margin: 0 0.6rem 0.6rem 0;
@@ -27,8 +22,7 @@ type props = {
 
 export default function TagCloud({ tags }: props) {
   return (
-    <div>
-      <STitle>Tags</STitle>
+    <>
       {tags.map((tag, i) => (
         <Link href={`/post?tag=${tag}`} key={i}>
           <a>
@@ -36,6 +30,6 @@ export default function TagCloud({ tags }: props) {
           </a>
         </Link>
       ))}
-    </div>
+    </>
   )
 }

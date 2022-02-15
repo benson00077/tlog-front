@@ -1,16 +1,16 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { Layout } from "../../containers/Layout/Layout";
 import PostDetail from "../../containers/Post/PostDetail/PostDetail";
 import { GET_POST_BY_ID, POSTS } from "../../containers/Post/typeDefs";
-import { GetPostByIdQuery, GetPostByIdVar, IPostItem, PostQuery, PostVars } from "../../containers/Post/types";
+import { GetPostByIdQuery, GetPostByIdVar, PostQuery, PostVars } from "../../containers/Post/types";
 import { addApolloState, initializeApollo } from "../../graphql/apollo";
 
+type IndexProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-type PostProps = {
-  post: IPostItem
-}
 
-export default function Post(props: PostProps) {
+export default function Post(props: IndexProps) {
+  // TODO: pass down to child comp or useQuery in child comp ?
+  // console.log(props.post.getPostById)
   return (
     <Layout>
       <PostDetail />

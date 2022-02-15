@@ -17,11 +17,11 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     background: ${({ theme }: GlobalThemeProps) => theme.background.primary};
-    color: ${({ theme }: GlobalThemeProps) => theme.text.base}
+    color: ${({ theme }: GlobalThemeProps) => theme.text.base};
   }
 
   a {
-    color: ${({ theme }: GlobalThemeProps) => theme.text.secondary}
+    color: ${({ theme }: GlobalThemeProps) => theme.text.secondary};
     text-decoration: none;
   }
 `;

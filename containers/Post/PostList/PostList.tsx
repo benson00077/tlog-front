@@ -12,7 +12,7 @@ type PostListProps = {
   SSGposts: IPost
 }
 
-export default function PostList({ tags, SSGposts } : PostListProps) {
+export default function PostList({ tags, SSGposts }: PostListProps) {
 
   const { query: { tag: targetTag } } = useRouter()  //TODO: tags cloud to click
 
@@ -40,11 +40,14 @@ export default function PostList({ tags, SSGposts } : PostListProps) {
     <>
       <S.Wrapper>
         <div className="tags">
-          <TagCloud tags={tags} />
+          <h3>Tags</h3>
+          <div>
+            <TagCloud tags={tags} />
+          </div>
         </div>
 
         <div className="posts">
-          { posts 
+          {posts
             ? (posts.items.map((post, i) => (
               <PostCard post={post} key={i} />
             ))

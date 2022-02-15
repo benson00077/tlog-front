@@ -6,6 +6,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - DB_PASS=<...>
 - NEXT_PUBLIC_API_URL=<gql url>
 
+
+# TODO
+- rehypeRaw as hype rehypePlugins to insert ifram into blog post
+- collect the TODOs scatterd around this project
+
 # Note
 - SSR styled components - w/ `babel-plugin-styled-components` [stackoverflow](https://stackoverflow.com/questions/51791163/warning-prop-classname-did-not-match-when-using-styled-components-with-seman)
 
