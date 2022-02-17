@@ -32,6 +32,7 @@ export const Summary = styled.blockquote`
 `;
 
 export const PostRoot = styled.article`
+  position: relative;
   max-width: 58rem;
   margin: 0 auto;
 
@@ -75,14 +76,14 @@ export const PostRoot = styled.article`
       monospace;
   }
 
-  pre {
+  /* pre {
     margin: 2rem 0;
     border-radius: 0.4rem;
     padding: 1rem;
     line-height: 1.5;
-  }
+  } */
 
-  // inline code
+  // -- inline code
   p code,
   li code {
     background: ${({ theme }: GlobalThemeProps) => theme.background.inlineCode};
@@ -91,23 +92,27 @@ export const PostRoot = styled.article`
     padding: 0.2rem 0.4rem;
   }
 
-  // quote in markdown as used in github
-  pre > code {
-    padding: 0 1rem;
+  // -- quote in markdown as used in github ( pre > code )
+  .quote {
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
     background: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
     border-left: 0.3rem solid
       ${({ theme }: GlobalThemeProps) => theme.colors.sloganBlue};
     border-radius: 0.5rem;
-    // Long quote
-    // TODO: inline ele have no width, would casue overflow
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+    pre {
+      line-height: 1.5;
+      // Long quote
+      // TODO: inline ele have no width, would casue overflow
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
-  // code block. not quote in markdown. not inline code
-  // TODO: w/ RWD
+  // -- code block. not quote in markdown. not inline code
   .columnLeft {
     display: block;
     float: left;
@@ -124,9 +129,7 @@ export const PostRoot = styled.article`
     float: left;
     clear: right;
     width: 70%;
-    margin: 0;
-    padding: 1px 0 0 0;
-    border-top: 1px solid gray;
+    line-height: 1.5;
 
     @media only screen and ${mediaQueryBreakpoints.device.laptop} {
       float: none;
@@ -137,28 +140,10 @@ export const PostRoot = styled.article`
       content: " ";
     }
   }
-  // -- end --
-
-  table {
-    margin: 2rem 0;
-    border-collapse: collapse;
-
-    tr:nth-of-type(2n) {
-      background-color: ${({ theme }: GlobalThemeProps) =>
-        theme.background.secondary};
-    }
-
-    td,
-    th {
-      line-height: 1.4;
-      border: 1px solid ${({ theme }: GlobalThemeProps) => theme.border};
-      padding: 0.8rem;
-    }
-
-    th {
-      font-weight: 700;
-    }
+  .clearFloat {
+    clear: both;
   }
+  // -- end --
 
   a {
     position: relative;
@@ -181,6 +166,7 @@ export const PostRoot = styled.article`
 `;
 
 export const Info = styled.div`
+  ${flexMixin("center")};
   margin: 0 auto;
   text-align: center;
   line-height: 1.6;
@@ -188,5 +174,31 @@ export const Info = styled.div`
 `;
 
 export const Date = styled.time`
-  margin-right: 1.2rem;
+  position: absolute;
+  right: 1rem;
 `;
+
+export const Table = styled.div`
+  ${flexMixin("center")};
+
+  table {
+    margin: 2rem 0;
+    border-collapse: collapse;
+
+    tr:nth-of-type(2n) {
+      background-color: ${({ theme }: GlobalThemeProps) =>
+        theme.background.secondary};
+    }
+
+    td,
+    th {
+      line-height: 1.4;
+      border: 1px solid ${({ theme }: GlobalThemeProps) => theme.border};
+      padding: 0.8rem;
+    }
+
+    th {
+      font-weight: 700;
+    }
+  }
+`

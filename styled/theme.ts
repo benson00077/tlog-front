@@ -1,6 +1,8 @@
 const light = {
   background: {
-    primary: '#ffffff',
+    // primary: '#ffffff',
+    // primary: "#f8f9fa", // apple white
+    primary: '#E7E8DB', // close to EggShell
     secondary: '#fbfbfb',
     postCard: '#ffffff',
     blurCard: 'rgba(245, 245, 245, .8)',
@@ -12,7 +14,8 @@ const light = {
     summaryBg: '#e6f6e6',
   },
   text: {
-    primary: '#666666',
+    // primary: '#666666',
+    primary: '#444', //apple black text
     secondary: '#969696',
     header: '#504e4e',
     post: '#3b454e',
