@@ -13,7 +13,7 @@ export default function Post(props: IndexProps) {
   // console.log(props.post.getPostById)
   return (
     <Layout>
-      <PostDetail />
+      <PostDetail post={props.post?.getPostById} />
     </Layout>
   )
 }
@@ -21,28 +21,37 @@ export default function Post(props: IndexProps) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const apolloClient = initializeApollo({});
+  let notFound = false;
 
+  // Error handling ref: https://stackoverflow.com/a/67171798/16124226
+  // Error for non-exist query id
+  try {
+    const { data: post, error } = await apolloClient.query<GetPostByIdQuery, GetPostByIdVar>({
+      query: GET_POST_BY_ID,
+      variables: {
+        id: context?.params?.id as string
+      }
+    })
+    if (error || !post) notFound = true;
 
-  const { data: post } = await apolloClient.query<GetPostByIdQuery, GetPostByIdVar>({
-    query: GET_POST_BY_ID,
-    variables: {
-      id: context?.params?.id as string
-    }
-  })
-
-  return addApolloState(apolloClient, {
-    props: {
-      post
-    },
-    revalidate: 60,
-  })
+    return addApolloState(apolloClient, {
+      props: {
+        post
+      },
+      revalidate: 60,
+      notFound
+    })
+  } catch {
+    notFound = true
+    return { notFound }
+  } 
 }
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-
   const apolloClient = initializeApollo({});
 
+  // TODO: getAllIds from backend gql
   const { data: { posts: posts } } = await apolloClient.query<PostQuery, PostVars>({
     query: POSTS,
     variables: {
@@ -50,7 +59,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         page: 1,
         pageSize: 10,
       }
-    }
+    },
   })
 
   const paths = posts.items.map(post => (
@@ -59,6 +68,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   }
 }

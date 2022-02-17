@@ -14,40 +14,40 @@ export default function PostCard({ post }: Props) {
 
   const router = useRouter()
 
-  const goToPost = (e: MouseEvent) => {
-    e.preventDefault()
-    router.push(`/post/${_id}`)
-  }
-
+  // TODO: Link and anchor tag wrap cause S.Box &:nth-of-type{} css failed
   return (
-    <S.Box onClick={(e) => goToPost(e)}>
+    <Link href={`/post/${_id}`} passHref>
+      <a>
 
-      <S.postPoster>
-        <img src={posterUrl} alt={title} />
-      </S.postPoster>
+        <S.Box>
+          <S.postPoster>
+            <img src={posterUrl} alt={title} />
+          </S.postPoster>
 
-      <S.postInfo>
-        <span className="date">{formatDate(createdAt)}</span>
-        <h2>{title}</h2>
-        <p className="summary">
-          {summary}
-        </p>
-        <div className="secondaryInfo">
-          <div>
-            <span>Preview: {pv}</span>
-          </div>
-          <div>
-            <span>Likes: {like}</span>
-          </div>
-          <div>
-            {/* {tags.map((tag) => (
+          <S.postInfo>
+            <span className="date">{formatDate(createdAt)}</span>
+            <h2>{title}</h2>
+            <p className="summary">
+              {summary}
+            </p>
+            <div className="secondaryInfo">
+              <div>
+                <span>Preview: {pv}</span>
+              </div>
+              <div>
+                <span>Likes: {like}</span>
+              </div>
+              <div>
+                {/* {tags.map((tag) => (
               <span>{tag}</span>
             ))} */}
-            <span> {tags[0]} </span>
-          </div>
-        </div>
-      </S.postInfo>
+                <span> {tags[0]} </span>
+              </div>
+            </div>
+          </S.postInfo>
+        </S.Box>
 
-    </S.Box>
+      </a>
+    </Link>
   )
 }

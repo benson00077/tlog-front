@@ -8,11 +8,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 
 # TODO
+- using React Spring with next router obj for loading animation [see me](https://stackoverflow.com/a/59117532/16124226). Or Framer Motion.
 - rehypeRaw as hype rehypePlugins to insert ifram into blog post
 - collect the TODOs scatterd around this project
 
 # Note
 - SSR styled components - w/ `babel-plugin-styled-components` [stackoverflow](https://stackoverflow.com/questions/51791163/warning-prop-classname-did-not-match-when-using-styled-components-with-seman)
+
+# Issue
+- [getStaticProps with { fallback: true } is very slow when spa routing.](https://github.com/vercel/next.js/issues/13751)
 
 # SSR w/ Apollo cache
 

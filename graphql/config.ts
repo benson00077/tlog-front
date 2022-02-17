@@ -12,15 +12,15 @@ export const httpLink = new HttpLink({
 })
 
 // TODO: snack by notistack.js
-export const errorLink = onError(( {graphQLErrors, networkError} )=> {
+export const errorLink = onError(( { graphQLErrors, networkError} )=> {
   if (graphQLErrors) {
     graphQLErrors.forEach(err => {
-      console.error(`[GraphQL error]: ${err.message}`)
+      console.error(`🛑 [GraphQL error]: ${err.message}`)
     });
   }
 
   if (networkError) {
-    console.error(`[Network error]: ${networkError.message}`)
+    console.error(`🛑 [Network error]: ${networkError.message}`)
   }
 })
 
