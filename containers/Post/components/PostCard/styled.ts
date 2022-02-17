@@ -4,34 +4,27 @@ import { flexMixin } from "../../../../styled/mixins";
 import breakpoints from "../../../../styled/mediaQueryBreakpoints";
 
 /**
- *  TODO: onhover no use in mobile and tablet size 
- *  Think of changing design - like first 3 post to be small card 
+ *  TODO: onhover no use in mobile and tablet size
+ *  Think of changing design - like first 3 post to be small card
  *  and the others remain
  */
 
 export const Box = styled.section`
-  ${flexMixin("space-between")};
+  display: block;
+  position: relative;
+  width: 33rem;
+  ${flexMixin("center")};
   height: 22rem;
-  margin-bottom: 3rem;
   border-radius: 15px;
   box-shadow: 0 1px 20px -8px ${({ theme }: GlobalThemeProps) => theme.colors.fiveOpcityBlack};
   cursor: pointer;
   overflow: hidden;
 
-  &:nth-of-type(2n) {
-    flex-direction: row-reverse;
-  }
-
-  @media only screen and ${breakpoints.device.laptop} {
-    display: block;
-    position: relative;
-
-    &:hover {
-      img {
-        transition: all 300ms ease;
-        transform: scale(1.05);
-        filter: blur(0px);
-      }
+  &:hover {
+    img {
+      transition: all 300ms ease;
+      transform: scale(1.05);
+      filter: blur(0px);
     }
   }
 `;
@@ -39,29 +32,45 @@ export const Box = styled.section`
 export const postPoster = styled.div`
   width: 33rem;
   overflow: hidden;
-  background-color: black;
+  opacity: 0.4;
+  position: absolute;
+  left: 0;
+
   img {
     height: 22rem;
-    width: auto;
+    max-width: 33rem;
+    object-fit: cover; // from background-size
+    object-position: center center; // from background-position
+    filter: blur(4px);
     transition: all 300ms ease;
-  }
 
-  @media only screen and ${breakpoints.device.laptop} {
-    opacity: 0.4;
-    img {
-      filter: blur(4px);
+    @media only screen and ${breakpoints.device.laptop} {
+      filter: blur(0px);
     }
   }
 `;
 
 export const postInfo = styled.div`
-  position: relative;
   ${flexMixin("space-between")};
   flex-direction: column;
   padding: 1.8rem 2.4rem;
   height: 22rem;
-  width: 26rem;
+  width: 30rem;
   text-align: center;
+  color: ${({ theme }: GlobalThemeProps) => theme.text.post};
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 30rem;
+    height: 22rem;
+    background: inherit;
+    background-attachment: fixed;
+    filter: blur(12px);
+    z-index: 1000;
+  }
 
   .date {
     opacity: 0.5;
@@ -81,16 +90,8 @@ export const postInfo = styled.div`
   }
 
   div.secondaryInfo {
-    /* display: grid;
-    grid-template-columns: 5% 5% 90%; */
     ${flexMixin("space-between")}
     width: 100%;
     height: 1rem;
-  }
-
-  @media only screen and ${breakpoints.device.laptop} {
-    position: absolute;
-    top: 0;
-    width: 100%;
   }
 `;

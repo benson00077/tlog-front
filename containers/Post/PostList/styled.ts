@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import breakpoints from "../../../styled/mediaQueryBreakpoints";
+import { flexMixin } from "../../../styled/mixins";
 
 export const Wrapper = styled.section`
   display: grid;
@@ -13,7 +14,17 @@ export const Wrapper = styled.section`
   align-items: center;
 
   .posts {
+    width: 80%;
+    display: inline-grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-gap: 25px 25px;
     margin-top: 10rem;
+
+    .postsGridItem {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .tags {
@@ -22,6 +33,10 @@ export const Wrapper = styled.section`
     h3 {
       padding-bottom: 2rem;
       text-align: center;
+    }
+
+    .cloud {
+      ${flexMixin()};
     }
   }
 `;

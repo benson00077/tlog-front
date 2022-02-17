@@ -16,10 +16,10 @@ export default function PostCard({ post }: Props) {
 
   // TODO: Link and anchor tag wrap cause S.Box &:nth-of-type{} css failed
   return (
-    <Link href={`/post/${_id}`} passHref>
-      <a>
+    <S.Box>
+      <Link href={`/post/${_id}`} passHref>
+        <a>
 
-        <S.Box>
           <S.postPoster>
             <img src={posterUrl} alt={title} />
           </S.postPoster>
@@ -45,9 +45,9 @@ export default function PostCard({ post }: Props) {
               </div>
             </div>
           </S.postInfo>
-        </S.Box>
 
-      </a>
-    </Link>
+        </a>
+      </Link>
+    </S.Box>
   )
 }

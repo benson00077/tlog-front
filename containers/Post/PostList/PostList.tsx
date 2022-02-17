@@ -41,7 +41,7 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
       <S.Wrapper>
         <div className="tags">
           <h3>Tags</h3>
-          <div>
+          <div className="cloud">
             <TagCloud tags={tags} />
           </div>
         </div>
@@ -49,7 +49,9 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
         <div className="posts">
           {posts
             ? (posts.items.map((post, i) => (
-              <PostCard post={post} key={i} />
+              <div className="postsGridItem" key={i}>
+                <PostCard post={post} key={i} />
+              </div>
             ))
             ) : (
               <div>Loading Post Card...</div>
