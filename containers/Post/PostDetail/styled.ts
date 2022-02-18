@@ -3,10 +3,21 @@ import { GlobalThemeProps } from "../../../styled/golbalStyles";
 import mediaQueryBreakpoints from "../../../styled/mediaQueryBreakpoints";
 import { flexMixin } from "../../../styled/mixins";
 
+const rootWidth = "58rem";
+const parallelLayout = {
+  width: {
+    columnLeft: `calc(${rootWidth} * 0.3)`,
+    columnRight: `calc(${rootWidth} * 0.7)`,
+    languageLeft: `calc(${rootWidth} * 0.5)`,
+    languageRight: `calc(${rootWidth} * 0.5)`,
+  },
+};
+
 export const Poster = styled.img`
   ${flexMixin()};
   width: 100%;
-  object-fit: cover;
+  object-fit: cover; // from background-size
+  object-position: center center; // from background-position
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px ${({ theme }: GlobalThemeProps) => theme.colors.oneOpcityBlack},
     0 4px 6px -2px ${({ theme }: GlobalThemeProps) => theme.colors.oneOpcityBlack};
@@ -32,8 +43,10 @@ export const Summary = styled.blockquote`
 `;
 
 export const PostRoot = styled.article`
-  position: relative;
-  max-width: 58rem;
+  ${flexMixin("center")};
+  flex-direction: column;
+  position: relative; // for S.Date
+  max-width: ${rootWidth};
   margin: 0 auto;
 
   @media only screen and ${mediaQueryBreakpoints.device.laptop} {
@@ -67,21 +80,37 @@ export const PostRoot = styled.article`
 
   p {
     margin-bottom: 1.25rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.65;
   }
+
+  a {
+    position: relative;
+    color: ${({ theme }: GlobalThemeProps) => theme.colors.linkBase};
+
+    &:hover {
+      text-decoration: underline
+        ${({ theme }: GlobalThemeProps) => theme.colors.linkBase};
+    }
+  }
+
+  ol,
+  ul {
+    padding-left: 2rem;
+  }
+
+  li {
+    line-height: 1.6;
+  }
+`;
+
+export const Markdown = styled.div`
+  width: 100%;
 
   code {
     font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New,
       monospace;
   }
-
-  /* pre {
-    margin: 2rem 0;
-    border-radius: 0.4rem;
-    padding: 1rem;
-    line-height: 1.5;
-  } */
 
   // -- inline code
   p code,
@@ -95,7 +124,7 @@ export const PostRoot = styled.article`
   // -- quote in markdown as used in github ( pre > code )
   .quote {
     padding: 1.5rem 1rem;
-    margin-bottom: 1rem;
+    margin: 2rem 0 4rem 0;
     background: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
     border-left: 0.3rem solid
       ${({ theme }: GlobalThemeProps) => theme.colors.sloganBlue};
@@ -117,9 +146,8 @@ export const PostRoot = styled.article`
     display: block;
     float: left;
     clear: both;
-    width: 30%;
+    width: ${parallelLayout.width.columnLeft};
     padding-right: 2rem;
-
     @media only screen and ${mediaQueryBreakpoints.device.laptop} {
       float: none;
       width: 100%;
@@ -128,9 +156,8 @@ export const PostRoot = styled.article`
   .columnRight {
     float: left;
     clear: right;
-    width: 70%;
+    width: ${parallelLayout.width.columnRight};
     line-height: 1.5;
-
     @media only screen and ${mediaQueryBreakpoints.device.laptop} {
       float: none;
       width: 100%;
@@ -143,25 +170,43 @@ export const PostRoot = styled.article`
   .clearFloat {
     clear: both;
   }
-  // -- end --
 
-  a {
-    position: relative;
-    color: ${({ theme }: GlobalThemeProps) => theme.colors.linkBase};
-
-    &:hover {
-      text-decoration: underline
-        ${({ theme }: GlobalThemeProps) => theme.colors.linkBase};
+  // -- code block popup
+  @media only screen and (min-width: ${mediaQueryBreakpoints.size.laptop}) {
+    .columnRight:hover {
+      cursor: pointer;
+    }
+    .expand {
+      width: calc(58rem * 1.2);
+      float: none;
     }
   }
 
-  ol,
-  ul {
-    padding-left: 2rem;
+  // -- language block.
+  .languageLeft {
+    display: block;
+    float: left;
+    clear: both;
+    width: ${parallelLayout.width.languageLeft};
+    padding-right: 2rem;
+    @media only screen and ${mediaQueryBreakpoints.device.laptop} {
+      float: none;
+      width: 100%;
+    }
   }
+  .languageRight {
+    float: left;
+    clear: right;
+    width: ${parallelLayout.width.languageRight};
+    line-height: 1.5;
+    @media only screen and ${mediaQueryBreakpoints.device.laptop} {
+      float: none;
+      width: 100%;
+    }
 
-  li {
-    line-height: 1.6;
+    &::after {
+      content: " ";
+    }
   }
 `;
 
@@ -201,4 +246,4 @@ export const Table = styled.div`
       font-weight: 700;
     }
   }
-`
+`;

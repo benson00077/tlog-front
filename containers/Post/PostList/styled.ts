@@ -37,6 +37,7 @@ export const Wrapper = styled.section`
 
     .cloud {
       ${flexMixin()};
+      flex-wrap: wrap;
     }
   }
 `;
