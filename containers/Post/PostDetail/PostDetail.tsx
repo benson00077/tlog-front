@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import * as S from './styled'
 import TagCloud from '../components/TagCloud'
@@ -7,10 +7,8 @@ import { formatDate } from '../../../shared/utils'
 
 // markdown
 import ReactMarkdown from 'react-markdown'
-import SyntaxHighlighter from 'react-syntax-highlighter'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
-import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs' // import vs2015 from 'react-syntax-highlighter/dist/cjs/styles/hljs/vs2015' 
 import { CustomMarkdown } from './CustomMarkdown'
 
 
@@ -37,7 +35,7 @@ function PostDetail({ post }: PostDetailProps) {
 
     codeBlocks.forEach((codeBlock) => {
       const previouseEle = codeBlock?.previousElementSibling // mostly <p> or <ul> in my usecase
-      previouseEle?.classList.add("columnLeft") 
+      previouseEle?.classList.add("columnLeft")
     })
 
     foreignLanBlocks.forEach((foreignLanBlock) => {
@@ -46,7 +44,7 @@ function PostDetail({ post }: PostDetailProps) {
         previouseEle?.classList.add("languageLeft")
       }
     })
-  
+
   }, [])
 
 
@@ -77,7 +75,7 @@ function PostDetail({ post }: PostDetailProps) {
         </S.Title>
 
         <S.Info>
-          <TagCloud tags={tags} />
+          <TagCloud tags={tags} /> 
           <S.Date>
             {formatDate(createdAt)}
           </S.Date>

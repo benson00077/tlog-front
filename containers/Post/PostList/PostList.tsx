@@ -42,7 +42,7 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
         <div className="tags">
           <h3>Tags</h3>
           <div className="cloud">
-            <TagCloud tags={tags} />
+            <TagCloud tags={tags} targetTag={targetTag}/>
           </div>
         </div>
 

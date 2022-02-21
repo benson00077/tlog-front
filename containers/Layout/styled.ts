@@ -8,6 +8,6 @@ export const Layouts = styled.section`
 
 export const Main = styled.main`
   flex: 1;
-  margin-top: 25px;
+  margin-top: 2.5rem;
   overflow-x: hidden;
 `

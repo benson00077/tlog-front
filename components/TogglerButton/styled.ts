@@ -5,6 +5,7 @@ export const Container = styled.div`
   position: fixed;
   top: 0.75rem;
   right: 2.4rem;
+  z-index: 100;
 
   .switch {
     position: relative;

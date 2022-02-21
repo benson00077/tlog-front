@@ -87,6 +87,7 @@ const defaultTheme = {
     pink: '#d62b6b',
     green: '#35c0c0',
     postTagColor: '#00965e',
+    postTagSelectedColor: '#7b57df',
     postTagBg: 'rgba(0, 150, 94, 0.1)',
     postTagBgHover: 'rgba(0, 150, 94, 0.2)',
     summaryBar: 'rgba(0, 150, 94, 0.6)',
@@ -99,6 +100,7 @@ const defaultTheme = {
     sixOpcityBlack: 'rgba(0, 0, 0, .6)',
     sevenOpcityBlack: 'rgba(0, 0, 0, .7)',
     linkBase: '#25c3a0',
+    footer: "#f5f6f7",
   }
 }
 

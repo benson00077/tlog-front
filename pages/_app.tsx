@@ -22,10 +22,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const handleStart = (url: string) => {
-      console.log(`Loading: ${url}`)
+      console.log(new Date, `Loading Start: ${url}`)
       // NProgress.start()
     }
     const handleStop = () => {
+      console.log(new Date, `Loading Stop`)
       // NProgress.done()
     }
 
