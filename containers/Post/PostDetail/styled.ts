@@ -247,3 +247,52 @@ export const Table = styled.div`
     }
   }
 `;
+
+export const Toc = styled.div`
+  position: fixed;
+  top: 60%;
+  /* left: 1rem; */
+  left: calc((100% - ${rootWidth})/2 + ${rootWidth});
+  width: calc((100% - ${rootWidth})/2);
+  margin-left: 2rem;
+  user-select: none;
+  
+
+  .toc-link {
+    font-size: 0.9rem;
+    color: ${({ theme }: GlobalThemeProps) => theme.text.primary};
+    &:hover {
+      opacity: 0.6;
+    }
+    &::before {
+      content: "";
+    }
+  }
+  
+  .toc-list {
+    list-style-type: none;
+    padding-right: 1rem;
+    padding-left: 10px; // for nested .is-collapsible 
+    line-height: 1.6;
+  }
+
+  .is-active-link {
+    color: ${({ theme }: GlobalThemeProps) => theme.text.active};
+  }
+  // NOTICE: .is-collaspsible sholudn't put under .is-collapsed 
+  // since they put in same tag and the effect is done by css overwrite.
+  // Could use default css by importing from _att.tsx -- import 'src/styled/nprogress.css'
+  .is-collapsible {
+    max-height: 1000px;
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+  }
+
+  .is-collapsed {
+    max-height: 0;
+  }
+  
+  @media only screen and ${mediaQueryBreakpoints.device.laptop} {
+    display: none;
+  }
+`;

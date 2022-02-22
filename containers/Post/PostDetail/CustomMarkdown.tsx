@@ -66,9 +66,16 @@ export function CustomMarkdown() {
       )
     },
     // p({ node, children, ...props }: any) { return <p {...props}>{children}</p> },
-    h1({ node, children, ...props }: any) { return <h1 className="clearFloat" {...props}>{children}</h1> },
-    h2({ node, children, ...props }: any) { return <h2 className="clearFloat" {...props}>{children}</h2> },
-    h3({ node, children, ...props }: any) { return <h3 className="clearFloat" {...props}>{children}</h3> },
+    // NOTE: prevent using h1 in markdown content. Post title would be the only h1 for SEO
+    h1({ node, children, ...props }: any) { 
+      return <h1 id={children[0]} className="clearFloat" {...props}>{children}</h1> 
+    },
+    h2({ node, children, ...props }: any) { 
+      return <h2 id={children[0]} className="clearFloat" {...props}>{children}</h2> 
+    },
+    h3({ node, children, ...props }: any) { 
+      return <h3 id={children[0]} className="clearFloat" {...props}>{children}</h3> 
+    },
     h4({ node, children, ...props }: any) { return <h4 className="clearFloat" {...props}>{children}</h4> },
     h5({ node, children, ...props }: any) { return <h5 className="clearFloat" {...props}>{children}</h5> },
     h6({ node, children, ...props }: any) { return <h6 className="clearFloat" {...props}>{children}</h6> },

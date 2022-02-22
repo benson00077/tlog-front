@@ -21,6 +21,7 @@ const light = {
     post: '#3b454e',
     tooltip: '#fff',
     base: '#1c1e21',
+    active: '#002939',
   },
   link: {
     primary: '#666666',
@@ -53,6 +54,7 @@ const dark = {
     post: '#f5f6f7',
     tooltip: '#000',
     base: '#f5f6f7',
+    active: '#E4CFA9',
   },
   link: {
     primary: '#f5f6f7',

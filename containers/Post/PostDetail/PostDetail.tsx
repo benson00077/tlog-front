@@ -10,6 +10,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { CustomMarkdown } from './CustomMarkdown'
+import { setupTocbot } from './utils'
 
 
 
@@ -46,6 +47,17 @@ function PostDetail({ post }: PostDetailProps) {
     })
 
   }, [])
+  
+  /**
+   *  Table of Contents
+   *  NOTICE: 
+   *    UI break after switch theme.
+   *    set window.localStorage.theme as dep for temp way to fix
+   */
+  useEffect(() => {
+    setupTocbot()
+
+  }, [post, window.localStorage.theme])
 
 
   if (!post) return <div> .... Fetching data..... skeleton component to be added</div>
@@ -68,6 +80,12 @@ function PostDetail({ post }: PostDetailProps) {
   return (
     <>
       {/* TODO: next head component for seo */}
+      <S.Toc>
+        <div>
+          <aside className="tableOfContents"></aside>
+        </div>
+      </S.Toc>
+
       <S.PostRoot>
         <S.Poster src={posterUrl} alt={title} />
         <S.Title>
@@ -75,7 +93,7 @@ function PostDetail({ post }: PostDetailProps) {
         </S.Title>
 
         <S.Info>
-          <TagCloud tags={tags} /> 
+          <TagCloud tags={tags} />
           <S.Date>
             {formatDate(createdAt)}
           </S.Date>
@@ -88,6 +106,7 @@ function PostDetail({ post }: PostDetailProps) {
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
             components={CustomMarkdown()}
+            className="postContentByToc"
           >
             {content}
           </ReactMarkdown>
