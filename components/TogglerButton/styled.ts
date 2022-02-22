@@ -5,7 +5,7 @@ export const Container = styled.div`
   position: fixed;
   top: 0.75rem;
   right: 2.4rem;
-  z-index: 100;
+  z-index: 20;
 
   .switch {
     position: relative;
@@ -29,7 +29,7 @@ export const Container = styled.div`
     bottom: 0;
     background-color: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
     -webkit-transition: 0.2s;
-    transition: 0.2s;
+    transition: 0.2s cubic-bezier(0.25, 0.1, 0.3, 1.5);
     box-shadow: 0 0 2px ${({ theme }: GlobalThemeProps) => theme.text.base};
   }
 
@@ -42,7 +42,7 @@ export const Container = styled.div`
     bottom: 5px;
     background-color: ${({ theme }: GlobalThemeProps) => theme.background.tooltip};
     -webkit-transition: 0.2s;
-    transition: 0.2s;
+    transition: 0.2s cubic-bezier(0.25, 0.1, 0.3, 1.5);
   }
 
   input:checked + .slider {

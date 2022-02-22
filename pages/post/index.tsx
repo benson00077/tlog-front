@@ -1,5 +1,6 @@
 import { Layout } from "../../containers/Layout/Layout";
 import PostList from "../../containers/Post/PostList/PostList";
+import BackToTopBtn from "../../components/BackToTopBtn/BackToTopBtn";
 import { addApolloState, initializeApollo } from "../../graphql/apollo";
 import { POSTS, GET_ALL_TAGS } from "../../containers/Post/typeDefs"
 import { GetAllTagsQuery, IPost, PostQuery, PostVars } from "../../containers/Post/types"
@@ -25,7 +26,10 @@ export default function Posts(props: IndexProps) {
 
   return (
     <Layout>
+      <>
       <PostList SSGposts={posts} tags={tags ? tags.tags : [] } />
+      <BackToTopBtn />
+      </>
     </Layout>
   )
 }

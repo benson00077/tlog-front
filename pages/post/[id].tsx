@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import BackToTopBtn from "../../components/BackToTopBtn/BackToTopBtn";
 import { Layout } from "../../containers/Layout/Layout";
 import PostDetail from "../../containers/Post/PostDetail/PostDetail";
 import { GET_POST_BY_ID, POSTS } from "../../containers/Post/typeDefs";
@@ -13,7 +14,10 @@ export default function Post(props: IndexProps) {
   // console.log(props.post.getPostById)
   return (
     <Layout>
-      <PostDetail post={props.post?.getPostById} />
+      <>
+        <PostDetail post={props.post?.getPostById} />
+        <BackToTopBtn />
+      </>
     </Layout>
   )
 }
@@ -44,7 +48,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   } catch {
     notFound = true
     return { notFound }
-  } 
+  }
 }
 
 

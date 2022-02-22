@@ -8,6 +8,7 @@ export const NavBar = styled.nav`
   height: 2.5rem;
   padding: 0 7.5rem 0 2.4rem;
   opacity: 0.95;
+  z-index: 10;
 `;
 
 export const NavBarLinks = styled.div`
