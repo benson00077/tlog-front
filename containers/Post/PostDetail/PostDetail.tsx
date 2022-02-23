@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import * as S from './styled'
 import TagCloud from '../components/TagCloud'
@@ -21,6 +21,8 @@ type PostDetailProps = {
 function PostDetail({ post }: PostDetailProps) {
 
   const { query: { id }, replace } = useRouter()
+  const markdownRef = useRef<HTMLDivElement>(null)
+  const tocRef = useRef<HTMLDivElement>(null)
 
   /**
    *  Layout UI: 
@@ -47,17 +49,33 @@ function PostDetail({ post }: PostDetailProps) {
     })
 
   }, [])
-  
+
   /**
    *  Table of Contents
    *  NOTICE: 
-   *    UI break after switch theme.
-   *    set window.localStorage.theme as dep for temp way to fix
+   *          UI break after switch theme.
+   *          set window.localStorage.theme as dep, as temp workaround
    */
   useEffect(() => {
     setupTocbot()
+  }, [post, globalThis?.localStorage?.theme])
 
-  }, [post, window.localStorage.theme])
+  /**
+   *  Table of Contents
+   *          inject style for child node posn sticky. as temp workaround 
+   *  NOTICE: 
+   *          work when positoin: absolute on S.Toc
+   */
+  useEffect(() => {
+    const [markdown, toc] = [markdownRef.current, tocRef.current]
+    if (toc) {
+      const tocStyle = `
+        height: ${markdown?.getBoundingClientRect().height}px;
+        top: ${markdown?.getBoundingClientRect().top}px
+      `
+      toc.setAttribute("style", tocStyle)
+    }
+  }, [markdownRef.current, tocRef.current])
 
 
   if (!post) return <div> .... Fetching data..... skeleton component to be added</div>
@@ -80,7 +98,7 @@ function PostDetail({ post }: PostDetailProps) {
   return (
     <>
       {/* TODO: next head component for seo */}
-      <S.Toc>
+      <S.Toc ref={tocRef}>
         <div>
           <aside className="tableOfContents"></aside>
         </div>
@@ -101,7 +119,7 @@ function PostDetail({ post }: PostDetailProps) {
 
         <S.Summary>{summary}</S.Summary>
 
-        <S.Markdown>
+        <S.Markdown ref={markdownRef}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}

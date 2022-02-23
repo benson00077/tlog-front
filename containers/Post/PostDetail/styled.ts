@@ -31,6 +31,8 @@ export const Title = styled.h1`
 `;
 
 export const Summary = styled.blockquote`
+  width: 100%;
+  text-align: center;
   margin: 2rem 0 4rem 0;
   padding: 1rem;
   font-size: 1.1rem;
@@ -249,14 +251,16 @@ export const Table = styled.div`
 `;
 
 export const Toc = styled.div`
-  position: fixed;
-  top: 60%;
-  /* left: 1rem; */
-  left: calc((100% - ${rootWidth})/2 + ${rootWidth});
-  width: calc((100% - ${rootWidth})/2);
+  position: absolute; // for child sticky posn
+  left: calc((100% - ${rootWidth}) / 2 + ${rootWidth});
+  width: calc((100% - ${rootWidth}) / 2 - 2rem);
   margin-left: 2rem;
   user-select: none;
-  
+
+  div {
+    position: sticky;
+    top: 100px;
+  }
 
   .toc-link {
     font-size: 0.9rem;
@@ -268,30 +272,30 @@ export const Toc = styled.div`
       content: "";
     }
   }
-  
+
   .toc-list {
     list-style-type: none;
     padding-right: 1rem;
-    padding-left: 10px; // for nested .is-collapsible 
+    padding-left: 10px; // for nested .is-collapsible
     line-height: 1.6;
   }
 
   .is-active-link {
     color: ${({ theme }: GlobalThemeProps) => theme.text.active};
   }
-  // NOTICE: .is-collaspsible sholudn't put under .is-collapsed 
+  // NOTICE: .is-collaspsible sholudn't put under .is-collapsed
   // since they put in same tag and the effect is done by css overwrite.
-  // Could use default css by importing from _att.tsx -- import 'src/styled/nprogress.css'
+  // Alternative: import 'src/styled/nprogress.css' in _app.tsx.
   .is-collapsible {
     max-height: 1000px;
     overflow: hidden;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .is-collapsed {
     max-height: 0;
   }
-  
+
   @media only screen and ${mediaQueryBreakpoints.device.laptop} {
     display: none;
   }
