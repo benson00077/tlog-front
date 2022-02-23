@@ -12,14 +12,14 @@ type styledProps ={
 const STag = styled.span`
   display: inline-block;
   margin: 0 0.6rem 0.6rem 0;
-  padding: 0 0.375rem;
-  font-size: 0.875rem;
+  padding: 0.2rem 0.375rem;
+  font-size: 1rem //0.875rem;
   line-height: 1.6;
-  color: ${ (props: styledProps) => props.isSelected ? props.theme.colors.postTagSelectedColor : props.theme.colors.postTagColor};
-  background-color: ${ (props: styledProps) => props.theme.colors.postTagBg};
+  color: ${ (props: styledProps) => props.isSelected ? props.theme.tag.postTagSelectedColor : props.theme.tag.postTagColor};
+  background-color: ${ (props: styledProps) => props.theme.tag.postTagBg};
   border-radius: 1rem;
   &:hover {
-    background-color: ${ (props: styledProps) => props.theme.colors.postTagBgHover};
+    background-color: ${ (props: styledProps) => props.theme.tag.postTagBgHover};
     transform: scale(1.05);
   }
 `

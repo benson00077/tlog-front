@@ -2,15 +2,16 @@ const light = {
   background: {
     // primary: '#ffffff',
     // primary: "#f8f9fa", // apple white
-    primary: '#E7E8DB', // close to EggShell
-    // primary: '#1f2937',
-    secondary: '#fbfbfb',
+    //secondary: '#fbfbfb', // white
+    primary: '#E7E8DB', //  EggShell
+    secondary: '#e4e4e4', // Eggshell match
     postCard: '#ffffff',
     blurCard: 'rgba(245, 245, 245, .8)',
     bestAlbumCard: '#e6e6e6',
     skeleton: 'rgba(0, 0, 0, 0.04)',
     tooltip: 'rgba(0, 0, 0, .7)',
-    inlineCode: '#ebedf0',
+    // inlineCode: '#ebedf0', //gray
+    inlineCode: 'rgba(254,250,199,1)',
     searchBox: '#ffffff',
     summaryBg: '#e6f6e6',
   },
@@ -33,11 +34,19 @@ const light = {
   gradient: 'linear-gradient(#39598A, #79D7ED)',
   postSvg: '#fcf8db',
   codeEl: '#f0f0f0',
+  tag: {
+    // green
+    postTagColor: '#00965e',
+    postTagBgHover: 'rgba(0, 150, 94, 0.2)', 
+    postTagSelectedColor: '#7b57df',
+    postTagBg: 'rgba(0, 150, 94, 0.1)',
+  },
 }
 
 const dark = {
   background: {
-    primary: '#181a1b',
+    // primary: '#181a1b',  //black
+    primary: '#1f2937',
     secondary: '#1d1f27',
     postCard: '#1d1f27',
     blurCard: 'rgba(27, 29, 30, .8)',
@@ -46,7 +55,7 @@ const dark = {
     tooltip: 'rgba(255, 255, 255, .7)',
     inlineCode: '#444950',
     searchBox: '#202327',
-    summaryBg: '#003130',
+    summaryBg: '#33425b'
   },
   text: {
     primary: '#f5f6f7',
@@ -66,6 +75,12 @@ const dark = {
   gradient: 'linear-gradient(#091236, #1E215D)',
   postSvg: '#181a1b',
   codeEl: '#181a1b',
+  tag: {
+    postTagColor: '#77abb7',
+    postTagSelectedColor: '#7b57df',
+    postTagBg: 'rgba(0, 150, 94, 0.1)',
+    postTagBgHover: 'rgba(250, 250, 112, 0.2)', 
+  },
 }
 
 const defaultTheme = {
@@ -89,23 +104,21 @@ const defaultTheme = {
     orange: '#ffa500',
     pink: '#d62b6b',
     green: '#35c0c0',
-    postTagColor: '#00965e',
-    postTagSelectedColor: '#7b57df',
-    postTagBg: 'rgba(0, 150, 94, 0.1)',
-    postTagBgHover: 'rgba(0, 150, 94, 0.2)',
-    summaryBar: 'rgba(0, 150, 94, 0.6)',
+    // summaryBar: 'rgba(0, 150, 94, 0.6)', //green
+    summaryBar: '#77abb7',
     linkBlue: '#0070ba',
-    sloganBlue: '#00a7e0',
+    linkBase: '#58a6ff', //'#25c3a0',
+    sloganBlue: '#77abb7',
     archiveBlue: '#6ecaf5',
     oneOpcityBlack: 'rgba(0, 0, 0, .1)',
     threeOpcityBlack: 'rgba(0, 0, 0, .3)',
     fiveOpcityBlack: 'rgba(0, 0, 0, .5)',
     sixOpcityBlack: 'rgba(0, 0, 0, .6)',
     sevenOpcityBlack: 'rgba(0, 0, 0, .7)',
-    linkBase: '#25c3a0',
     footerText: "#f5f6f7",
     footerBgUnderWave: "rgb(30, 19, 87)",
-    footerBgWage: "rgba(0, 0, 0, 0) linear-gradient(rgba(19, 12, 62, 0.8) 7%, rgb(30, 19, 87) 70%) repeat scroll 0% 0%"
+    footerBgWage: "rgba(0, 0, 0, 0) linear-gradient(rgba(19, 12, 62, 0.8) 7%, rgb(30, 19, 87) 70%) repeat scroll 0% 0%",
+    textHighlight: '#b00606', //"#de4c4c", //red
   }
 }
 

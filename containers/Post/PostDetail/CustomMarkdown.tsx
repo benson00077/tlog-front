@@ -24,7 +24,7 @@ export function CustomMarkdown() {
         <SyntaxHighlighter
           children={String(children).replace(/\n$/, '')}
           style={atomOneDark}
-          customStyle={{ borderRadius: "0.5rem" }}
+          customStyle={{ borderRadius: "0.5rem", background: "#2a2a2a" }}
           showLineNumbers={false}
           showInlineLineNumbers={false}
           wrapLongLines={false}

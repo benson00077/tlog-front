@@ -21,13 +21,13 @@ function TogglerButton({ themeToggler }: ThemeTogglerProps) {
           />
           <S.Icons className="slider round">
             {!isServer && window.localStorage.getItem("theme") !== "light" ? (
-              <>
-                Moon
-              </>
+              <div className="icon">
+                🌙
+              </div>
             ) : (
-              <>
-                Sun
-              </>
+              <div className="icon">
+                🌤️
+              </div>
             )}
           </S.Icons>
         </label>

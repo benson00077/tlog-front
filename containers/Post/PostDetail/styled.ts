@@ -88,7 +88,7 @@ export const PostRoot = styled.article`
 
   a {
     position: relative;
-    color: ${({ theme }: GlobalThemeProps) => theme.colors.linkBase};
+    color: ${({ theme }: GlobalThemeProps) => theme.colors.linkBlue};
 
     &:hover {
       text-decoration: underline
@@ -103,6 +103,45 @@ export const PostRoot = styled.article`
 
   li {
     line-height: 1.6;
+  }
+
+  strong {
+    // crayan effect
+    position: relative;
+
+    &:before {
+      content: "";
+      z-index: -1;
+      left: -0.5em;
+      top: -0.1em;
+      border: 2px solid;
+      border-color: ${({ theme }: GlobalThemeProps) => theme.colors.textHighlight};
+      position: absolute;
+      border-right-color: transparent;
+      width: 100%;
+      height: 1em;
+      transform: rotate(2deg);
+      opacity: 0.7;
+      border-radius: 50%;
+      padding: 0.1em 0.25em;
+    }
+    &:after {
+      content: "";
+      z-index: -1;
+      left: -0.5em;
+      top: 0.1em;
+      padding: 0.1em 0.25em;
+      border: 2px solid;
+      border-color: ${({ theme }: GlobalThemeProps) => theme.colors.textHighlight};
+      border-left-color: transparent;
+      border-top-color: transparent;
+      position: absolute;
+      width: 100%;
+      height: 1em;
+      transform: rotate(-1deg);
+      opacity: 0.7;
+      border-radius: 50%;
+    }
   }
 `;
 
