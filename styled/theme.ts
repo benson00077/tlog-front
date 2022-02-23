@@ -3,6 +3,7 @@ const light = {
     // primary: '#ffffff',
     // primary: "#f8f9fa", // apple white
     primary: '#E7E8DB', // close to EggShell
+    // primary: '#1f2937',
     secondary: '#fbfbfb',
     postCard: '#ffffff',
     blurCard: 'rgba(245, 245, 245, .8)',
@@ -102,7 +103,9 @@ const defaultTheme = {
     sixOpcityBlack: 'rgba(0, 0, 0, .6)',
     sevenOpcityBlack: 'rgba(0, 0, 0, .7)',
     linkBase: '#25c3a0',
-    footer: "#f5f6f7",
+    footerText: "#f5f6f7",
+    footerBgUnderWave: "rgb(30, 19, 87)",
+    footerBgWage: "rgba(0, 0, 0, 0) linear-gradient(rgba(19, 12, 62, 0.8) 7%, rgb(30, 19, 87) 70%) repeat scroll 0% 0%"
   }
 }
 

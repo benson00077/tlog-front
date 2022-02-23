@@ -27,7 +27,7 @@ export const Container = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
+    background-color: ${({ theme }: GlobalThemeProps) => theme.background.primary};
     -webkit-transition: 0.2s;
     transition: 0.2s cubic-bezier(0.25, 0.1, 0.3, 1.5);
     box-shadow: 0 0 2px ${({ theme }: GlobalThemeProps) => theme.text.base};
@@ -46,7 +46,7 @@ export const Container = styled.div`
   }
 
   input:checked + .slider {
-    background-color: ${({theme}: GlobalThemeProps) => theme.background.secondary};
+    background-color: ${({theme}: GlobalThemeProps) => theme.background.primary};
   }
 
   input:checked + .slider:before {

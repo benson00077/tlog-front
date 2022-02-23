@@ -7,7 +7,7 @@ import { flexMixin } from "../../../styled/mixins"
 const SRandomWave = styled.div`
   
   .wave {
-    background: rgba(0, 0, 0, 0) linear-gradient(rgba(19, 12, 62, 0.8) 7%, rgb(30, 19, 87) 70%) repeat scroll 0% 0%;
+    background:  ${({ theme }: GlobalThemeProps) => theme.colors.footerBgWage};
     width: 100%;
     height: 10.5rem;
     clip-path: url("#wave2");
@@ -19,10 +19,10 @@ const SRandomWave = styled.div`
 
   .underWave {
     height: 7rem;
-    background-color: rgb(30, 19, 87);
+    background-color: ${({ theme }: GlobalThemeProps) => theme.colors.footerBgUnderWave};
     ${flexMixin("center")};
     flex-direction: column;
-    color: ${({ theme }: GlobalThemeProps) => theme.colors.footer};
+    color: ${({ theme }: GlobalThemeProps) => theme.colors.footerText};
 
     p {
       line-height: 1.5rem;
