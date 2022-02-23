@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { navHeight } from "../../styled/position"
 
 export const Layouts = styled.section`
   display: flex;
@@ -8,6 +9,6 @@ export const Layouts = styled.section`
 
 export const Main = styled.main`
   flex: 1;
-  margin-top: 2.5rem;
+  margin-top: ${navHeight};
   overflow-x: hidden;
 `

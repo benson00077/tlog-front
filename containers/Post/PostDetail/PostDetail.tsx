@@ -4,6 +4,7 @@ import * as S from './styled'
 import TagCloud from '../components/TagCloud'
 import { IPostItem } from '../types'
 import { formatDate } from '../../../shared/utils'
+import { navHeightInt } from '../../../styled/position'
 
 // markdown
 import ReactMarkdown from 'react-markdown'
@@ -68,14 +69,17 @@ function PostDetail({ post }: PostDetailProps) {
    */
   useEffect(() => {
     const [markdown, toc] = [markdownRef.current, tocRef.current]
-    if (toc) {
+    if (toc && markdown) {
+      // markdown.offsetParent = S.PostRoot
       const tocStyle = `
-        height: ${markdown?.getBoundingClientRect().height}px;
-        top: ${markdown?.getBoundingClientRect().top}px
-      `
+        height: ${markdown.getBoundingClientRect().height}px;
+        top: ${markdown.offsetTop + navHeightInt}px
+      ` // 3rem 
+        // top: ${markdown.offsetTop}px
+        // 1268 . 1307.59999
       toc.setAttribute("style", tocStyle)
     }
-  }, [markdownRef.current, tocRef.current])
+  }, [globalThis?.localStorage?.theme, markdownRef.current, tocRef.current])
 
 
   if (!post) return <div> .... Fetching data..... skeleton component to be added</div>
