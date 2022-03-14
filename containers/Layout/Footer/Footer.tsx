@@ -11,6 +11,8 @@ const SRandomWave = styled.div`
     width: 100%;
     height: 10.5rem;
     clip-path: url("#wave2");
+    position: relative; // for z-index
+    z-index: -1; // for not cover BackToTopBtn
     svg {
       height: 100%;
       width: 100%;

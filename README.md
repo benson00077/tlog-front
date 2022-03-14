@@ -1,25 +1,30 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 
-# env 
-- DB_USER=<...>
-- DB_PASS=<...>
-- NEXT_PUBLIC_API_URL=<gql url>
+# 👉 Usage
+## env
+```bash
+  ## /.env.local
+  DB_USER=<...>
+  DB_PASS=<...>
+  NEXT_PUBLIC_API_URL=<your gql url, like http://localhost:3001/graphql> 
+```
 
+# 👉 Dev logs
+## TODO
+- [ ] Optimize loading animation. Consider using React Spring with next router obj [see me](https://stackoverflow.com/a/59117532/16124226). Or Framer Motion.
+- [ ] Input rehypeRaw as hype rehypePlugins to insert ifram into blog post
+- [ ] Set mermaid diagrams as remarkPlugins. [see me](https://github.com/remarkjs/react-markdown/issues/394)
+- [ ] Collect the TODOs scatterd around this project
 
-# TODO
-- using React Spring with next router obj for loading animation [see me](https://stackoverflow.com/a/59117532/16124226). Or Framer Motion.
-- rehypeRaw as hype rehypePlugins to insert ifram into blog post
-- collect the TODOs scatterd around this project
-
-# Note
+## Note
 - SSR styled components - w/ `babel-plugin-styled-components` [stackoverflow](https://stackoverflow.com/questions/51791163/warning-prop-classname-did-not-match-when-using-styled-components-with-seman)
 - scrollTop w/ requestAnimationFrame
 
-# Issue
+## Issue
 - [getStaticProps with { fallback: true } is very slow when spa routing.](https://github.com/vercel/next.js/issues/13751)
 
-# SSR w/ Apollo cache
+# 👉 SSR w/ Apollo cache
 
 ## Refer:
   -  [here](https://medium.com/@zhamdi/server-side-rendering-ssr-using-apollo-and-next-js-ac0b2e3ea461) describe the problem and logic duplication between `getServerSideProps` and `useQuery`
