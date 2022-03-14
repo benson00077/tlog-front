@@ -10,5 +10,6 @@ export const Layouts = styled.section`
 export const Main = styled.main`
   flex: 1;
   margin-top: ${navHeight};
-  overflow-x: hidden;
+  // collide w/ position: sitkcy from toc(table of content) from postDetail.tsx on Chrome
+  // overflow-x: hidden;  
 `
