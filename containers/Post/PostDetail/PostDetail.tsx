@@ -12,6 +12,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { CustomMarkdown } from './CustomMarkdown'
 import { setupTocbot } from './utils'
+import MetaHead from '../../../components/MetaHead/MetaHead'
 
 
 
@@ -101,7 +102,8 @@ function PostDetail({ post }: PostDetailProps) {
 
   return (
     <>
-      {/* TODO: next head component for seo */}
+      <MetaHead title={`${title} - Benson Tuan`} description={summary} />
+
       <S.Toc ref={tocRef}>
         <div>
           <aside className="tableOfContents"></aside>

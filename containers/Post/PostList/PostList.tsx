@@ -1,6 +1,7 @@
 import { useLazyQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
+import MetaHead from "../../../components/MetaHead/MetaHead"
 import PostCard from "../components/PostCard/PostCard"
 import TagCloud from "../components/TagCloud"
 import { POSTS } from "../typeDefs"
@@ -38,6 +39,8 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
 
   return (
     <>
+      <MetaHead title="Blog - Benson" description="I share anything that may help others, and technologies I'm using"/>
+      
       <S.Wrapper>
         <div className="tags">
           <h3>Tags</h3>
