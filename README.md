@@ -16,6 +16,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [ ] Input rehypeRaw as hype rehypePlugins to insert ifram into blog post
 - [ ] Set mermaid diagrams as remarkPlugins. [see me](https://github.com/remarkjs/react-markdown/issues/394)
 - [ ] Collect the TODOs scatterd around this project
+- [ ] code block 排版問題: 設定四行內不 float ，設定非 jsx 語法自動換行(其他語言註解容易爆行)，設定不展開，而是點選浮動全螢幕檢視。
 
 ## Note
 - Debounce and Throttle. see [BackToTopBtn.tsx](/components//BackToTopBtn/BackToTopBtn.tsx)
