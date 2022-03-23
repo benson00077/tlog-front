@@ -40,7 +40,14 @@ function PostDetail({ post }: PostDetailProps) {
 
     codeBlocks.forEach((codeBlock) => {
       const previouseEle = codeBlock?.previousElementSibling // mostly <p> or <ul> in my usecase
-      previouseEle?.classList.add("columnLeft")
+      if (previouseEle?.tagName === 'P') {
+        // Filter out h1~h6, table , ul, li. Do not Paraleel then w/ code block
+        previouseEle?.classList.add("columnLeft")
+      } else {
+        // Notice: this intentedly overide .cloumnRight css width and make float:left not work
+        // @ts-ignore
+        codeBlock.style.width = "100%";
+      }
     })
 
     foreignLanBlocks.forEach((foreignLanBlock) => {

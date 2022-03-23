@@ -1,13 +1,73 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# 👉 Description
+This is my TypeScript front-end SPA hosting my blog posts. 
+
+This project is bootstraped by `creat-next-app`, laverage SSG feature from Next.js for better SEO. 
+
+This project use `styled-component` for css styling. 
+
+This project use `react-markdown` as dependency for parsing my blog posts content in markdown format, and use those surrounding dependencies like rehype-raw, remark-gfm and react-syntax-hightliter.
+
+This project use `tocbot` for generating a table of contents from each blog posts.
+
+The challenages I faceed is included in the [last part](#note) of this README.md file.
+
+# 👉 Feature
+Have a parallel struture on paragraph: 
+- Plain text v.s. code sytax block (#codeBlock or .columnRight)
+- Native Language v.s. Foreign Language (#foreignLanguageBlock or .languageRight)
+
+## Some patterns to follow in db markdown
+Foreign language in db is stored like what you do in makrdown codeblock but adding a hint text `language-foreign`, like bellow:
+~~~html
+Hello, this paragraph is parallel w/ the below text
+
+```language-foreign
+你好，這段文字希望可以跟上面的文字並列。這在前端渲染時 html 最終會變成 <p> 而不是 <pre> 內的 <code>
+```
+~~~
+
+`</br>` is what you want if you want to break row in a same paragraph in db. In other words, break rows by 'enter' would create a new paragraph in final html. `</br>` is what you want to keep parallel feature in same paragraph. Example as below only paragaprh <2> and <4> would be parallel w/ each other :
+~~~html
+<1> This paragraph would NOT parallel
+<2> This paragraph would parallel w/ below block</br> <3> And this snippet as well !
+
+```language-foreign
+<4> 這段存在 DB 的文字，希望最終呈現在 UI 上可以跟上面的文字並列。
+```
+~~~
+
+Prevnet to use heading 1 in markdown content since the title of blog post would be rendered as heading 1 in front-end.
+~~~md
+# 😢 Dont use heading 1. 
+This would cause multiple <h1> in HTML and thus is a bad SEO practice. 
+
+## 😊 Starting w/ heading 2 is suggested 
+### Subtitle 1
+### Subtitle 2
+~~~
+
 
 # 👉 Usage
 ## env
+Set enviorment variables as below. 
 ```bash
-  ## /.env.local
-  DB_USER=<...>
-  DB_PASS=<...>
-  NEXT_PUBLIC_API_URL=<your gql url, like http://localhost:3001/graphql> 
+  # /.env.local
+
+  # follow the MongoDB second URI format listed below
+  DB_USER=<MongoDB username>
+  DB_PASS=<MongoDB username>
+  
+  # connect to backend api
+  NEXT_PUBLIC_API_URL_DEV=http://localhost:3001/graphql
+  NEXT_PUBLIC_API_URL_PRO=https://<myDomain>/graphql
+```
+
+Be aware of that mongo db have different URI format by version. The backend logic this porject connect w/ uses the second one.
+```bash
+# 1. mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+# 2. mongodb+srv://[username:password@]host[/[database][?options]]
 ```
 
 # 👉 Dev logs
@@ -16,7 +76,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [ ] Input rehypeRaw as hype rehypePlugins to insert ifram into blog post
 - [ ] Set mermaid diagrams as remarkPlugins. [see me](https://github.com/remarkjs/react-markdown/issues/394)
 - [ ] Collect the TODOs scatterd around this project
-- [ ] code block 排版問題: 設定四行內不 float ，設定非 jsx 語法自動換行(其他語言註解容易爆行)，設定不展開，而是點選浮動全螢幕檢視。
+- [ ] code block 排版問題: 設定四行內不 float。設定非 js, javascript, ts, typescript 語法自動換行(其他語言註解容易爆行)且左右比例可以5:5。設定不展開，而是點選浮動全螢幕檢視。
+- [ ] Highlight line in code block
 
 ## Note
 - Debounce and Throttle. see [BackToTopBtn.tsx](/components//BackToTopBtn/BackToTopBtn.tsx)

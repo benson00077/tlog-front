@@ -6,8 +6,8 @@ import { flexMixin } from "../../../styled/mixins";
 const rootWidth = "58rem";
 const parallelLayout = {
   width: {
-    columnLeft: `calc(${rootWidth} * 0.3)`,
-    columnRight: `calc(${rootWidth} * 0.7)`,
+    columnLeft: `calc(${rootWidth} * 0.5)`,
+    columnRight: `calc(${rootWidth} * 0.5)`,
     languageLeft: `calc(${rootWidth} * 0.5)`,
     languageRight: `calc(${rootWidth} * 0.5)`,
   },
@@ -186,7 +186,6 @@ export const Markdown = styled.div`
   .columnLeft {
     display: block;
     float: left;
-    clear: both;
     width: ${parallelLayout.width.columnLeft};
     padding-right: 2rem;
     @media only screen and ${mediaQueryBreakpoints.device.laptop} {

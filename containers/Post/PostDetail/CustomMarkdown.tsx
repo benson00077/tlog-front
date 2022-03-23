@@ -79,5 +79,7 @@ export function CustomMarkdown() {
     h4({ node, children, ...props }: any) { return <h4 className="clearFloat" {...props}>{children}</h4> },
     h5({ node, children, ...props }: any) { return <h5 className="clearFloat" {...props}>{children}</h5> },
     h6({ node, children, ...props }: any) { return <h6 className="clearFloat" {...props}>{children}</h6> },
+    p({ node, children, ...props }: any) { return <p className='clearFloat' {...props}>{children}</p> },
+    ul({ node, children, ...props }: any) { return <ul className='clearFloat' {...props}>{children}</ul> },
   })
 }
