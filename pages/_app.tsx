@@ -24,12 +24,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const handleStart = (url: string) => {
-      console.log(new Date, `Loading Start: ${url}`)
+      // console.log(new Date, `Loading Start: ${url}`)
       // NProgress.start()
       setIsPageTransit(true)
     }
     const handleStop = () => {
-      console.log(new Date, `Loading Stop`)
+      // console.log(new Date, `Loading Stop`)
       // NProgress.done()
       setIsPageTransit(false)
     }

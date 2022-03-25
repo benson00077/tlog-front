@@ -4,7 +4,7 @@ import { GlobalThemeProps } from "../../styled/golbalStyles";
 export const Container = styled.div`
   position: fixed;
   top: 0.8rem;
-  right: 2.4rem;
+  right: 0.8rem;
   z-index: 20;
 
   .switch {

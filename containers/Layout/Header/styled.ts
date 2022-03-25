@@ -7,7 +7,7 @@ export const NavBar = styled.nav`
   ${flexMixin("space-between")}
   width: 100%;
   height: ${navHeight};
-  padding: 0 7.5rem 0 2.4rem;
+  padding: 0 6.5rem 0 2.4rem;
   opacity: 0.95;
   z-index: 10;
   user-select: none;
@@ -23,3 +23,10 @@ export const NavBarLinks = styled.div`
     margin-left: 1.6rem;
   }
 `;
+
+export const LogoRoot = styled.div`
+  position: relative;
+  top: 5px;
+  left: -2rem;
+  width: 50px;
+`

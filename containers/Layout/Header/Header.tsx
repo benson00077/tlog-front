@@ -1,19 +1,17 @@
 
 import Link from 'next/link'
+import Logo from './Logo'
 import * as S from './styled'
 
 export default function Header() {
   return (
     <S.NavBar>
       <Link href="/" passHref>
-        logo
+        <a>
+          <Logo />
+        </a>
       </Link>
       <S.NavBarLinks>
-        <Link href="/">
-          <a>
-            Home
-          </a>
-        </Link>
         <Link href="/post">
           <a>
             Blog
