@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
 
   html body {
     -webkit-font-smoothing: antialiased;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-family: 'Noto Sans TC','Noto Sans KR',-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     background: ${({ theme }: GlobalThemeProps) => theme.background.primary};
     color: ${({ theme }: GlobalThemeProps) => theme.text.base};
   }
