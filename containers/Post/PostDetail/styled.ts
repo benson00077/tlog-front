@@ -35,7 +35,7 @@ export const Summary = styled.blockquote`
   text-align: center;
   margin: 2rem 0 4rem 0;
   padding: 1rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   color: ${({ theme }: GlobalThemeProps) => theme.text.base};
   background: ${({ theme }: GlobalThemeProps) => theme.background.summaryBg};
@@ -67,7 +67,7 @@ export const PostRoot = styled.article`
   // TODO: consider not using h1 in content
   h1 {
     margin: 2.75rem 0 1.25rem; //TODO
-    font-size: 2.4rem;
+    font-size: 2.5rem;
   }
 
   h2 {
@@ -77,13 +77,26 @@ export const PostRoot = styled.article`
 
   h3 {
     margin: 1.875rem 0 1.25rem;
+    font-size: 1.7rem;
+  }
+
+  h4 {
     font-size: 1.5rem;
   }
 
+  h5 {
+    font-size: 1.2rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+
   p {
-    margin-bottom: 1.25rem;
-    font-size: 1.1rem;
-    line-height: 1.65;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.75;
   }
 
   a {
@@ -194,6 +207,7 @@ export const Markdown = styled.div`
     }
   }
   .columnRight {
+    margin-top: 1rem;
     float: left;
     clear: right;
     width: ${parallelLayout.width.columnRight};
