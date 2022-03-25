@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import * as S from './styled'
 import TagCloud from '../components/TagCloud'
@@ -32,14 +32,16 @@ function PostDetail({ post }: PostDetailProps) {
    *          languageLeft (text) <-> languageRight (text)
    *  Notice: 
    *          <ReactMarkdown> overwrite in the end,
-   *          don't add classList columnRight and languageLeft here
+   *          don't add classList columnRight and languageLeft here.
+   *          OR, workaround is set UseEffect w/o dependency. Work as componentDidMount
    */
-  useEffect(() => {
+  const dirtyLayoutAdjust = useCallback(() => {
     const codeBlocks = document.querySelectorAll('#codeBlock')
     const foreignLanBlocks = document.querySelectorAll('#foreignLanguageBlock')
 
     codeBlocks.forEach((codeBlock) => {
       const previouseEle = codeBlock?.previousElementSibling // mostly <p> or <ul> in my usecase
+
       if (previouseEle?.tagName === 'P') {
         // Filter out h1~h6, table , ul, li. Do not Paraleel then w/ code block
         previouseEle?.classList.add("columnLeft")
@@ -56,8 +58,11 @@ function PostDetail({ post }: PostDetailProps) {
         previouseEle?.classList.add("languageLeft")
       }
     })
+  }, [post])
 
-  }, [])
+  useEffect(() => {
+    dirtyLayoutAdjust()
+  })
 
   /**
    *  Table of Contents
@@ -83,8 +88,8 @@ function PostDetail({ post }: PostDetailProps) {
         height: ${markdown.getBoundingClientRect().height}px;
         top: ${markdown.offsetTop + navHeightInt}px
       ` // 3rem 
-        // top: ${markdown.offsetTop}px
-        // 1268 . 1307.59999
+      // top: ${markdown.offsetTop}px
+      // 1268 . 1307.59999
       toc.setAttribute("style", tocStyle)
     }
   }, [globalThis?.localStorage?.theme, markdownRef.current, tocRef.current])

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs' // import vs2015 from 'react-syntax-highlighter/dist/cjs/styles/hljs/vs2015' 
 import * as S from './styled'
@@ -80,6 +80,6 @@ export function CustomMarkdown() {
     h5({ node, children, ...props }: any) { return <h5 className="clearFloat" {...props}>{children}</h5> },
     h6({ node, children, ...props }: any) { return <h6 className="clearFloat" {...props}>{children}</h6> },
     p({ node, children, ...props }: any) { return <p className='clearFloat' {...props}>{children}</p> },
-    ul({ node, children, ...props }: any) { return <ul className='clearFloat' {...props}>{children}</ul> },
+    ul({ node, children }: any) { return <ul className='clearFloat'>{children}</ul> },
   })
 }
