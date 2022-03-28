@@ -231,7 +231,7 @@ export const Markdown = styled.div`
       cursor: pointer;
     }
     .expand {
-      width: calc(58rem * 1.2);
+      width: 49vw;
       float: none;
     }
   }

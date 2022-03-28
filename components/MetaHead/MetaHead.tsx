@@ -19,11 +19,6 @@ function MetaHead({ title, description }: Props) {
         name="description"
         content={description}
       />
-
-      {/* Font for 'Noto Sans TC' & 'Noto Sans KR' */}
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Noto+Sans+TC:wght@400;900&display=swap');
-      </style>
     </Head>
   )
 }
