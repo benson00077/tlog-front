@@ -24,7 +24,7 @@ export default function Post(props: IndexProps) {
 
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const apolloClient = initializeApollo({});
+  const apolloClient = initializeApollo();
   let notFound = false;
 
   // Error handling ref: https://stackoverflow.com/a/67171798/16124226
@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const apolloClient = initializeApollo({});
+  const apolloClient = initializeApollo();
 
   // TODO: getAllIds from backend gql
   const { data: { posts: posts } } = await apolloClient.query<PostQuery, PostVars>({

@@ -35,7 +35,7 @@ export default function Posts(props: IndexProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const apolloClient = initializeApollo({});
+  const apolloClient = initializeApollo();
 
   try {
     const { data: { getAllTags: tags } } = await apolloClient.query<GetAllTagsQuery>({
