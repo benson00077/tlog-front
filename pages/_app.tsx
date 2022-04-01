@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../graphql/apollo'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from '../styled/golbalStyles'
 import { useThemeMode } from '../hooks/useThemeMode'
 import { darkTheme, lightTheme } from '../styled/theme'
@@ -50,15 +50,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={themeMode}>
         <GlobalStyle />
         <ApolloProvider client={apolloStore}>
-          <TogglerButton themeToggler={themeToggler} />
-          {isPageTransitit
-            ? (
-              <Layout>
-                <PreLoader></PreLoader>
-              </Layout>
-            )
-            : (<Component {...pageProps} />)}
-          {/* <Component {...pageProps} /> */}
+          <Layout>
+            <>
+              <TogglerButton themeToggler={themeToggler} />
+              {isPageTransitit
+                ? <PreLoader></PreLoader>
+                : (<Component {...pageProps} />)}
+            </>
+          </Layout>
         </ApolloProvider>
       </ThemeProvider>
     </>

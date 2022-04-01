@@ -13,12 +13,10 @@ export default function Post(props: IndexProps) {
   // TODO: pass down to child comp or useQuery in child comp ?
   // console.log(props.post.getPostById)
   return (
-    <Layout>
-      <>
-        <PostDetail post={props.post?.getPostById} />
-        <BackToTopBtn />
-      </>
-    </Layout>
+    <>
+      <PostDetail post={props.post?.getPostById} />
+      <BackToTopBtn />
+    </>
   )
 }
 

@@ -16,21 +16,19 @@ export default function Posts(props: IndexProps) {
 
   // TODO: what happened when  production mode ? page/500.tsx or this com?
   if (props.error) {
-    const error: ApolloError = JSON.parse(props?.error)  
+    const error: ApolloError = JSON.parse(props?.error)
     if (error.networkError) {
       return <Error statusCode={503} message="Database is down" />
     }
   }
-  
+
   const { posts, tags } = props
 
   return (
-    <Layout>
-      <>
-      <PostList SSGposts={posts} tags={tags ? tags.tags : [] } />
+    <>
+      <PostList SSGposts={posts} tags={tags ? tags.tags : []} />
       <BackToTopBtn />
-      </>
-    </Layout>
+    </>
   )
 }
 
