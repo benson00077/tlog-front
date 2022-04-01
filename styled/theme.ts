@@ -6,7 +6,7 @@ const light = {
     primary: '#E7E8DB', //  EggShell
     secondary: '#e4e4e4', // Eggshell match
     postCard: '#ffffff',
-    blurCard: 'rgba(245, 245, 245, .8)',
+    hoveredCard: 'rgba(30, 19, 87, 0.2)',
     bestAlbumCard: '#e6e6e6',
     skeleton: 'rgba(0, 0, 0, 0.04)',
     tooltip: 'rgba(0, 0, 0, .7)',
@@ -48,7 +48,7 @@ const dark = {
     primary: '#1f2937',
     secondary: '#1d1f27',
     postCard: '#1d1f27',
-    blurCard: 'rgba(27, 29, 30, .8)',
+    hoveredCard: 'rgba( 255, 255, 255, 0.15 )',
     bestAlbumCard: '#000000',
     skeleton: 'rgba(255, 255, 255, 0.08)',
     tooltip: 'rgba(255, 255, 255, .7)',

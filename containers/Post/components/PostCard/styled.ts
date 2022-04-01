@@ -3,36 +3,11 @@ import { GlobalThemeProps } from "../../../../styled/golbalStyles";
 import { flexMixin } from "../../../../styled/mixins";
 import mediaQueryBreakpoints from "../../../../styled/mediaQueryBreakpoints";
 
-/**
- *  TODO: onhover no use in mobile and tablet size
- *  Think of changing design - like first 3 post to be small card
- *  and the others remain
- */
-
-export const Box = styled.section`
-  display: block;
-  position: relative;
-  width: 33rem;
-  ${flexMixin("center")};
-  height: 22rem;
-  border-radius: 15px;
-  box-shadow: 0 1px 20px -8px ${({ theme }: GlobalThemeProps) => theme.colors.fiveOpcityBlack};
-  cursor: pointer;
-  overflow: hidden;
-
-  &:hover {
-    img {
-      transition: all 300ms cubic-bezier(0.25, 0.1, 0.3, 1.5);
-      transform: scale(1.05);
-      filter: blur(0px);
-    }
-  }
-`;
-
 export const postPoster = styled.div`
   width: 33rem;
   overflow: hidden;
   opacity: 0.4;
+  z-index: -1;
   position: absolute;
   left: 0;
 
@@ -41,10 +16,11 @@ export const postPoster = styled.div`
     max-width: 33rem;
     object-fit: cover; // from background-size
     object-position: center center; // from background-position
-    filter: blur(4px);
+    filter: blur(8px);
     transition: all 300ms cubic-bezier(0.25, 0.1, 0.3, 1.5);
 
-    @media only screen and ${mediaQueryBreakpoints.device.laptop} {
+    // Ineract w/ Box:hover{ img {} }
+    @media only screen and ${mediaQueryBreakpoints.device.mobileL} {
       filter: blur(0px);
     }
   }
@@ -58,18 +34,17 @@ export const postInfo = styled.div`
   width: 30rem;
   text-align: center;
   color: ${({ theme }: GlobalThemeProps) => theme.text.post};
-
-  &::after {
-    content: " ";
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 30rem;
-    height: 22rem;
-    background: inherit;
-    background-attachment: fixed;
-    filter: blur(12px);
-    z-index: 1000;
+  
+  @media only screen and ${mediaQueryBreakpoints.device.mobileL} {
+      &::before {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: ${({ theme }: GlobalThemeProps) => theme.background.hoveredCard};
+    }
   }
 
   .date {
@@ -93,5 +68,44 @@ export const postInfo = styled.div`
     ${flexMixin("space-between")}
     width: 100%;
     height: 1rem;
+  }
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const Box = styled.section`
+  display: block;
+  position: relative;
+  width: 33rem;
+  ${flexMixin("center")};
+  height: 22rem;
+  border-radius: 15px;
+  box-shadow: 0 1px 20px -8px ${({ theme }: GlobalThemeProps) => theme.colors.fiveOpcityBlack};
+  cursor: pointer;
+  overflow: hidden;
+
+  &:hover {
+    img {
+      transition: all 300ms cubic-bezier(0.25, 0.1, 0.3, 1.5);
+      transform: scale(1.05);
+      filter: blur(0px);
+    }
+
+    ${postInfo}::before {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: ${({ theme }: GlobalThemeProps) => theme.background.hoveredCard};
+    }
   }
 `;
