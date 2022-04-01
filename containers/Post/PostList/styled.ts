@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../../../styled/mediaQueryBreakpoints";
+import mediaQueryBreakpoints from "../../../styled/mediaQueryBreakpoints";
 import { flexMixin } from "../../../styled/mixins";
 
 export const Wrapper = styled.section`
@@ -24,6 +24,10 @@ export const Wrapper = styled.section`
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    @media only screen and ${mediaQueryBreakpoints.device.mobileL} {
+      width: 95%;
+      grid-template-columns: repeat(auto-fit, minmax(80vw, 1fr));
     }
   }
 

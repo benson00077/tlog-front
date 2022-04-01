@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { GlobalThemeProps } from "../../../../styled/golbalStyles";
 import { flexMixin } from "../../../../styled/mixins";
-import breakpoints from "../../../../styled/mediaQueryBreakpoints";
+import mediaQueryBreakpoints from "../../../../styled/mediaQueryBreakpoints";
 
 /**
  *  TODO: onhover no use in mobile and tablet size
@@ -44,7 +44,7 @@ export const postPoster = styled.div`
     filter: blur(4px);
     transition: all 300ms cubic-bezier(0.25, 0.1, 0.3, 1.5);
 
-    @media only screen and ${breakpoints.device.laptop} {
+    @media only screen and ${mediaQueryBreakpoints.device.laptop} {
       filter: blur(0px);
     }
   }
