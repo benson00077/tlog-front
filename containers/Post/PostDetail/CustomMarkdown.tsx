@@ -71,7 +71,7 @@ export function CustomMarkdown() {
       return <h1 id={children[0]} className="clearFloat" {...props}>{children}</h1> 
     },
     h2({ node, children, ...props }: any) { 
-      return <h2 id={children[0]} className="clearFloat" {...props}>{children}</h2> 
+      return <h2 id={children[0]} className="clearFloat" {...props}>{children}</h2>
     },
     h3({ node, children, ...props }: any) { 
       return <h3 id={children[0]} className="clearFloat" {...props}>{children}</h3> 
@@ -79,7 +79,8 @@ export function CustomMarkdown() {
     h4({ node, children, ...props }: any) { return <h4 className="clearFloat" {...props}>{children}</h4> },
     h5({ node, children, ...props }: any) { return <h5 className="clearFloat" {...props}>{children}</h5> },
     h6({ node, children, ...props }: any) { return <h6 className="clearFloat" {...props}>{children}</h6> },
-    p({ node, children, ...props }: any) { return <p className='clearFloat' {...props}>{children}</p> },
-    ul({ node, children }: any) { return <ul className='clearFloat'>{children}</ul> },
+    p({ node, children, ...props }: any) { return <p className='clearFloat indent2' {...props}>{children}</p> },
+    ul({ node, children }: any) { return <ul className='clearFloat indent4'>{children}</ul> },
+    ol({ node, children }: any) { return <ol className='clearFloat indent4'>{children}</ol> },
   })
 }

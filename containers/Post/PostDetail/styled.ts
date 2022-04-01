@@ -61,7 +61,7 @@ export const PostRoot = styled.article`
   h4,
   h5,
   h6 {
-    text-align: center;
+    /* text-align: center; */
   }
 
   // TODO: consider not using h1 in content
@@ -109,13 +109,21 @@ export const PostRoot = styled.article`
     }
   }
 
-  ol,
+  /* ol,
   ul {
     padding-left: 2rem;
-  }
+  } */
 
   li {
     line-height: 1.6;
+  }
+
+  .indent2 {
+    padding-left: 2rem;
+  }
+
+  .indent4 {
+    padding-left: 4rem;
   }
 
   strong {
