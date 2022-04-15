@@ -3,19 +3,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 # 👉 Description
 This is my TypeScript front-end SPA hosting my blog posts. 
 
-This project is bootstraped by `creat-next-app`, laverage SSG feature from Next.js for better SEO. 
+This project is bootstraped w/ `creat-next-app` and laverage SSG feature from Next.js for better SEO. 
 
 This project use `styled-component` for css styling. 
 
-This project use `react-markdown` as dependency for parsing my blog posts content in markdown format, and use those surrounding dependencies like rehype-raw, remark-gfm and react-syntax-hightliter.
+This project use `react-markdown` as dependency for parsing my blog posts content in markdown format, and use those surrounding dependencies like rehype-raw, remark-gfm and react-syntax-highlighter.
 
 This project use `tocbot` for generating a table of contents from each blog posts.
+
+This project use `apollo-client` to communicate w/ back-end.
 
 The challenages I faceed is included in the [last part](#note) of this README.md file.
 
 # 👉 Feature
 Have a parallel struture on paragraph: 
-- Plain text v.s. code sytax block (#codeBlock or .columnRight)
+- Plain text v.s. code syntax block (#codeBlock or .columnRight)
 - Native Language v.s. Foreign Language (#foreignLanguageBlock or .languageRight)
 
 ## Some patterns to follow in db markdown
@@ -41,7 +43,7 @@ Hello, this paragraph is parallel w/ the below text
 Prevnet to use heading 1 in markdown content since the title of blog post would be rendered as heading 1 in front-end.
 ~~~md
 # 😢 Dont use heading 1. 
-This would cause multiple <h1> in HTML and thus is a bad SEO practice. 
+This would cause multiple HTML <h1> tag and bad for SEO. 
 
 ## 😊 Starting w/ heading 2 is suggested 
 ### Subtitle 1
@@ -54,17 +56,12 @@ This would cause multiple <h1> in HTML and thus is a bad SEO practice.
 Set enviorment variables as below. 
 ```bash
   # /.env.local
-
-  # follow the MongoDB second URI format listed below
-  DB_USER=<MongoDB username>
-  DB_PASS=<MongoDB username>
-  
-  # connect to backend api
+  #   connect to backend api listening on port 3001
   NEXT_PUBLIC_API_URL_DEV=http://localhost:3001/graphql
   NEXT_PUBLIC_API_URL_PRO=https://<myDomain>/graphql
 ```
 
-Be aware of that mongo db have different URI format by version. The backend logic this porject connect w/ uses the second one.
+Be aware of that mongo db have different URI format by version. The backend logic this porject connect to uses the second one.
 ```bash
 # 1. mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
 # 2. mongodb+srv://[username:password@]host[/[database][?options]]
@@ -73,10 +70,10 @@ Be aware of that mongo db have different URI format by version. The backend logi
 # 👉 Dev logs
 ## TODO
 - [ ] Optimize loading animation. Consider using React Spring with next router obj [see me](https://stackoverflow.com/a/59117532/16124226). Or Framer Motion.
-- [ ] Input rehypeRaw as hype rehypePlugins to insert ifram into blog post
+- [ ] Input rehypeRaw as hype rehypePlugins to insert iframe into blog post
 - [ ] Set mermaid diagrams as remarkPlugins. [see me](https://github.com/remarkjs/react-markdown/issues/394)
 - [ ] Collect the TODOs scatterd around this project
-- [ ] code block 排版問題: 設定四行內不 float。設定非 js, javascript, ts, typescript 語法自動換行(其他語言註解容易爆行)且左右比例可以5:5。設定不展開，而是點選浮動全螢幕檢視。
+- [ ] Consider code block 排版問題: 設定四行內不 float。設定非 js, javascript, ts, typescript 語法自動換行(其他語言註解容易爆行)且左右比例可以5:5。設定不展開，而是點選浮動全螢幕檢視。
 - [ ] Highlight line in code block
 
 ## Note
