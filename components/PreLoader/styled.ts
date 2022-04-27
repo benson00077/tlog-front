@@ -4,7 +4,8 @@ import { GlobalThemeProps } from "../../styled/golbalStyles"
 
 export const PreLoaderScreen = styled.div`
   position: relative;
-  height: 100vh;
+  margin-top: 18rem;
+  height: 200px;
   width: 100%;
   opacity: 0;
   animation: fade 0.4s ease-in forwards;
@@ -33,9 +34,9 @@ export const Balls = styled.div`
   .ball {
     height: 1rem;
     width: 1rem;
-    border-radius: 50%;
+    border-radius: 30%;
     /* background: #1b5299; */
-    background:  ${({ theme }: GlobalThemeProps) => theme.colors.footerBgWage};
+    background:  ${({ theme }: GlobalThemeProps) => theme.tag.postTagColor};
     margin: 0 6px 0 0;
     animation: oscillate 0.7s ease-in forwards infinite;
   }

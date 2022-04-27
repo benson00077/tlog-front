@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import BackToTopBtn from "../../components/BackToTopBtn/BackToTopBtn";
-import { Layout } from "../../containers/Layout/Layout";
 import PostDetail from "../../containers/Post/PostDetail/PostDetail";
+import PageTransition from '../../components/PageTransition/PageTransition';
 import { GET_POST_BY_ID, POSTS } from "../../containers/Post/typeDefs";
 import { GetPostByIdQuery, GetPostByIdVar, PostQuery, PostVars } from "../../containers/Post/types";
 import { addApolloState, initializeApollo } from "../../graphql/apollo";
@@ -13,10 +13,12 @@ export default function Post(props: IndexProps) {
   // TODO: pass down to child comp or useQuery in child comp ?
   // console.log(props.post.getPostById)
   return (
-    <>
+    <PageTransition>
+      <>
       <PostDetail post={props.post?.getPostById} />
       <BackToTopBtn />
-    </>
+      </>
+    </PageTransition>
   )
 }
 

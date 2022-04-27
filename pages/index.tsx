@@ -1,11 +1,14 @@
 import { Home } from '../containers/Home/Home';
-import { Layout } from '../containers/Layout/Layout';
+import PageTransition from '../components/PageTransition/PageTransition';
 
 
 type IndexProps = any
+
 const Index = (props: IndexProps) => {
   return (
-    <Home />
+    <PageTransition>
+      <Home />
+    </PageTransition>
   )
 }
 

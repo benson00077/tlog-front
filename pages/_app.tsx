@@ -7,21 +7,26 @@ import { useThemeMode } from '../hooks/useThemeMode'
 import { darkTheme, lightTheme } from '../styled/theme'
 import TogglerButton from '../components/TogglerButton/ToggleButton'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import PreLoader from '../components/PreLoader/PreLoader'
 import { Layout } from '../containers/Layout/Layout'
+import { AnimatePresence } from 'framer-motion'
 
-
-function MyApp({ Component, pageProps }: AppProps) {
-
-  const router = useRouter()
-  const [isPageTransitit, setIsPageTransit] = useState(false);
+/**
+ *  NOTICE:
+ *      <Component key={...}> for <AnimatePresence> detecting exit animation of page transiion
+ */
+function MyApp({ Component, pageProps, router }: AppProps) {
 
   const { theme, themeToggler } = useThemeMode()
   const themeMode = theme === 'dark' ? darkTheme : lightTheme;
-
+  
   const apolloStore = useApollo(pageProps)
-
+  
+  /**
+   *  DEPRECATED.
+   *  NOTICE: 
+   *      this block is for Progress Bar when page transition, just in case you need
+   */
+  const [isPageTransitit, setIsPageTransit] = useState(false);
   useEffect(() => {
     const handleStart = (url: string) => {
       // console.log(new Date, `Loading Start: ${url}`)
@@ -53,9 +58,14 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Layout>
             <>
               <TogglerButton themeToggler={themeToggler} />
-              {isPageTransitit
-                ? <PreLoader></PreLoader>
-                : (<Component {...pageProps} />)}
+
+              <AnimatePresence
+                exitBeforeEnter
+                initial={false}
+                onExitComplete={() => window.scrollTo(0, 0)}
+              >
+                <Component {...pageProps} key={`KeyForAnimatePresence_${router.route}`} />
+              </AnimatePresence>
             </>
           </Layout>
         </ApolloProvider>

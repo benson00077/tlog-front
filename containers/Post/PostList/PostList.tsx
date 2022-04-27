@@ -7,6 +7,8 @@ import TagCloud from "../components/TagCloud"
 import { POSTS } from "../typeDefs"
 import { IPost, PostQuery, PostVars } from "../types"
 import * as S from './styled'
+import { AnimatePresence, motion } from 'framer-motion'
+import PreLoader from "../../../components/PreLoader/PreLoader"
 
 type PostListProps = {
   tags: string[]
@@ -39,28 +41,43 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
 
   return (
     <>
-      <MetaHead title="Blog - Benson" description="I share anything that may help others, and technologies I'm using"/>
-      
+      <MetaHead title="Blog - Benson" description="I share anything that may help others, and technologies I'm using" />
+
       <S.Wrapper>
         <div className="tags">
           <h3>Tags</h3>
           <div className="cloud">
-            <TagCloud tags={tags} targetTag={targetTag}/>
+            <TagCloud tags={tags} targetTag={targetTag} />
           </div>
         </div>
 
-        <div className="posts">
+        <AnimatePresence
+          exitBeforeEnter
+          initial={false}
+        >
           {posts
-            ? (posts.items.map((post, i) => (
-              <div className="postsGridItem" key={i}>
-                <PostCard post={post} key={i} />
-              </div>
-            ))
-            ) : (
-              <div>Loading Post Card...</div>
+            ?
+            (<motion.div
+              initial={{ opacity: 0, x: -200, y: 0 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              exit={{ opacity: 0, x: 0, y: 0 }}
+              transition={{ type: 'linear' }}
+              className="posts" key={targetTag as string}>
+
+              {posts.items.map((post, i) => (
+                <div className="postsGridItem" key={i}>
+                  <PostCard post={post} />
+                </div>
+              ))}
+
+            </motion.div>
+            )
+            :
+            (
+              <PreLoader />
             )
           }
-        </div>
+        </AnimatePresence>
       </S.Wrapper>
     </>
   )

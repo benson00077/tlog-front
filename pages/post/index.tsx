@@ -7,6 +7,7 @@ import { GetAllTagsQuery, IPost, PostQuery, PostVars } from "../../containers/Po
 import { GetStaticPaths, GetStaticProps, InferGetServerSidePropsType, InferGetStaticPropsType } from "next";
 import { ApolloError } from "@apollo/client";
 import Error from "next/error";
+import PageTransition from '../../components/PageTransition/PageTransition';
 
 // type IndexProps = InferGetServerSidePropsType<typeof getServerSideProps>;
 type IndexProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -25,10 +26,12 @@ export default function Posts(props: IndexProps) {
   const { posts, tags } = props
 
   return (
-    <>
-      <PostList SSGposts={posts} tags={tags ? tags.tags : []} />
-      <BackToTopBtn />
-    </>
+    <PageTransition>
+      <>
+        <PostList SSGposts={posts} tags={tags ? tags.tags : []} />
+        <BackToTopBtn />
+      </>
+    </PageTransition>
   )
 }
 
