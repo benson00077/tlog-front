@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { MouseEvent } from "react";
+import NoScrollLink from "../../../../components/NoScrollLink/NoScrollLink";
 import { formatDate } from "../../../../shared/utils";
 import { IPostItem } from "../../types";
 import * as S from './styled'
@@ -17,7 +16,7 @@ export default function PostCard({ post }: Props) {
   // TODO: Link and anchor tag wrap cause S.Box &:nth-of-type{} css failed
   return (
     <S.Box>
-      <Link href={`/post/${_id}`} passHref>
+      <NoScrollLink href={`/post/${_id}`} passHref >
         <a>
 
           <S.postPoster>
@@ -47,7 +46,7 @@ export default function PostCard({ post }: Props) {
           </S.postInfo>
 
         </a>
-      </Link>
+      </NoScrollLink>
     </S.Box>
   )
 }

@@ -1,35 +1,32 @@
 
-import Link from 'next/link'
+import NoScrollLink from '../../../components/NoScrollLink/NoScrollLink'
 import Logo from './Logo'
 import * as S from './styled'
 
-/**
- *  NOTICE: <Link scroll={false}> for smoother page tranision by Framer Motion
- */
 export default function Header() {
   return (
     <S.NavBar>
-      <Link href="/" passHref scroll={false}>
+      <NoScrollLink href="/" passHref>
         <a>
           <Logo />
         </a>
-      </Link>
+      </NoScrollLink>
       <S.NavBarLinks>
-        <Link href="/post" scroll={false}>
+        <NoScrollLink href="/post">
           <a>
             Blog
           </a>
-        </Link>
-        <Link href="/archive" scroll={false}>
+        </NoScrollLink>
+        <NoScrollLink href="/archive">
           <a>
             Archive
           </a>
-        </Link>
-        <Link href="/about" scroll={false}>
+        </NoScrollLink>
+        <NoScrollLink href="/about">
           <a>
             About
           </a>
-        </Link>
+        </NoScrollLink>
       </S.NavBarLinks>
     </S.NavBar>
   )

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import styled from "styled-components";
+import NoScrollLink from "../components/NoScrollLink/NoScrollLink";
 import { GlobalThemeProps } from "../styled/golbalStyles";
 import { flexMixin } from "../styled/mixins";
 
@@ -22,11 +22,11 @@ export default function Custom404() {
   return (
     <SRoot>
       <h1>Error: 404 - Page Not Found</h1>
-      <Link href="/">
+      <NoScrollLink href="/">
         <a>
           <SHomeBtn>Back 2 Home</SHomeBtn>
         </a>
-      </Link>
+      </NoScrollLink>
     </SRoot>
   )
 }
