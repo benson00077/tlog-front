@@ -55,10 +55,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <ThemeProvider theme={themeMode}>
         <GlobalStyle />
         <ApolloProvider client={apolloStore}>
+          <TogglerButton themeToggler={themeToggler} />
           <Layout>
             <>
-              <TogglerButton themeToggler={themeToggler} />
-
               <AnimatePresence
                 exitBeforeEnter
                 initial={false}
