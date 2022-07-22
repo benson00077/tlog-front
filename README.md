@@ -1,4 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+- [👉 Description](#-description)
+- [👉 Feature](#-feature)
+  - [Some patterns to follow in db markdown](#some-patterns-to-follow-in-db-markdown)
+- [👉 Usage](#-usage)
+  - [env](#env)
+  - [lint](#lint)
+- [👉 Dev logs](#-dev-logs)
+  - [TODO](#todo)
+  - [Note](#note)
+  - [Issue](#issue)
+- [👉 SSR w/ Apollo cache](#-ssr-w-apollo-cache)
+  - [Refer:](#refer)
+  - [Problem](#problem)
+  - [Solution](#solution)
+    - [SSR](#ssr)
+    - [Apollo](#apollo)
+> This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 # 👉 Description
 This is my TypeScript front-end SPA hosting my blog posts. 
@@ -42,12 +58,12 @@ Hello, this paragraph is parallel w/ the below text
 
 Prevnet to use heading 1 in markdown content since the title of blog post would be rendered as heading 1 in front-end.
 ~~~md
-# 😢 Dont use heading 1. 
+#😢 Dont use heading 1. 
 This would cause multiple HTML <h1> tag and bad for SEO. 
 
-## 😊 Starting w/ heading 2 is suggested 
-### Subtitle 1
-### Subtitle 2
+##😊 Starting w/ heading 2 is suggested 
+###Subtitle 1
+###Subtitle 2
 ~~~
 
 
@@ -66,6 +82,11 @@ Be aware of that mongo db have different URI format by version. The backend logi
 # 1. mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
 # 2. mongodb+srv://[username:password@]host[/[database][?options]]
 ```
+
+## lint
+- Using Conventional Commits. 
+  - Set up following [conventional-changelog](https://github.com/conventional-changelog/commitlint#what-is-commitlint). Include .husky/commit-msg.
+  - See convention [here](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional#type-enum)
 
 # 👉 Dev logs
 ## TODO
