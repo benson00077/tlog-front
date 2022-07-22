@@ -209,7 +209,7 @@ export const Markdown = styled.div`
     float: left;
     width: ${parallelLayout.width.columnLeft};
     padding-right: 2rem;
-    @media only screen and ${mediaQueryBreakpoints.device.laptop} {
+    @media only screen and ${mediaQueryBreakpoints.device.laptopL} {
       float: none;
       width: 100%;
     }
@@ -220,7 +220,7 @@ export const Markdown = styled.div`
     clear: right;
     width: ${parallelLayout.width.columnRight};
     line-height: 1.5;
-    @media only screen and ${mediaQueryBreakpoints.device.laptop} {
+    @media only screen and ${mediaQueryBreakpoints.device.laptopL} {
       float: none;
       width: 100%;
     }
@@ -234,7 +234,7 @@ export const Markdown = styled.div`
   }
 
   // -- code block popup
-  @media only screen and (min-width: ${mediaQueryBreakpoints.size.laptop}) {
+  @media only screen and (min-width: ${mediaQueryBreakpoints.size.laptopL}) {
     .columnRight:hover {
       cursor: pointer;
     }
@@ -251,7 +251,7 @@ export const Markdown = styled.div`
     clear: both;
     width: ${parallelLayout.width.languageLeft};
     padding-right: 2rem;
-    @media only screen and ${mediaQueryBreakpoints.device.laptop} {
+    @media only screen and ${mediaQueryBreakpoints.device.laptopL} {
       float: none;
       width: 100%;
     }
@@ -261,7 +261,7 @@ export const Markdown = styled.div`
     clear: right;
     width: ${parallelLayout.width.languageRight};
     line-height: 1.5;
-    @media only screen and ${mediaQueryBreakpoints.device.laptop} {
+    @media only screen and ${mediaQueryBreakpoints.device.laptopL} {
       float: none;
       width: 100%;
     }
