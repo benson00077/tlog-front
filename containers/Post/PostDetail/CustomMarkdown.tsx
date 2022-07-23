@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from 'react'
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs' // import vs2015 from 'react-syntax-highlighter/dist/cjs/styles/hljs/vs2015' 
 import * as S from './styled'
 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus'
+/** ^^^ Don't use esm module. see: https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/230 */
+// import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs' 
+// import vs2015 from 'react-syntax-highlighter/dist/cjs/styles/hljs/vs2015' 
 
 // TODO: consider use p tag to have multi speaking language block
 // sth like @KOREAN in markdown
@@ -23,10 +26,16 @@ export function CustomMarkdown() {
       return !inline && match ? (
         <SyntaxHighlighter
           children={String(children).replace(/\n$/, '')}
-          style={atomOneDark}
+          style={vscDarkPlus}
           customStyle={{ borderRadius: "0.5rem", background: "#2a2a2a" }}
-          showLineNumbers={false}
+          showLineNumbers={true}
           showInlineLineNumbers={false}
+          lineNumberStyle={{
+            "minWidth": '3.25em', 
+            "paddingRight": '1em', 
+            "textAlign": 'right',
+            "color": 'rgb(106, 153, 85)',
+          }}
           wrapLongLines={false}
           language={match[1]}
           PreTag="div"
