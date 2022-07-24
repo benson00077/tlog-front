@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { GlobalThemeProps } from '../../../styled/golbalStyles'
 import mediaQueryBreakpoints from '../../../styled/mediaQueryBreakpoints'
 import { flexMixin } from '../../../styled/mixins'
+import { h2marginTop } from '../../../styled/position'
 
 const rootWidth = '58rem'
 const parallelLayout = {
@@ -70,7 +71,7 @@ export const PostRoot = styled.article`
   }
 
   h2 {
-    margin: 2.5rem 0 1.25rem;
+    margin: ${h2marginTop}rem 0 1.25rem 0;
     font-size: 2rem;
   }
 
@@ -337,6 +338,7 @@ export const Toc = styled.div`
 
   .is-active-link {
     color: ${({ theme }: GlobalThemeProps) => theme.text.active};
+    font-weight: bold;
   }
   // NOTICE: .is-collaspsible sholudn't put under .is-collapsed
   // since they put in same tag and the effect is done by css overwrite.

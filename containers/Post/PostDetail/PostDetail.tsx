@@ -3,15 +3,14 @@ import * as S from './styled'
 import TagCloud from '../components/TagCloud'
 import { IPostItem } from '../types'
 import { formatDate } from '../../../shared/utils'
-import { navHeightInt } from '../../../styled/position'
 
 // markdown
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { CustomMarkdown } from './CustomMarkdown'
-import { setupTocbot } from './utils'
 import MetaHead from '../../../components/MetaHead/MetaHead'
+import TableContent from './TableContent'
 
 type PostDetailProps = {
   post: IPostItem
@@ -58,36 +57,6 @@ function PostDetail({ post }: PostDetailProps) {
     dirtyLayoutAdjust()
   })
 
-  /**
-   *  Table of Contents
-   *  NOTICE:
-   *          UI break after switch theme.
-   *          set window.localStorage.theme as dep, as temp workaround
-   */
-  useEffect(() => {
-    setupTocbot()
-  }, [post, globalThis?.localStorage?.theme])
-
-  /**
-   *  Table of Contents
-   *          inject style for child node posn sticky. as temp workaround
-   *  NOTICE:
-   *          work when positoin: absolute on S.Toc
-   */
-  useEffect(() => {
-    const [markdown, toc] = [markdownRef.current, tocRef.current]
-    if (toc && markdown) {
-      // markdown.offsetParent = S.PostRoot
-      const tocStyle = `
-        height: ${markdown.getBoundingClientRect().height}px;
-        top: ${markdown.offsetTop + navHeightInt}px
-      ` // 3rem
-      // top: ${markdown.offsetTop}px
-      // 1268 . 1307.59999
-      toc.setAttribute('style', tocStyle)
-    }
-  }, [globalThis?.localStorage?.theme, markdownRef.current, tocRef.current])
-
   if (!post) return <div> .... Fetching data..... skeleton component to be added</div>
 
   const { title, posterUrl, summary, tags, content, createdAt, lastModifiedDate, pv, like, prev, next } = post
@@ -96,11 +65,7 @@ function PostDetail({ post }: PostDetailProps) {
     <>
       <MetaHead title={`${title} - Benson Tuan`} description={summary} />
 
-      <S.Toc ref={tocRef}>
-        <div>
-          <aside className="tableOfContents"></aside>
-        </div>
-      </S.Toc>
+      <TableContent deps={{ post, markdownRef }} />
 
       <S.PostRoot>
         <S.Poster src={posterUrl} alt={title} />
