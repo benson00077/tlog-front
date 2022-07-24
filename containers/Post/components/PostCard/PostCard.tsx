@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
-import NoScrollLink from "../../../../components/NoScrollLink/NoScrollLink";
-import { formatDate } from "../../../../shared/utils";
-import { IPostItem } from "../../types";
+import { useRouter } from 'next/router'
+import NoScrollLink from '../../../../components/NoScrollLink/NoScrollLink'
+import { formatDate } from '../../../../shared/utils'
+import { IPostItem } from '../../types'
 import * as S from './styled'
 
 type Props = {
@@ -16,9 +16,8 @@ export default function PostCard({ post }: Props) {
   // TODO: Link and anchor tag wrap cause S.Box &:nth-of-type{} css failed
   return (
     <S.Box>
-      <NoScrollLink href={`/post/${_id}`} passHref >
+      <NoScrollLink href={`/post/${_id}`} passHref>
         <a>
-
           <S.postPoster>
             <img src={posterUrl} alt={title} />
           </S.postPoster>
@@ -26,9 +25,7 @@ export default function PostCard({ post }: Props) {
           <S.postInfo>
             <span className="date">{formatDate(createdAt)}</span>
             <h2>{title}</h2>
-            <p className="summary">
-              {summary}
-            </p>
+            <p className="summary">{summary}</p>
             <div className="secondaryInfo">
               <div>
                 <span>Preview: {pv}</span>
@@ -44,7 +41,6 @@ export default function PostCard({ post }: Props) {
               </div>
             </div>
           </S.postInfo>
-
         </a>
       </NoScrollLink>
     </S.Box>

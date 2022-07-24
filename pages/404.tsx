@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import NoScrollLink from "../components/NoScrollLink/NoScrollLink";
-import { GlobalThemeProps } from "../styled/golbalStyles";
-import { flexMixin } from "../styled/mixins";
+import styled from 'styled-components'
+import NoScrollLink from '../components/NoScrollLink/NoScrollLink'
+import { GlobalThemeProps } from '../styled/golbalStyles'
+import { flexMixin } from '../styled/mixins'
 
 const SRoot = styled.div`
-  ${flexMixin("space-around")};
+  ${flexMixin('space-around')};
   flex-direction: column;
   min-height: 100vh;
 `

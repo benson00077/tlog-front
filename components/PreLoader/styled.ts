@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import { GlobalThemeProps } from "../../styled/golbalStyles"
-
+import styled from 'styled-components'
+import { GlobalThemeProps } from '../../styled/golbalStyles'
 
 export const PreLoaderScreen = styled.div`
   position: relative;
@@ -22,7 +21,7 @@ export const PreLoaderScreen = styled.div`
       opacity: 1;
     }
   }
-`;
+`
 
 export const Balls = styled.div`
   display: flex;
@@ -36,7 +35,7 @@ export const Balls = styled.div`
     width: 1rem;
     border-radius: 30%;
     /* background: #1b5299; */
-    background:  ${({ theme }: GlobalThemeProps) => theme.tag.postTagColor};
+    background: ${({ theme }: GlobalThemeProps) => theme.tag.postTagColor};
     margin: 0 6px 0 0;
     animation: oscillate 0.7s ease-in forwards infinite;
   }
@@ -62,4 +61,4 @@ export const Balls = styled.div`
       transform: translateY(0) rotate(360deg);
     }
   }
-`;
+`

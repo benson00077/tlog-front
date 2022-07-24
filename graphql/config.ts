@@ -1,5 +1,4 @@
-import { HttpLink } from "@apollo/client";
-import { GraphQLErrors, NetworkError } from "@apollo/client/errors";
+import { HttpLink } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 
 /**
@@ -7,24 +6,21 @@ import { onError } from '@apollo/client/link/error'
  *  TODO: HttpLink -> BatchHttpLink
  *  TOOD: err of different NODE_ENV and Authentication like login
  */
- const serverURI =
- process.env.NODE_ENV === "production"
-   ? process.env.NEXT_PUBLIC_API_URL_PRO
-   : process.env.NEXT_PUBLIC_API_URL_DEV;
+const serverURI =
+  process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_API_URL_PRO : process.env.NEXT_PUBLIC_API_URL_DEV
 export const httpLink = new HttpLink({
-  uri: serverURI
+  uri: serverURI,
 })
 
 // TODO: snack by notistack.js
-export const errorLink = onError(( { graphQLErrors, networkError} )=> {
+export const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.forEach(err => {
+    graphQLErrors.forEach((err) => {
       console.error(`🛑 [GraphQL error]: ${err.message}`)
-    });
+    })
   }
 
   if (networkError) {
     console.error(`🛑 [Network error]: ${networkError.message}`)
   }
 })
-

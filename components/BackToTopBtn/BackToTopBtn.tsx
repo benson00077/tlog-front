@@ -1,11 +1,6 @@
 import throttle from 'lodash/throttle'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as S from './styled'
-
-type Props = {
-  children: ReactNode
-}
-
 
 /**
  *  Inproving scrolling performance
@@ -14,7 +9,6 @@ type Props = {
  */
 
 function BackToTopBtn() {
-
   const [scrollTopCount, setScrollTopCount] = useState(0)
   const threshold = useRef(800)
 
@@ -38,8 +32,8 @@ function BackToTopBtn() {
     // let startTime = performance.now();
     /* ... do things for a while ... */
     // let elapsedTime = performance.now() - startTime;
-    
-    let timer: number = 0
+
+    let timer = 0
     cancelAnimationFrame(timer)
     const startTime = +new Date()
     const b = document.body.scrollTop || document.documentElement.scrollTop
@@ -56,7 +50,6 @@ function BackToTopBtn() {
     })
   }
 
-
   useEffect(() => {
     document.addEventListener('scroll', scrollCountHandler, { passive: true })
 
@@ -65,14 +58,11 @@ function BackToTopBtn() {
     }
   }, [])
 
-
   return (
     <>
       {/* // isShow = scrollTopCount >= BackToTop_ThreshHold (like 800 or sth) } */}
       <S.Button isDisplay={scrollTopCount >= threshold.current} onClick={scrollToTop}>
-        <p>
-          🔝
-        </p>
+        <p>🔝</p>
       </S.Button>
     </>
   )

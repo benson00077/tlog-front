@@ -15,27 +15,24 @@ import { AnimatePresence } from 'framer-motion'
  *      <Component key={...}> for <AnimatePresence> detecting exit animation of page transiion
  */
 function MyApp({ Component, pageProps, router }: AppProps) {
-
   const { theme, themeToggler } = useThemeMode()
-  const themeMode = theme === 'dark' ? darkTheme : lightTheme;
-  
+  const themeMode = theme === 'dark' ? darkTheme : lightTheme
+
   const apolloStore = useApollo(pageProps)
-  
+
   /**
    *  DEPRECATED.
-   *  NOTICE: 
+   *  NOTICE:
    *      this block is for Progress Bar when page transition, just in case you need
    */
-  const [isPageTransitit, setIsPageTransit] = useState(false);
+  const [isPageTransitit, setIsPageTransit] = useState(false)
   useEffect(() => {
     const handleStart = (url: string) => {
-      // console.log(new Date, `Loading Start: ${url}`)
-      // NProgress.start()
+      console.log(new Date(), `Loading Start: ${url}`)
       setIsPageTransit(true)
     }
     const handleStop = () => {
-      // console.log(new Date, `Loading Stop`)
-      // NProgress.done()
+      console.log(new Date(), `Loading Stop`)
       setIsPageTransit(false)
     }
 
@@ -58,11 +55,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           <TogglerButton themeToggler={themeToggler} />
           <Layout>
             <>
-              <AnimatePresence
-                exitBeforeEnter
-                initial={false}
-                onExitComplete={() => window.scrollTo(0, 0)}
-              >
+              <AnimatePresence exitBeforeEnter initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
                 <Component {...pageProps} key={`KeyForAnimatePresence_${router.route}`} />
               </AnimatePresence>
             </>

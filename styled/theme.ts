@@ -36,7 +36,7 @@ const light = {
   tag: {
     // green
     postTagColor: '#00965e',
-    postTagBgHover: 'rgba(0, 150, 94, 0.2)', 
+    postTagBgHover: 'rgba(0, 150, 94, 0.2)',
     postTagSelectedColor: '#7b57df',
     postTagBg: 'rgba(0, 150, 94, 0.1)',
   },
@@ -54,7 +54,7 @@ const dark = {
     tooltip: 'rgba(255, 255, 255, .7)',
     inlineCode: '#444950',
     searchBox: '#202327',
-    summaryBg: '#33425b'
+    summaryBg: '#33425b',
   },
   text: {
     primary: '#f5f6f7',
@@ -77,7 +77,7 @@ const dark = {
     postTagColor: '#77abb7',
     postTagSelectedColor: '#7b57df',
     postTagBg: 'rgba(0, 150, 94, 0.1)',
-    postTagBgHover: 'rgba(250, 250, 112, 0.2)', 
+    postTagBgHover: 'rgba(250, 250, 112, 0.2)',
   },
 }
 
@@ -113,11 +113,11 @@ const defaultTheme = {
     fiveOpcityBlack: 'rgba(0, 0, 0, .5)',
     sixOpcityBlack: 'rgba(0, 0, 0, .6)',
     sevenOpcityBlack: 'rgba(0, 0, 0, .7)',
-    footerText: "#f5f6f7",
-    footerBgUnderWave: "rgb(30, 19, 87)",
-    footerBgWage: "rgba(0, 0, 0, 0) linear-gradient(rgba(19, 12, 62, 0.8) 7%, rgb(30, 19, 87) 70%) repeat scroll 0% 0%",
+    footerText: '#f5f6f7',
+    footerBgUnderWave: 'rgb(30, 19, 87)',
+    footerBgWage: 'rgba(0, 0, 0, 0) linear-gradient(rgba(19, 12, 62, 0.8) 7%, rgb(30, 19, 87) 70%) repeat scroll 0% 0%',
     textHighlight: '#b00606', //"#de4c4c", //red
-  }
+  },
 }
 
 export const darkTheme = { ...defaultTheme, ...dark }

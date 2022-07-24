@@ -25,8 +25,7 @@ type PageTransitionProps = {
  *      Cancel page transition on Mobile device, which has a built in amimation when go to last / next page
  */
 function PageTransition({ children }: PageTransitionProps) {
-
-  let [ifMotion, setIfMotion] = useState(!isSafari && !isMobile)
+  const [ifMotion, setIfMotion] = useState(!isSafari && !isMobile)
 
   return (
     <motion.main

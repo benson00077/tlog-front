@@ -1,13 +1,12 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import BackToTopBtn from "../../components/BackToTopBtn/BackToTopBtn";
-import PostDetail from "../../containers/Post/PostDetail/PostDetail";
-import PageTransition from '../../components/PageTransition/PageTransition';
-import { GET_POST_BY_ID, POSTS } from "../../containers/Post/typeDefs";
-import { GetPostByIdQuery, GetPostByIdVar, PostQuery, PostVars } from "../../containers/Post/types";
-import { addApolloState, initializeApollo } from "../../graphql/apollo";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
+import BackToTopBtn from '../../components/BackToTopBtn/BackToTopBtn'
+import PostDetail from '../../containers/Post/PostDetail/PostDetail'
+import PageTransition from '../../components/PageTransition/PageTransition'
+import { GET_POST_BY_ID, POSTS } from '../../containers/Post/typeDefs'
+import { GetPostByIdQuery, GetPostByIdVar, PostQuery, PostVars } from '../../containers/Post/types'
+import { addApolloState, initializeApollo } from '../../graphql/apollo'
 
-type IndexProps = InferGetStaticPropsType<typeof getStaticProps>;
-
+type IndexProps = InferGetStaticPropsType<typeof getStaticProps>
 
 export default function Post(props: IndexProps) {
   // TODO: pass down to child comp or useQuery in child comp ?
@@ -15,17 +14,16 @@ export default function Post(props: IndexProps) {
   return (
     <PageTransition>
       <>
-      <PostDetail post={props.post?.getPostById} />
-      <BackToTopBtn />
+        <PostDetail post={props.post?.getPostById} />
+        <BackToTopBtn />
       </>
     </PageTransition>
   )
 }
 
-
 export const getStaticProps: GetStaticProps = async (context) => {
-  const apolloClient = initializeApollo();
-  let notFound = false;
+  const apolloClient = initializeApollo()
+  let notFound = false
 
   // Error handling ref: https://stackoverflow.com/a/67171798/16124226
   // Error for non-exist query id
@@ -33,17 +31,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const { data: post, error } = await apolloClient.query<GetPostByIdQuery, GetPostByIdVar>({
       query: GET_POST_BY_ID,
       variables: {
-        id: context?.params?.id as string
-      }
+        id: context?.params?.id as string,
+      },
     })
-    if (error || !post) notFound = true;
+    if (error || !post) notFound = true
 
     return addApolloState(apolloClient, {
       props: {
-        post
+        post,
       },
       revalidate: 60,
-      notFound
+      notFound,
     })
   } catch {
     notFound = true
@@ -51,24 +49,23 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 }
 
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  const apolloClient = initializeApollo();
+  const apolloClient = initializeApollo()
 
   // TODO: getAllIds from backend gql
-  const { data: { posts: posts } } = await apolloClient.query<PostQuery, PostVars>({
+  const {
+    data: { posts: posts },
+  } = await apolloClient.query<PostQuery, PostVars>({
     query: POSTS,
     variables: {
       input: {
         page: 1,
         pageSize: 10,
-      }
+      },
     },
   })
 
-  const paths = posts.items.map(post => (
-    { params: { id: post._id } }
-  ))
+  const paths = posts.items.map((post) => ({ params: { id: post._id } }))
 
   return {
     paths,

@@ -1,4 +1,3 @@
-
 import NoScrollLink from '../../../components/NoScrollLink/NoScrollLink'
 import Logo from './Logo'
 import * as S from './styled'
@@ -13,19 +12,13 @@ export default function Header() {
       </NoScrollLink>
       <S.NavBarLinks>
         <NoScrollLink href="/post">
-          <a>
-            Blog
-          </a>
+          <a>Blog</a>
         </NoScrollLink>
         <NoScrollLink href="/archive">
-          <a>
-            Archive
-          </a>
+          <a>Archive</a>
         </NoScrollLink>
         <NoScrollLink href="/about">
-          <a>
-            About
-          </a>
+          <a>About</a>
         </NoScrollLink>
       </S.NavBarLinks>
     </S.NavBar>

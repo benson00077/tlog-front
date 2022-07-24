@@ -1,9 +1,9 @@
-import { createGlobalStyle } from "styled-components";
-import { ThemeProps } from "./theme";
+import { createGlobalStyle } from 'styled-components'
+import { ThemeProps } from './theme'
 
 export type GlobalThemeProps = {
-  theme: ThemeProps;
-};
+  theme: ThemeProps
+}
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -24,4 +24,4 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }: GlobalThemeProps) => theme.text.secondary};
     text-decoration: none;
   }
-`;
+`

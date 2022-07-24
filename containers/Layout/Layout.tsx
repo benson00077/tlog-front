@@ -1,5 +1,5 @@
-import { Footer } from "./Footer/Footer";
-import Header from "./Header/Header";
+import { Footer } from './Footer/Footer'
+import Header from './Header/Header'
 import * as S from './styled'
 
 type LayoutProps = {
@@ -7,8 +7,6 @@ type LayoutProps = {
 }
 
 export function Layout({ children }: LayoutProps) {
-
-
   return (
     <S.Layouts>
       <Header />
@@ -17,4 +15,3 @@ export function Layout({ children }: LayoutProps) {
     </S.Layouts>
   )
 }
-

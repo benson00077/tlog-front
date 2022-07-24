@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import mediaQueryBreakpoints from "../../../styled/mediaQueryBreakpoints";
-import { flexMixin } from "../../../styled/mixins";
+import styled from 'styled-components'
+import mediaQueryBreakpoints from '../../../styled/mediaQueryBreakpoints'
+import { flexMixin } from '../../../styled/mixins'
 
 export const Wrapper = styled.section`
   display: grid;
@@ -44,4 +44,4 @@ export const Wrapper = styled.section`
       flex-wrap: wrap;
     }
   }
-`;
+`

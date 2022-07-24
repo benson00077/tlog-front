@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { GlobalThemeProps } from "../../styled/golbalStyles";
+import styled from 'styled-components'
+import { GlobalThemeProps } from '../../styled/golbalStyles'
 
 export const Container = styled.div`
   position: fixed;
@@ -27,7 +27,7 @@ export const Container = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${({ theme }: GlobalThemeProps) => theme.background.primary};
+    /* background-color: ${({ theme }: GlobalThemeProps) => theme.background.primary}; */
     -webkit-transition: 0.2s;
     transition: 0.2s cubic-bezier(0.25, 0.1, 0.3, 1.5);
     box-shadow: 0 0 2px ${({ theme }: GlobalThemeProps) => theme.text.base};
@@ -61,7 +61,7 @@ export const Container = styled.div`
   }
 
   input:checked + .slider {
-    background-color: ${({theme}: GlobalThemeProps) => theme.background.primary};
+    /* background-color: ${({ theme }: GlobalThemeProps) => theme.background.primary}; */
   }
 
   input:checked + .slider:before,
@@ -69,7 +69,7 @@ export const Container = styled.div`
     -webkit-transform: translateY(35px);
     -ms-transform: translateX(35px);
     transform: translateX(35px);
-  } 
+  }
 
   /* Rounded sliders */
   .slider.round {
@@ -79,7 +79,7 @@ export const Container = styled.div`
   .slider.round:before {
     border-radius: 50%;
   }
-`;
+`
 
 export const Icons = styled.span`
   width: 100%;
@@ -92,4 +92,4 @@ export const Icons = styled.span`
     color: ${({ theme }) => theme.text};
     z-index: 11;
   } */
-`;
+`

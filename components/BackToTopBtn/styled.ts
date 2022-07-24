@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import mediaQueryBreakpoints from "../../styled/mediaQueryBreakpoints";
-import { flexMixin } from "../../styled/mixins";
+import styled from 'styled-components'
+import mediaQueryBreakpoints from '../../styled/mediaQueryBreakpoints'
+import { flexMixin } from '../../styled/mixins'
 
 type ButtonProps = {
-  isDisplay: Boolean;
-};
+  isDisplay: boolean
+}
 
 export const Button = styled.div`
   position: fixed;
@@ -13,7 +13,7 @@ export const Button = styled.div`
   cursor: pointer;
   width: 4rem;
   /* height: 4rem; */
-  height: ${(props: ButtonProps) => (props.isDisplay ? "4rem" : "0")};
+  height: ${(props: ButtonProps) => (props.isDisplay ? '4rem' : '0')};
   opacity: ${(props: ButtonProps) => (props.isDisplay ? 0.5 : 0)};
   transition: all 0.6s cubic-bezier(0.25, 0.1, 0.3, 1.5);
   ${flexMixin()};
@@ -28,7 +28,6 @@ export const Button = styled.div`
     display: none;
   }
 
-
   p {
     height: inherit;
     text-align: center;
@@ -36,4 +35,4 @@ export const Button = styled.div`
     position: relative;
     top: -3px;
   }
-`;
+`

@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { GlobalThemeProps } from "../../../../styled/golbalStyles";
-import { flexMixin } from "../../../../styled/mixins";
-import mediaQueryBreakpoints from "../../../../styled/mediaQueryBreakpoints";
+import styled from 'styled-components'
+import { GlobalThemeProps } from '../../../../styled/golbalStyles'
+import { flexMixin } from '../../../../styled/mixins'
+import mediaQueryBreakpoints from '../../../../styled/mediaQueryBreakpoints'
 
 export const postPoster = styled.div`
   width: 33rem;
@@ -24,19 +24,19 @@ export const postPoster = styled.div`
       filter: blur(0px);
     }
   }
-`;
+`
 
 export const postInfo = styled.div`
-  ${flexMixin("space-between")};
+  ${flexMixin('space-between')};
   flex-direction: column;
   padding: 1.8rem 2.4rem;
   height: 22rem;
   width: 30rem;
   text-align: center;
   color: ${({ theme }: GlobalThemeProps) => theme.text.post};
-  
+
   @media only screen and ${mediaQueryBreakpoints.device.mobileL} {
-      &::before {
+    &::before {
       content: ' ';
       position: absolute;
       top: 0;
@@ -65,7 +65,7 @@ export const postInfo = styled.div`
   }
 
   div.secondaryInfo {
-    ${flexMixin("space-between")}
+    ${flexMixin('space-between')}
     width: 100%;
     height: 1rem;
   }
@@ -78,13 +78,13 @@ export const postInfo = styled.div`
     width: 100%;
     height: 100%;
   }
-`;
+`
 
 export const Box = styled.section`
   display: block;
   position: relative;
   width: 33rem;
-  ${flexMixin("center")};
+  ${flexMixin('center')};
   height: 22rem;
   border-radius: 15px;
   box-shadow: 0 1px 20px -8px ${({ theme }: GlobalThemeProps) => theme.colors.fiveOpcityBlack};
@@ -108,4 +108,4 @@ export const Box = styled.section`
       background: ${({ theme }: GlobalThemeProps) => theme.background.hoveredCard};
     }
   }
-`;
+`

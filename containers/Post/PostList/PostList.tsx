@@ -1,14 +1,14 @@
-import { useLazyQuery } from "@apollo/client"
-import { useRouter } from "next/router"
-import { useEffect } from "react"
-import MetaHead from "../../../components/MetaHead/MetaHead"
-import PostCard from "../components/PostCard/PostCard"
-import TagCloud from "../components/TagCloud"
-import { POSTS } from "../typeDefs"
-import { IPost, PostQuery, PostVars } from "../types"
+import { useLazyQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import MetaHead from '../../../components/MetaHead/MetaHead'
+import PostCard from '../components/PostCard/PostCard'
+import TagCloud from '../components/TagCloud'
+import { POSTS } from '../typeDefs'
+import { IPost, PostQuery, PostVars } from '../types'
 import * as S from './styled'
 import { AnimatePresence, motion } from 'framer-motion'
-import PreLoader from "../../../components/PreLoader/PreLoader"
+import PreLoader from '../../../components/PreLoader/PreLoader'
 
 type PostListProps = {
   tags: string[]
@@ -16,10 +16,13 @@ type PostListProps = {
 }
 
 export default function PostList({ tags, SSGposts }: PostListProps) {
+  const {
+    query: { tag: targetTag },
+  } = useRouter() //TODO: tags cloud to click
 
-  const { query: { tag: targetTag } } = useRouter()  //TODO: tags cloud to click
-
-  const [getPosts, { data: postsData }] = useLazyQuery<PostQuery, PostVars>(POSTS, { notifyOnNetworkStatusChange: true })
+  const [getPosts, { data: postsData }] = useLazyQuery<PostQuery, PostVars>(POSTS, {
+    notifyOnNetworkStatusChange: true,
+  })
 
   function fetchPosts(currPage = 1, tag?: string) {
     getPosts({
@@ -28,8 +31,8 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
           page: currPage,
           pageSize: 10,
           tag,
-        }
-      }
+        },
+      },
     })
   }
 
@@ -51,32 +54,25 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
           </div>
         </div>
 
-        <AnimatePresence
-          exitBeforeEnter
-          initial={false}
-        >
-          {posts
-            ?
-            (<motion.div
+        <AnimatePresence exitBeforeEnter initial={false}>
+          {posts ? (
+            <motion.div
               initial={{ opacity: 0, x: -200, y: 0 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               exit={{ opacity: 0, x: 0, y: 0 }}
               transition={{ type: 'linear' }}
-              className="posts" key={targetTag as string}>
-
+              className="posts"
+              key={targetTag as string}
+            >
               {posts.items.map((post, i) => (
                 <div className="postsGridItem" key={i}>
                   <PostCard post={post} />
                 </div>
               ))}
-
             </motion.div>
-            )
-            :
-            (
-              <PreLoader />
-            )
-          }
+          ) : (
+            <PreLoader />
+          )}
         </AnimatePresence>
       </S.Wrapper>
     </>

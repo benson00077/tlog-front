@@ -4,7 +4,7 @@ import * as S from './styled'
 function PreLoader() {
   return (
     <>
-      <S.PreLoaderScreen >
+      <S.PreLoaderScreen>
         <S.Balls>
           <div className="ball one"></div>
           <div className="ball two"></div>

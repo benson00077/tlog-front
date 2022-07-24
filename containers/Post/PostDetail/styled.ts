@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { GlobalThemeProps } from "../../../styled/golbalStyles";
-import mediaQueryBreakpoints from "../../../styled/mediaQueryBreakpoints";
-import { flexMixin } from "../../../styled/mixins";
+import styled from 'styled-components'
+import { GlobalThemeProps } from '../../../styled/golbalStyles'
+import mediaQueryBreakpoints from '../../../styled/mediaQueryBreakpoints'
+import { flexMixin } from '../../../styled/mixins'
 
-const rootWidth = "58rem";
+const rootWidth = '58rem'
 const parallelLayout = {
   width: {
     columnLeft: `calc(${rootWidth} * 0.5)`,
@@ -11,7 +11,7 @@ const parallelLayout = {
     languageLeft: `calc(${rootWidth} * 0.5)`,
     languageRight: `calc(${rootWidth} * 0.5)`,
   },
-};
+}
 
 export const Poster = styled.img`
   ${flexMixin()};
@@ -21,14 +21,14 @@ export const Poster = styled.img`
   border-radius: 1rem;
   box-shadow: 0 10px 15px -3px ${({ theme }: GlobalThemeProps) => theme.colors.oneOpcityBlack},
     0 4px 6px -2px ${({ theme }: GlobalThemeProps) => theme.colors.oneOpcityBlack};
-`;
+`
 
 export const Title = styled.h1`
   margin: 2rem 0;
   font-size: 2.4rem;
   line-height: 1.6;
   text-align: center;
-`;
+`
 
 export const Summary = styled.blockquote`
   width: 100%;
@@ -39,13 +39,12 @@ export const Summary = styled.blockquote`
   line-height: 1.6;
   color: ${({ theme }: GlobalThemeProps) => theme.text.base};
   background: ${({ theme }: GlobalThemeProps) => theme.background.summaryBg};
-  border-left: 0.3rem solid
-    ${({ theme }: GlobalThemeProps) => theme.colors.summaryBar};
+  border-left: 0.3rem solid ${({ theme }: GlobalThemeProps) => theme.colors.summaryBar};
   border-radius: 0.5rem;
-`;
+`
 
 export const PostRoot = styled.article`
-  ${flexMixin("center")};
+  ${flexMixin('center')};
   flex-direction: column;
   position: relative; // for S.Date
   max-width: ${rootWidth};
@@ -104,8 +103,7 @@ export const PostRoot = styled.article`
     color: ${({ theme }: GlobalThemeProps) => theme.colors.linkBlue};
 
     &:hover {
-      text-decoration: underline
-        ${({ theme }: GlobalThemeProps) => theme.colors.linkBase};
+      text-decoration: underline ${({ theme }: GlobalThemeProps) => theme.colors.linkBase};
     }
   }
 
@@ -131,7 +129,7 @@ export const PostRoot = styled.article`
     position: relative;
 
     &:before {
-      content: "";
+      content: '';
       z-index: -1;
       left: -0.5em;
       top: -0.1em;
@@ -147,7 +145,7 @@ export const PostRoot = styled.article`
       padding: 0.1em 0.25em;
     }
     &:after {
-      content: "";
+      content: '';
       z-index: -1;
       left: -0.5em;
       top: 0.1em;
@@ -164,14 +162,13 @@ export const PostRoot = styled.article`
       border-radius: 50%;
     }
   }
-`;
+`
 
 export const Markdown = styled.div`
   width: 100%;
 
   code {
-    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New,
-      monospace;
+    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   }
 
   // -- inline code
@@ -188,8 +185,7 @@ export const Markdown = styled.div`
     padding: 1.5rem 1rem;
     margin: 2rem 0 4rem 0;
     background: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
-    border-left: 0.3rem solid
-      ${({ theme }: GlobalThemeProps) => theme.colors.sloganBlue};
+    border-left: 0.3rem solid ${({ theme }: GlobalThemeProps) => theme.colors.sloganBlue};
     border-radius: 0.5rem;
 
     pre {
@@ -226,7 +222,7 @@ export const Markdown = styled.div`
     }
 
     &::after {
-      content: " ";
+      content: ' ';
     }
   }
   .clearFloat {
@@ -267,34 +263,33 @@ export const Markdown = styled.div`
     }
 
     &::after {
-      content: " ";
+      content: ' ';
     }
   }
-`;
+`
 
 export const Info = styled.div`
-  ${flexMixin("center")};
+  ${flexMixin('center')};
   margin: 0 auto;
   text-align: center;
   line-height: 1.6;
   color: ${({ theme }: GlobalThemeProps) => theme.text.secondary};
-`;
+`
 
 export const Date = styled.time`
   position: absolute;
   right: 1rem;
-`;
+`
 
 export const Table = styled.div`
-  ${flexMixin("center")};
+  ${flexMixin('center')};
 
   table {
     margin: 2rem 0;
     border-collapse: collapse;
 
     tr:nth-of-type(2n) {
-      background-color: ${({ theme }: GlobalThemeProps) =>
-        theme.background.secondary};
+      background-color: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
     }
 
     td,
@@ -308,7 +303,7 @@ export const Table = styled.div`
       font-weight: 700;
     }
   }
-`;
+`
 
 export const Toc = styled.div`
   position: absolute; // for child sticky posn
@@ -329,7 +324,7 @@ export const Toc = styled.div`
       opacity: 0.6;
     }
     &::before {
-      content: "";
+      content: '';
     }
   }
 
@@ -359,4 +354,4 @@ export const Toc = styled.div`
   @media only screen and ${mediaQueryBreakpoints.device.laptop} {
     display: none;
   }
-`;
+`

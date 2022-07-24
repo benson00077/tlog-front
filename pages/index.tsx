@@ -1,10 +1,7 @@
-import { Home } from '../containers/Home/Home';
-import PageTransition from '../components/PageTransition/PageTransition';
+import { Home } from '../containers/Home/Home'
+import PageTransition from '../components/PageTransition/PageTransition'
 
-
-type IndexProps = any
-
-const Index = (props: IndexProps) => {
+const Index = () => {
   return (
     <PageTransition>
       <Home />

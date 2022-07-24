@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { flexMixin } from "../styled/mixins";
+import styled from 'styled-components'
+import { flexMixin } from '../styled/mixins'
 
 const SRoot = styled.div`
-  ${flexMixin("space-around")};
+  ${flexMixin('space-around')};
   flex-direction: column;
   min-height: 100vh;
 `

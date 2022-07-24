@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { useRouter } from 'next/router'
 import * as S from './styled'
 import TagCloud from '../components/TagCloud'
 import { IPostItem } from '../types'
@@ -14,23 +13,19 @@ import { CustomMarkdown } from './CustomMarkdown'
 import { setupTocbot } from './utils'
 import MetaHead from '../../../components/MetaHead/MetaHead'
 
-
-
 type PostDetailProps = {
   post: IPostItem
 }
 
 function PostDetail({ post }: PostDetailProps) {
-
-  const { query: { id }, replace } = useRouter()
   const markdownRef = useRef<HTMLDivElement>(null)
   const tocRef = useRef<HTMLDivElement>(null)
 
   /**
-   *  Layout UI: 
+   *  Layout UI:
    *          columnLeft (text) <-> columnRight (code)
    *          languageLeft (text) <-> languageRight (text)
-   *  Notice: 
+   *  Notice:
    *          <ReactMarkdown> overwrite in the end,
    *          don't add classList columnRight and languageLeft here.
    *          OR, workaround is set UseEffect w/o dependency. Work as componentDidMount
@@ -44,18 +39,17 @@ function PostDetail({ post }: PostDetailProps) {
 
       if (previouseEle?.tagName === 'P') {
         // Filter out h1~h6, table , ul, li. Do not Paraleel then w/ code block
-        previouseEle?.classList.add("columnLeft")
+        previouseEle?.classList.add('columnLeft')
       } else {
         // Notice: this intentedly overide .cloumnRight css width and make float:left not work
-        // @ts-ignore
-        codeBlock.style.width = "100%";
+        codeBlock.setAttribute('style', 'width: 100%;')
       }
     })
 
     foreignLanBlocks.forEach((foreignLanBlock) => {
       const previouseEle = foreignLanBlock?.previousElementSibling
-      if (previouseEle && !previouseEle.classList.contains("languageRight")) {
-        previouseEle?.classList.add("languageLeft")
+      if (previouseEle && !previouseEle.classList.contains('languageRight')) {
+        previouseEle?.classList.add('languageLeft')
       }
     })
   }, [post])
@@ -66,7 +60,7 @@ function PostDetail({ post }: PostDetailProps) {
 
   /**
    *  Table of Contents
-   *  NOTICE: 
+   *  NOTICE:
    *          UI break after switch theme.
    *          set window.localStorage.theme as dep, as temp workaround
    */
@@ -76,8 +70,8 @@ function PostDetail({ post }: PostDetailProps) {
 
   /**
    *  Table of Contents
-   *          inject style for child node posn sticky. as temp workaround 
-   *  NOTICE: 
+   *          inject style for child node posn sticky. as temp workaround
+   *  NOTICE:
    *          work when positoin: absolute on S.Toc
    */
   useEffect(() => {
@@ -87,30 +81,16 @@ function PostDetail({ post }: PostDetailProps) {
       const tocStyle = `
         height: ${markdown.getBoundingClientRect().height}px;
         top: ${markdown.offsetTop + navHeightInt}px
-      ` // 3rem 
+      ` // 3rem
       // top: ${markdown.offsetTop}px
       // 1268 . 1307.59999
-      toc.setAttribute("style", tocStyle)
+      toc.setAttribute('style', tocStyle)
     }
   }, [globalThis?.localStorage?.theme, markdownRef.current, tocRef.current])
 
-
   if (!post) return <div> .... Fetching data..... skeleton component to be added</div>
 
-  const {
-    title,
-    posterUrl,
-    summary,
-    tags,
-    content,
-    createdAt,
-    lastModifiedDate,
-    pv,
-    like,
-    prev,
-    next,
-  } = post
-
+  const { title, posterUrl, summary, tags, content, createdAt, lastModifiedDate, pv, like, prev, next } = post
 
   return (
     <>
@@ -124,15 +104,11 @@ function PostDetail({ post }: PostDetailProps) {
 
       <S.PostRoot>
         <S.Poster src={posterUrl} alt={title} />
-        <S.Title>
-          {title}
-        </S.Title>
+        <S.Title>{title}</S.Title>
 
         <S.Info>
           <TagCloud tags={tags} />
-          <S.Date>
-            {formatDate(createdAt)}
-          </S.Date>
+          <S.Date>{formatDate(createdAt)}</S.Date>
         </S.Info>
 
         <S.Summary>{summary}</S.Summary>
@@ -148,10 +124,8 @@ function PostDetail({ post }: PostDetailProps) {
           </ReactMarkdown>
           {/*  popup  */}
         </S.Markdown>
-
       </S.PostRoot>
     </>
-
   )
 }
 

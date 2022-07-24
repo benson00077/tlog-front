@@ -5,7 +5,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "prettier": "prettier '**/*.{js,jsx,ts,tsx}' --write",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx}": [
+      "npm run prettier --cache",
+      "eslint --fix"
+    ]
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
@@ -31,10 +38,14 @@
     "@types/react": "17.0.39",
     "@types/react-syntax-highlighter": "^13.5.2",
     "@types/styled-components": "^5.1.22",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
     "babel-plugin-styled-components": "^2.0.2",
     "eslint": "8.8.0",
     "eslint-config-next": "12.0.10",
+    "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "typescript": "4.5.5"
   }
 }

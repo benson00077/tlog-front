@@ -87,6 +87,7 @@ Be aware of that mongo db have different URI format by version. The backend logi
 - Using Conventional Commits. 
   - Set up following [conventional-changelog](https://github.com/conventional-changelog/commitlint#what-is-commitlint). Include .husky/commit-msg.
   - See convention [here](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional#type-enum)
+  - try locally `echo "foo: dummy commit msg" | ./node_modules/.bin/commitlint`
 
 # 👉 Dev logs
 ## TODO
