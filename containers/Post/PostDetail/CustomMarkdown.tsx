@@ -90,16 +90,22 @@ export function CustomMarkdown() {
     },
     h2({ node, children, ...props }: any) {
       return (
-        <h2 id={children[0]} className="clearFloat" {...props}>
-          {children}
-        </h2>
+        <>
+          <div className="thread-line"></div>
+          <h2 id={children[0]} className="clearFloat" {...props}>
+            {children}
+          </h2>
+        </>
       )
     },
     h3({ node, children, ...props }: any) {
       return (
-        <h3 id={children[0]} className="clearFloat" {...props}>
-          {children}
-        </h3>
+        <>
+          <div className="thread-line-child"></div>
+          <h3 id={children[0]} className="clearFloat" {...props}>
+            {children}
+          </h3>
+        </>
       )
     },
     h4({ node, children, ...props }: any) {

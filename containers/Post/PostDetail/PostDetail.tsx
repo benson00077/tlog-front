@@ -8,6 +8,9 @@ import { formatDate } from '../../../shared/utils'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
+/* eslint @typescript-eslint/no-var-requires: "off" */
+const remarkSectionize = require('remark-sectionize') // import not work
+
 import { CustomMarkdown } from './CustomMarkdown'
 import MetaHead from '../../../components/MetaHead/MetaHead'
 import TableContent from './TableContent'
@@ -80,7 +83,7 @@ function PostDetail({ post }: PostDetailProps) {
 
         <S.Markdown ref={markdownRef}>
           <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
+            remarkPlugins={[remarkGfm, remarkSectionize]}
             rehypePlugins={[rehypeRaw]}
             components={CustomMarkdown()}
             className="postContentByToc"

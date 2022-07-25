@@ -267,6 +267,31 @@ export const Markdown = styled.div`
       content: ' ';
     }
   }
+
+  section {
+    position: relative;
+    /* box-shadow: -2px 0 red; */
+    margin: 0.5rem 0 0.5rem 0;
+
+    .thread-line {
+      position: absolute;
+      left: -1rem;
+      height: 100%;
+      width: 2px;
+      background-color: #3a3b3c;
+    }
+
+    .thread-line-child {
+      position: absolute;
+      left: -0.5rem;
+      // 沒考慮到大螢幕 code block float 的問題....頭好痛......
+      clear: both;
+      height: 20px;
+      width: 24px;
+      background-color: #3a3b3c;
+      border-bottom-left-radius: 10px;
+    }
+  }
 `
 
 export const Info = styled.div`
