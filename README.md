@@ -3,6 +3,7 @@
   - [Some patterns to follow in db markdown](#some-patterns-to-follow-in-db-markdown)
 - [👉 Usage](#-usage)
   - [env](#env)
+  - [Deployment](#deployment)
   - [lint](#lint)
 - [👉 Dev logs](#-dev-logs)
   - [TODO](#todo)
@@ -82,6 +83,14 @@ Be aware of that mongo db have different URI format by version. The backend logi
 # 1. mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
 # 2. mongodb+srv://[username:password@]host[/[database][?options]]
 ```
+
+## Deployment
+- Using pm2 to manamge muiltiple node apps.
+  ```
+  $ npm run build # as docs suggested
+  $ pm2 start npm --name <myAppServerName> -- start
+  ```
+- Build as docs' suggest is a bit tricky though. See this [Q&A](https://stackoverflow.com/questions/59782255/how-can-i-make-a-minimal-deployment-of-a-next-js-non-static-app/71839401#71839401). Still I filed to use Output File Tracing feature in Next.js. 
 
 ## lint
 - Using Conventional Commits. 
