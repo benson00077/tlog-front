@@ -65,6 +65,7 @@ This would cause multiple HTML <h1> tag and bad for SEO.
 ###Subtitle 1
 ###Subtitle 2
 ~~~
+Notice that the css for Subtitle theard line only works for  browsers supporting `:has()` selector(Only Chrome^105 and Safari support), and only work fine in hading 2 and heading 3. Using heading 1 in blog post content might slightly break UI.
 
 
 # 👉 Usage

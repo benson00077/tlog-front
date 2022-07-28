@@ -11,6 +11,7 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark
 // sth like @KOREAN in markdown
 export function CustomMarkdown() {
   const isExpand = useRef(false)
+  const isSectionNotCollasped = useRef(false)
 
   return {
     code({ node, inline, className, children, ...props }: any) {
@@ -90,22 +91,16 @@ export function CustomMarkdown() {
     },
     h2({ node, children, ...props }: any) {
       return (
-        <>
-          <div className="thread-line"></div>
-          <h2 id={children[0]} className="clearFloat" {...props}>
-            {children}
-          </h2>
-        </>
+        <h2 id={children[0]} className="clearFloat" {...props}>
+          {children}
+        </h2>
       )
     },
     h3({ node, children, ...props }: any) {
       return (
-        <>
-          <div className="thread-line-child"></div>
-          <h3 id={children[0]} className="clearFloat" {...props}>
-            {children}
-          </h3>
-        </>
+        <h3 id={children[0]} className="clearFloat" {...props}>
+          {children}
+        </h3>
       )
     },
     h4({ node, children, ...props }: any) {

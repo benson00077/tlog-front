@@ -268,28 +268,71 @@ export const Markdown = styled.div`
     }
   }
 
+  /**
+  *  Handle Section inserted by remark-sectionize plugin
+  *  Styled as thread-line 
+  */
   section {
     position: relative;
+    clear: both; // because code block have float:right;
     /* box-shadow: -2px 0 red; */
     margin: 0.5rem 0 0.5rem 0;
 
-    .thread-line {
-      position: absolute;
-      left: -1rem;
-      height: 100%;
-      width: 2px;
-      background-color: #3a3b3c;
-    }
+    /** 
+     * NOTICE:
+     *     Only Chrome^105 and Safari support :has selector
+    */
+    &:has(section) {
+      /* as thread-line */
+      &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: -1.5rem;
+        height: 100%;
+        width: 2px;
+        background-color: ${({ theme }: GlobalThemeProps) => theme.border};
+      }
 
-    .thread-line-child {
-      position: absolute;
-      left: -0.5rem;
-      // 沒考慮到大螢幕 code block float 的問題....頭好痛......
-      clear: both;
-      height: 20px;
-      width: 24px;
-      background-color: #3a3b3c;
-      border-bottom-left-radius: 10px;
+      /* as thread-line-child */
+      & section h3::before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: -1.5rem;
+        height: 20px;
+        width: 20px;
+        border-left: 2px ${({ theme }: GlobalThemeProps) => theme.border} solid;
+        border-bottom: 2px ${({ theme }: GlobalThemeProps) => theme.border} solid;
+        border-bottom-left-radius: 10px;
+      }
+
+      /* as thread-line-child coverage line */
+      & > section:last-child::before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: -1.5rem;
+        height: 100%;
+        width: 24px;
+        border-left: 2px ${({ theme }: GlobalThemeProps) => theme.background.primary} solid;
+      }
+
+      /* as therad-line start-end triangle beside h2 */
+      & > h2::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 1.5rem;
+        left: calc(-1.5rem - 10.4px / 2);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 10.4px 6px 0 6px;
+        border-color: ${({ theme }: GlobalThemeProps) => theme.border} transparent transparent transparent;
+        box-shadow: 0 -16px 2px 12px ${({ theme }: GlobalThemeProps) => theme.background.primary};
+        background-color: ${({ theme }: GlobalThemeProps) => theme.background.primary};
+      }
     }
   }
 `
