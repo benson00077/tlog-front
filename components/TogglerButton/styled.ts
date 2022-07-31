@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { GlobalThemeProps } from '../../styled/golbalStyles'
+import { GlobalThemeProps } from '../../styled/globalStyles'
 
 export const Container = styled.div`
   position: fixed;

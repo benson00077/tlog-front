@@ -33,7 +33,7 @@ export function CustomMarkdown() {
             minWidth: '3.25em',
             paddingRight: '1em',
             textAlign: 'right',
-            color: 'rgb(106, 153, 85)',
+            color: '#5b5b5b',
           }}
           wrapLongLines={false}
           language={match[1]}

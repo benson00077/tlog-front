@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styled from 'styled-components'
-import { GlobalThemeProps } from '../../../styled/golbalStyles'
+import { GlobalThemeProps } from '../../../styled/globalStyles'
 
 // styled
 
