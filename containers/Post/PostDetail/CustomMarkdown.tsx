@@ -3,6 +3,7 @@ import * as S from './styled'
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus'
+import { Triangle } from './Triangle'
 /** ^^^ Don't use esm module. see: https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/230 */
 // import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 // import vs2015 from 'react-syntax-highlighter/dist/cjs/styles/hljs/vs2015'
@@ -91,9 +92,12 @@ export function CustomMarkdown() {
     },
     h2({ node, children, ...props }: any) {
       return (
-        <h2 id={children[0]} className="clearFloat" {...props}>
-          {children}
-        </h2>
+        <>
+          <Triangle />
+          <h2 id={children[0]} className="clearFloat" {...props}>
+            {children}
+          </h2>
+        </>
       )
     },
     h3({ node, children, ...props }: any) {

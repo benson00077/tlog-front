@@ -312,29 +312,29 @@ export const Markdown = styled.div`
         display: block;
         content: '';
         position: absolute;
+        top: 14.5px; // similar to thread-line-child's height
         left: -1.5rem;
         height: 100%;
         width: 24px;
-        border-left: 2px ${({ theme }: GlobalThemeProps) => theme.background.primary} solid;
-      }
-
-      /* as therad-line start-end triangle beside h2 */
-      & > h2::before {
-        display: block;
-        content: '';
-        position: absolute;
-        top: 1.5rem;
-        left: calc(-1.5rem - 10.4px / 2);
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 10.4px 6px 0 6px;
-        border-color: ${({ theme }: GlobalThemeProps) => theme.border} transparent transparent transparent;
-        box-shadow: 0 -16px 2px 12px ${({ theme }: GlobalThemeProps) => theme.background.primary};
-        background-color: ${({ theme }: GlobalThemeProps) => theme.background.primary};
+        border-left: 2.5px ${({ theme }: GlobalThemeProps) => theme.background.primary} solid;
       }
     }
   }
+`
+type IconProps = {
+  width: number
+  height: number
+}
+export const Icon = styled.svg<IconProps>`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  position: absolute;
+  top: 1.3rem;
+  left: calc(-1.5rem - 10.4px / 2);
+  box-shadow: 0 -16px 2px 8px ${({ theme }: GlobalThemeProps) => theme.background.primary};
+`
+export const ThreadLineTriangle = styled.polygon`
+  fill: ${({ theme }: GlobalThemeProps) => theme.border};
 `
 
 export const Info = styled.div`
