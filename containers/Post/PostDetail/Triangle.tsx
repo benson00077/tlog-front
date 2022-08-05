@@ -15,7 +15,7 @@ export const Triangle = ({ w = 12, h = 12, direction = 'bottom' }: triangleProps
   }
 
   return (
-    <Icon width={w} height={h}>
+    <Icon width={w + 'px'} height={h + 'px'}>
       <ThreadLineTriangle points={points[direction].join(' ')} />
     </Icon>
   )

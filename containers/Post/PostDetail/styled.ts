@@ -315,22 +315,23 @@ export const Markdown = styled.div`
         top: 14.5px; // similar to thread-line-child's height
         left: -1.5rem;
         height: 100%;
-        width: 24px;
+        width: 2px;
         border-left: 2.5px ${({ theme }: GlobalThemeProps) => theme.background.primary} solid;
+        background-color: ${({ theme }: GlobalThemeProps) => theme.background.primary};
       }
     }
   }
 `
 type IconProps = {
-  width: number
-  height: number
+  width: string
+  height: string
 }
 export const Icon = styled.svg<IconProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   position: absolute;
   top: 1.3rem;
-  left: calc(-1.5rem - 10.4px / 2);
+  left: calc(-1.5rem - 10.4px / 2 + 1px);
   box-shadow: 0 -16px 2px 8px ${({ theme }: GlobalThemeProps) => theme.background.primary};
 `
 export const ThreadLineTriangle = styled.polygon`
