@@ -7,3 +7,4 @@ export const isSafari =
 export const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
   globalThis.navigator?.userAgent,
 )
+export const isServer = typeof window === 'undefined'

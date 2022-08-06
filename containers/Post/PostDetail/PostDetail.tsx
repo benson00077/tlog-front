@@ -11,6 +11,7 @@ import rehypeRaw from 'rehype-raw'
 import { CustomMarkdown } from './CustomMarkdown'
 import MetaHead from '../../../components/MetaHead/MetaHead'
 import TableContent from './TableContent'
+import TableOfContent from './TableOfContent'
 
 type PostDetailProps = {
   post: IPostItem
@@ -18,7 +19,6 @@ type PostDetailProps = {
 
 function PostDetail({ post }: PostDetailProps) {
   const markdownRef = useRef<HTMLDivElement>(null)
-  const tocRef = useRef<HTMLDivElement>(null)
 
   /**
    *  Layout UI:
@@ -65,7 +65,8 @@ function PostDetail({ post }: PostDetailProps) {
     <>
       <MetaHead title={`${title} - Benson Tuan`} description={summary} />
 
-      <TableContent deps={{ post, markdownRef }} />
+      {/* <TableContent deps={{ post, markdownRef }} /> */}
+      <TableOfContent />
 
       <S.PostRoot>
         <S.Poster src={posterUrl} alt={title} />
