@@ -1,6 +1,7 @@
 import { Footer } from './Footer/Footer'
 import Header from './Header/Header'
 import * as S from './styled'
+import { ScrollProvider } from '../../hooks/ScrollProvider'
 
 type LayoutProps = {
   children: React.ReactChild
@@ -9,9 +10,13 @@ type LayoutProps = {
 export function Layout({ children }: LayoutProps) {
   return (
     <S.Layouts>
-      <Header />
-      <S.Main>{children}</S.Main>
-      <Footer />
+      <ScrollProvider>
+        <>
+          <Header />
+          <S.Main>{children}</S.Main>
+          <Footer />
+        </>
+      </ScrollProvider>
     </S.Layouts>
   )
 }
