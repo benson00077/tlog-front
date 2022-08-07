@@ -3,6 +3,7 @@ import * as S from './styled'
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus'
+import { Triangle } from './Triangle'
 /** ^^^ Don't use esm module. see: https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/230 */
 // import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 // import vs2015 from 'react-syntax-highlighter/dist/cjs/styles/hljs/vs2015'
@@ -11,6 +12,7 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark
 // sth like @KOREAN in markdown
 export function CustomMarkdown() {
   const isExpand = useRef(false)
+  const isSectionNotCollasped = useRef(false)
 
   return {
     code({ node, inline, className, children, ...props }: any) {
@@ -31,7 +33,7 @@ export function CustomMarkdown() {
             minWidth: '3.25em',
             paddingRight: '1em',
             textAlign: 'right',
-            color: 'rgb(106, 153, 85)',
+            color: '#5b5b5b',
           }}
           wrapLongLines={false}
           language={match[1]}
@@ -83,37 +85,40 @@ export function CustomMarkdown() {
     // NOTE: prevent using h1 in markdown content. Post title would be the only h1 for SEO
     h1({ node, children, ...props }: any) {
       return (
-        <h1 id={children[0]} className="clearFloat" {...props}>
-          {children}
-        </h1>
+        <>
+          <Triangle />
+          <h2 id={children[0]} className="clearFloat" {...props}>
+            {children}
+          </h2>
+        </>
       )
     },
     h2({ node, children, ...props }: any) {
-      return (
-        <h2 id={children[0]} className="clearFloat" {...props}>
-          {children}
-        </h2>
-      )
-    },
-    h3({ node, children, ...props }: any) {
       return (
         <h3 id={children[0]} className="clearFloat" {...props}>
           {children}
         </h3>
       )
     },
-    h4({ node, children, ...props }: any) {
+    h3({ node, children, ...props }: any) {
       return (
-        <h4 className="clearFloat" {...props}>
+        <h4 id={children[0]} className="clearFloat" {...props}>
           {children}
         </h4>
       )
     },
-    h5({ node, children, ...props }: any) {
+    h4({ node, children, ...props }: any) {
       return (
         <h5 className="clearFloat" {...props}>
           {children}
         </h5>
+      )
+    },
+    h5({ node, children, ...props }: any) {
+      return (
+        <h6 className="clearFloat" {...props}>
+          {children}
+        </h6>
       )
     },
     h6({ node, children, ...props }: any) {
