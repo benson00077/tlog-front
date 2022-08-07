@@ -10,7 +10,7 @@ export default function Header() {
   })
 
   return (
-    <S.NavBar translateY={focus ? '0px' : '-100%'}>
+    <S.NavBar translateY={focus ? '0px' : '-100%'} opacity={focus ? '1' : '0'}>
       <NoScrollLink href="/" passHref>
         <a>
           <Logo />

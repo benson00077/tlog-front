@@ -4,6 +4,7 @@ import { navHeight } from '../../../styled/position'
 
 type NavBarProps = {
   translateY: string
+  opacity: string
 }
 export const NavBar = styled.nav<NavBarProps>`
   position: fixed;
@@ -11,11 +12,11 @@ export const NavBar = styled.nav<NavBarProps>`
   width: 100%;
   height: ${navHeight};
   padding: 0 6.5rem 0 2.4rem;
-  opacity: 0.95;
   z-index: 10;
   user-select: none;
+  opacity: ${(props) => props.opacity};
   transform: translateY(${(props) => props.translateY});
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 1s ease, opacity 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 `
 
 export const NavBarLinks = styled.div`

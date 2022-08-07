@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans TC','Noto Sans KR',-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     background: ${({ theme }: GlobalThemeProps) => theme.background.primary};
     color: ${({ theme }: GlobalThemeProps) => theme.text.base};
+    overflow-x: hidden;
   }
 
   a {
