@@ -1,10 +1,16 @@
 import NoScrollLink from '../../../components/NoScrollLink/NoScrollLink'
+import { useFocus } from '../../../hooks/useFocus'
 import Logo from './Logo'
 import * as S from './styled'
 
 export default function Header() {
+  const { focus } = useFocus({
+    component: 'NavBar',
+    ifFocus: true,
+  })
+
   return (
-    <S.NavBar>
+    <S.NavBar translateY={focus ? '0px' : '-100%'} opacity={focus ? '1' : '0'}>
       <NoScrollLink href="/" passHref>
         <a>
           <Logo />
