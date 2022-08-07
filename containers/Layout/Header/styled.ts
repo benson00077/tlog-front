@@ -2,7 +2,10 @@ import styled from 'styled-components'
 import { flexMixin } from '../../../styled/mixins'
 import { navHeight } from '../../../styled/position'
 
-export const NavBar = styled.nav`
+type NavBarProps = {
+  translateY: string
+}
+export const NavBar = styled.nav<NavBarProps>`
   position: fixed;
   ${flexMixin('space-between')}
   width: 100%;
@@ -11,6 +14,8 @@ export const NavBar = styled.nav`
   opacity: 0.95;
   z-index: 10;
   user-select: none;
+  transform: translateY(${(props) => props.translateY});
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 `
 
 export const NavBarLinks = styled.div`
