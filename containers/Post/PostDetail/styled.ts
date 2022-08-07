@@ -64,7 +64,6 @@ export const PostRoot = styled.article`
     /* text-align: center; */
   }
 
-  // TODO: consider not using h1 in content
   h1 {
     margin: 2.75rem 0 1.25rem; //TODO
     font-size: 2.5rem;
@@ -331,7 +330,7 @@ export const Icon = styled.svg<IconProps>`
   height: ${(props) => props.height};
   position: absolute;
   top: 1.3rem;
-  left: calc(-1.5rem - 10.4px / 2 + 1px);
+  left: calc(-1.5rem - 10.4px / 2);
   box-shadow: 0 -16px 2px 8px ${({ theme }: GlobalThemeProps) => theme.background.primary};
 `
 export const ThreadLineTriangle = styled.polygon`
