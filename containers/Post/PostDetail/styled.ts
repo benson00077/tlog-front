@@ -306,12 +306,30 @@ export const Table = styled.div`
   }
 `
 
-export const Toc = styled.div`
+type TocProps = {
+  translateX: string
+  opacity: string
+}
+export const Toc = styled.div<TocProps>`
   position: absolute; // for child sticky posn
   left: calc((100% - ${rootWidth}) / 2 + ${rootWidth});
   width: calc((100% - ${rootWidth}) / 2 - 2rem);
   margin-left: 2rem;
   user-select: none;
+
+  /** ifIsFocus */
+  &:hover {
+    & > div {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+  div {
+    transform: translateX(${(props) => props.translateX});
+    opacity: ${(props) => props.opacity};
+    transition: all 0.75s ease;
+  }
+  /** ------ */
 
   div {
     position: sticky;

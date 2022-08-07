@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, ReactChild } from 'react'
 import { useScroll } from './useScroll'
 
-const TIMEOUT = 150
+const TIMEOUT = 500
 export enum Direction {
   Up = 'UP',
   Down = 'DOWN',
@@ -15,13 +15,14 @@ export const ScrollContext = createContext({
   amountScrolled: 0,
   direction: Direction.None,
   velocity: 0,
+  isBottomOfPage: false,
 })
 
 type ScrollProviderProps = {
   children: ReactChild
 }
 export const ScrollProvider = ({ children }: ScrollProviderProps) => {
-  const { scrollTop, previousScrollTop, time } = useScroll(TIMEOUT)
+  const { scrollTop, previousScrollTop, time, isBottomOfPage } = useScroll(TIMEOUT)
   const amountScrolled = useMemo(() => scrollTop - previousScrollTop, [scrollTop, previousScrollTop])
 
   const direction = useMemo(() => {
@@ -43,8 +44,9 @@ export const ScrollProvider = ({ children }: ScrollProviderProps) => {
       amountScrolled,
       direction,
       velocity,
+      isBottomOfPage,
     }),
-    [scrollTop, previousScrollTop, time, amountScrolled, direction, velocity],
+    [scrollTop, previousScrollTop, time, amountScrolled, direction, velocity, isBottomOfPage],
   )
 
   return <ScrollContext.Provider value={value}>{children}</ScrollContext.Provider>

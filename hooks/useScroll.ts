@@ -10,13 +10,15 @@ export const useScroll = (timeout = 250) => {
   const defaultScrollTop = useMemo(() => getScrollPosition(), [])
   const previousScrollTop = useRef(defaultScrollTop)
   const [currentScrollTop, setCurrentScrollTop] = useState(defaultScrollTop)
+  const isBottomOfPage = useRef(false)
 
   useEffect(() => {
     const handleDocumentScroll = throttle(() => {
-      console.log('scroll listener...')
       const scrollTop = getScrollPosition()
       setCurrentScrollTop(scrollTop)
       previousScrollTop.current = scrollTop
+      const footerHeightSpy = 200
+      isBottomOfPage.current = window.innerHeight + window.scrollY >= document.body.scrollHeight - footerHeightSpy
     }, timeout)
 
     window.addEventListener('scroll', handleDocumentScroll)
@@ -30,5 +32,6 @@ export const useScroll = (timeout = 250) => {
     scrollTop: currentScrollTop,
     previousScrollTop: previousScrollTop.current,
     time: timeout,
+    isBottomOfPage: isBottomOfPage.current,
   }
 }

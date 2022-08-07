@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, RefObject } from 'react'
+import React, { useEffect, useRef, RefObject, useState } from 'react'
 import { IPostItem } from '../types'
 import { Toc } from './styled'
 import { setupTocbot } from './utils'
 import { h2marginTop, navHeightInt, pxPerRem } from '../../../styled/position'
+import { useFocus } from '../../../hooks/useFocus'
 
 type TableContentProps = {
   deps: {
@@ -13,6 +14,10 @@ type TableContentProps = {
 
 function TableContent({ deps }: TableContentProps) {
   const tocRef = useRef<HTMLDivElement>(null)
+  const { focus } = useFocus({
+    component: 'Toc',
+    ifFocus: true,
+  })
 
   /**
    *  NOTICE:
@@ -21,7 +26,6 @@ function TableContent({ deps }: TableContentProps) {
    */
   useEffect(() => {
     setupTocbot()
-    console.log('setupTcbot')
   }, [deps.post, globalThis?.localStorage?.theme])
 
   /**
@@ -37,9 +41,10 @@ function TableContent({ deps }: TableContentProps) {
   useEffect(() => {
     const [markdown, toc] = [deps.markdownRef.current, tocRef.current]
     if (toc && markdown) {
+      const footerHeightSpy = 200
       setTimeout(() => {
         const tocStyle = `
-        height: ${markdown.getBoundingClientRect().height}px;
+        height: ${markdown.getBoundingClientRect().height + footerHeightSpy}px;
         top: ${markdown.offsetTop + navHeightInt + h2marginTop * pxPerRem}px
         `
         toc.setAttribute('style', tocStyle)
@@ -48,7 +53,7 @@ function TableContent({ deps }: TableContentProps) {
   }, [globalThis?.localStorage?.theme, deps.markdownRef.current, tocRef.current])
 
   return (
-    <Toc ref={tocRef}>
+    <Toc ref={tocRef} translateX={focus ? '0px' : '100%'} opacity={focus ? '1' : '0'}>
       <div>
         <aside className="tableOfContents"></aside>
       </div>

@@ -8,24 +8,22 @@ type thresholdCirteriaType = {
 type FocusProviderProps = {
   component: keyof thresholdCirteriaType
   ifFocus: boolean
-  callbacks?: {
-    toc?: () => boolean
-  }
 }
-export const useFocus = ({ component, ifFocus = false, callbacks }: FocusProviderProps) => {
+export const useFocus = ({ component, ifFocus = false }: FocusProviderProps) => {
   const [focus, setFocus] = useState(ifFocus)
-  const { scrollTop, direction } = useScrollContext() // 就算零件用的 useFocus 的 state 各自獨立，但用到的context是不是還是同一個？
+  const { scrollTop, direction, isBottomOfPage } = useScrollContext()
 
   useEffect(() => {
     const thresholdCirteria = {
-      NavBar: {
-        show: scrollTop <= 100 || direction !== Direction.Down,
-      },
-      Toc: {
-        show: direction !== Direction.None || (callbacks?.toc?.() as boolean), // onHover & scroll to anchor tags
-      },
+      show: false,
     }
-    setFocus(thresholdCirteria[component].show)
+    if (component === 'NavBar') {
+      thresholdCirteria.show = scrollTop <= 100 || direction !== Direction.Down
+    }
+    if (component === 'Toc') {
+      thresholdCirteria.show = scrollTop <= 1500 || isBottomOfPage
+    }
+    setFocus(thresholdCirteria.show)
   }, [scrollTop, direction])
 
   return { focus }
