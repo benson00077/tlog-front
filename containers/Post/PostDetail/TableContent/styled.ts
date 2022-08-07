@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { GlobalThemeProps } from '../../../../styled/golbalStyles'
+import { GlobalThemeProps } from '../../../../styled/globalStyles'
 import mediaQueryBreakpoints from '../../../../styled/mediaQueryBreakpoints'
 import { rootWidth } from '../styled'
 
