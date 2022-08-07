@@ -4,7 +4,7 @@ import mediaQueryBreakpoints from '../../../styled/mediaQueryBreakpoints'
 import { flexMixin } from '../../../styled/mixins'
 import { h2marginTop } from '../../../styled/position'
 
-const rootWidth = '58rem'
+export const rootWidth = '58rem'
 const parallelLayout = {
   width: {
     columnLeft: `calc(${rootWidth} * 0.5)`,
@@ -303,75 +303,5 @@ export const Table = styled.div`
     th {
       font-weight: 700;
     }
-  }
-`
-
-type TocProps = {
-  translateX: string
-  opacity: string
-}
-export const Toc = styled.div<TocProps>`
-  position: absolute; // for child sticky posn
-  left: calc((100% - ${rootWidth}) / 2 + ${rootWidth});
-  width: calc((100% - ${rootWidth}) / 2 - 2rem);
-  margin-left: 2rem;
-  user-select: none;
-
-  /** ifIsFocus */
-  &:hover {
-    & > div {
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-  div {
-    transform: translateX(${(props) => props.translateX});
-    opacity: ${(props) => props.opacity};
-    transition: all 0.75s ease;
-  }
-  /** ------ */
-
-  div {
-    position: sticky;
-    top: 100px;
-  }
-
-  .toc-link {
-    font-size: 0.9rem;
-    color: ${({ theme }: GlobalThemeProps) => theme.text.primary};
-    &:hover {
-      opacity: 0.6;
-    }
-    &::before {
-      content: '';
-    }
-  }
-
-  .toc-list {
-    list-style-type: none;
-    padding-right: 1rem;
-    padding-left: 10px; // for nested .is-collapsible
-    line-height: 1.6;
-  }
-
-  .is-active-link {
-    color: ${({ theme }: GlobalThemeProps) => theme.text.active};
-    font-weight: bold;
-  }
-  // NOTICE: .is-collaspsible sholudn't put under .is-collapsed
-  // since they put in same tag and the effect is done by css overwrite.
-  // Alternative: import 'src/styled/nprogress.css' in _app.tsx.
-  .is-collapsible {
-    max-height: 1000px;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .is-collapsed {
-    max-height: 0;
-  }
-
-  @media only screen and ${mediaQueryBreakpoints.device.laptop} {
-    display: none;
   }
 `

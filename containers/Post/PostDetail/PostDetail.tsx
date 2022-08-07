@@ -10,7 +10,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { CustomMarkdown } from './CustomMarkdown'
 import MetaHead from '../../../components/MetaHead/MetaHead'
-import TableContent from './TableContent'
+import TableContent from './TableContent/TableContent'
 
 type PostDetailProps = {
   post: IPostItem
@@ -18,7 +18,6 @@ type PostDetailProps = {
 
 function PostDetail({ post }: PostDetailProps) {
   const markdownRef = useRef<HTMLDivElement>(null)
-  const tocRef = useRef<HTMLDivElement>(null)
 
   /**
    *  Layout UI:
