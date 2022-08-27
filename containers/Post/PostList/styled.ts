@@ -14,20 +14,19 @@ export const Wrapper = styled.section`
   align-items: center;
 
   .posts {
-    width: 80%;
+    max-width: ${mediaQueryBreakpoints.size.laptop};
     display: inline-grid;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     grid-gap: 25px 25px;
     margin-top: 10rem;
 
-    .postsGridItem {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    @media only screen and ${mediaQueryBreakpoints.device.laptop} {
+      width: 80vw;
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
     }
     @media only screen and ${mediaQueryBreakpoints.device.mobileL} {
-      width: 95%;
-      grid-template-columns: repeat(auto-fit, minmax(80vw, 1fr));
+      width: 90vw;
+      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
   }
 
@@ -42,6 +41,10 @@ export const Wrapper = styled.section`
     .cloud {
       ${flexMixin()};
       flex-wrap: wrap;
+    }
+    @media only screen and ${mediaQueryBreakpoints.device.mobileL} {
+      width: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
   }
 `

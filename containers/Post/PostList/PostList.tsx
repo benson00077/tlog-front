@@ -5,7 +5,7 @@ import MetaHead from '../../../components/MetaHead/MetaHead'
 import PostCard from '../components/PostCard/PostCard'
 import TagCloud from '../components/TagCloud'
 import { POSTS } from '../typeDefs'
-import { IPost, PostQuery, PostVars } from '../types'
+import { IPost, IPostItem, PostQuery, PostVars } from '../types'
 import * as S from './styled'
 import { AnimatePresence, motion } from 'framer-motion'
 import PreLoader from '../../../components/PreLoader/PreLoader'
@@ -18,7 +18,7 @@ type PostListProps = {
 export default function PostList({ tags, SSGposts }: PostListProps) {
   const {
     query: { tag: targetTag },
-  } = useRouter() //TODO: tags cloud to click
+  } = useRouter()
 
   const [getPosts, { data: postsData }] = useLazyQuery<PostQuery, PostVars>(POSTS, {
     notifyOnNetworkStatusChange: true,
@@ -64,10 +64,8 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
               className="posts"
               key={targetTag as string}
             >
-              {posts.items.map((post, i) => (
-                <div className="postsGridItem" key={i}>
-                  <PostCard post={post} />
-                </div>
+              {posts.items.map((post: IPostItem) => (
+                <PostCard post={post} key={post._id} />
               ))}
             </motion.div>
           ) : (

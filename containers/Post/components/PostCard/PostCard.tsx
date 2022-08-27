@@ -18,27 +18,22 @@ export default function PostCard({ post }: Props) {
     <S.Box>
       <NoScrollLink href={`/post/${_id}`} passHref>
         <a>
-          <S.postPoster>
+          {/* <S.postPoster>
             <img src={posterUrl} alt={title} />
-          </S.postPoster>
+          </S.postPoster> */}
 
           <S.postInfo>
-            <span className="date">{formatDate(createdAt)}</span>
+            <span className="tag"> {tags[0]} </span>
             <h2>{title}</h2>
-            <p className="summary">{summary}</p>
+            <p className="summary">{summary.length > 40 ? summary.slice(0, 40) + '...' : summary}</p>
             <div className="secondaryInfo">
-              <div>
+              {/* <div>
                 <span>Preview: {pv}</span>
-              </div>
-              <div>
+                </div>
+                <div>
                 <span>Likes: {like}</span>
-              </div>
-              <div>
-                {/* {tags.map((tag) => (
-              <span>{tag}</span>
-            ))} */}
-                <span> {tags[0]} </span>
-              </div>
+              </div> */}
+              <span className="date">{formatDate(createdAt)}</span>
             </div>
           </S.postInfo>
         </a>

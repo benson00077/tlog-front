@@ -28,10 +28,11 @@ export const postPoster = styled.div`
 
 export const postInfo = styled.div`
   ${flexMixin('space-between')};
+  padding: 30px;
   flex-direction: column;
-  padding: 1.8rem 2.4rem;
+  /* padding: 1.8rem 2.4rem; */
   height: 22rem;
-  width: 30rem;
+  width: 100%;
   text-align: center;
   color: ${({ theme }: GlobalThemeProps) => theme.text.post};
 
@@ -47,27 +48,31 @@ export const postInfo = styled.div`
     }
   }
 
-  .date {
-    opacity: 0.5;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 0.9rem;
+  .tag {
+    /* opacity: 0.5; */
+    /* position: absolute; */
+    /* top: 1rem;
+    right: 1rem; */
   }
 
   h2 {
-    margin: 2rem;
+    margin-top: 0.5rem;
   }
 
   p.summary {
     max-height: 5rem;
-    overflow: hidden;
   }
 
   div.secondaryInfo {
     ${flexMixin('space-between')}
     width: 100%;
     height: 1rem;
+
+    .date {
+      margin-left: auto;
+      opacity: 0.5;
+      font-size: 0.9rem;
+    }
   }
 
   &::before {
@@ -83,7 +88,7 @@ export const postInfo = styled.div`
 export const Box = styled.section`
   display: block;
   position: relative;
-  width: 33rem;
+  width: 100%;
   ${flexMixin('center')};
   height: 22rem;
   border-radius: 15px;
