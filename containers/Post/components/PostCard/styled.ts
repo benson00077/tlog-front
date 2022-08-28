@@ -3,13 +3,17 @@ import { GlobalThemeProps } from '../../../../styled/globalStyles'
 import { flexMixin } from '../../../../styled/mixins'
 import mediaQueryBreakpoints from '../../../../styled/mediaQueryBreakpoints'
 
-export const postPoster = styled.div`
+type postPosterProps = {
+  showPoster: boolean
+}
+export const postPoster = styled.div<postPosterProps>`
   width: 33rem;
   overflow: hidden;
   opacity: 0.4;
   z-index: -1;
   position: absolute;
   left: 0;
+  height: ${(props) => (props.showPoster ? '100%' : '0%')};
 
   img {
     height: 22rem;
@@ -98,7 +102,7 @@ export const Box = styled.section`
 
   &:hover {
     img {
-      transition: all 300ms cubic-bezier(0.25, 0.1, 0.3, 1.5);
+      transition: all 500ms cubic-bezier(0.25, 0.1, 0.3, 1.5);
       transform: scale(1.05);
       filter: blur(0px);
     }

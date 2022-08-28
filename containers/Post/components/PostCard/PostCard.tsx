@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { useState } from 'react'
 import NoScrollLink from '../../../../components/NoScrollLink/NoScrollLink'
 import { formatDate } from '../../../../shared/utils'
 import { IPostItem } from '../../types'
@@ -10,20 +10,18 @@ type Props = {
 
 export default function PostCard({ post }: Props) {
   const { _id, createdAt, posterUrl, title, pv, like, tags, summary } = post
-
-  const router = useRouter()
+  const [showPoster, setShowPoster] = useState(false)
 
   // TODO: Link and anchor tag wrap cause S.Box &:nth-of-type{} css failed
   return (
     <S.Box>
       <NoScrollLink href={`/post/${_id}`} passHref>
-        <a>
-          {/* <S.postPoster>
+        <a onMouseEnter={() => setShowPoster(true)} onMouseLeave={() => setShowPoster(false)}>
+          <S.postPoster showPoster={showPoster}>
             <img src={posterUrl} alt={title} />
-          </S.postPoster> */}
+          </S.postPoster>
 
           <S.postInfo>
-            <span className="tag"> {tags[0]} </span>
             <h2>{title}</h2>
             <p className="summary">{summary.length > 40 ? summary.slice(0, 40) + '...' : summary}</p>
             <div className="secondaryInfo">
