@@ -2,6 +2,7 @@ import { useState } from 'react'
 import NoScrollLink from '../../../../components/NoScrollLink/NoScrollLink'
 import { formatDate } from '../../../../shared/utils'
 import { IPostItem } from '../../types'
+import TagWithIcon from '../Tags/TagWithIcon'
 import * as S from './styled'
 
 type Props = {
@@ -22,6 +23,9 @@ export default function PostCard({ post }: Props) {
           </S.postPoster>
 
           <S.postInfo>
+            <span className="tag">
+              <TagWithIcon tag={tags[0]} size={40} />
+            </span>
             <h2>{title}</h2>
             <p className="summary">{summary.length > 40 ? summary.slice(0, 40) + '...' : summary}</p>
             <div className="secondaryInfo">

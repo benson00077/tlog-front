@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import MetaHead from '../../../components/MetaHead/MetaHead'
 import PostCard from '../components/PostCard/PostCard'
-import TagCloud from '../components/TagCloud'
+import TagsSection from '../components/Tags/TagsSection'
 import { POSTS } from '../typeDefs'
 import { IPost, IPostItem, PostQuery, PostVars } from '../types'
 import * as S from './styled'
@@ -47,13 +47,10 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
       <MetaHead title="Blog - Benson" description="I share anything that may help others, and technologies I'm using" />
 
       <S.Wrapper>
-        <div className="tags">
-          <h3>Tags</h3>
-          <div className="cloud">
-            <TagCloud tags={tags} targetTag={targetTag} />
-          </div>
-        </div>
+        <h3>Tags</h3>
+        <TagsSection tags={tags} targetTag={targetTag} />
 
+        <h3>Posts</h3>
         <AnimatePresence exitBeforeEnter initial={false}>
           {posts ? (
             <motion.div

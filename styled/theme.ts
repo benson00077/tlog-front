@@ -14,6 +14,8 @@ const light = {
     inlineCode: 'rgba(254,250,199,1)',
     searchBox: '#ffffff',
     summaryBg: '#e6f6e6',
+    tagNavBar: '#e4e4e4',
+    hoveredTagNavBar: 'rgba( 136, 120, 217, 0.25 )',
   },
   text: {
     // primary: '#666666',
@@ -55,6 +57,8 @@ const dark = {
     inlineCode: '#444950',
     searchBox: '#202327',
     summaryBg: '#33425b',
+    tagNavBar: 'rgba(255,255,255,0.03)',
+    hoveredTagNavBar: 'rgba( 255, 255, 255, 0.15 )',
   },
   text: {
     primary: '#f5f6f7',

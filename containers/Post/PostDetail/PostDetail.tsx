@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 import * as S from './styled'
-import TagCloud from '../components/TagCloud'
+import TagCloud from '../components/Tags/TagsSection'
 import { IPostItem } from '../types'
 import { formatDate } from '../../../shared/utils'
 
