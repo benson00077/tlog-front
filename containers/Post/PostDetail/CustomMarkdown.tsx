@@ -1,9 +1,10 @@
 import React, { useRef } from 'react'
 import * as S from './styled'
+import { Triangle } from './Triangle'
+import { setLanguageLeft, setColumnLeft } from './utils'
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus'
-import { Triangle } from './Triangle'
 /** ^^^ Don't use esm module. see: https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/230 */
 // import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 // import vs2015 from 'react-syntax-highlighter/dist/cjs/styles/hljs/vs2015'
@@ -59,13 +60,13 @@ export function CustomMarkdown() {
       const matchForeignLanguage = /language-foreign/.exec(codeTagClassName || '')
       if (matchForeignLanguage) {
         return (
-          <div id="foreignLanguageBlock" className={'languageRight'}>
+          <div id="foreignLanguageBlock" className={'languageRight'} ref={setLanguageLeft}>
             {children}
           </div>
         )
       }
       return match ? (
-        <pre id="codeBlock" className={'columnRight'} {...props}>
+        <pre id="codeBlock" className={'columnRight'} {...props} ref={setColumnLeft}>
           {children}
         </pre>
       ) : (

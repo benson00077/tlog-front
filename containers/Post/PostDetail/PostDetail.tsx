@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import * as S from './styled'
 import TagsSection from '../components/Tags/TagsSection'
 import { IPostItem } from '../types'
@@ -19,43 +19,6 @@ type PostDetailProps = {
 
 function PostDetail({ post }: PostDetailProps) {
   const markdownRef = useRef<HTMLDivElement>(null)
-
-  /**
-   *  Layout UI:
-   *          columnLeft (text) <-> columnRight (code)
-   *          languageLeft (text) <-> languageRight (text)
-   *  Notice:
-   *          <ReactMarkdown> overwrite in the end,
-   *          don't add classList columnRight and languageLeft here.
-   *          OR, workaround is set UseEffect w/o dependency. Work as componentDidMount
-   */
-  const dirtyLayoutAdjust = useCallback(() => {
-    const codeBlocks = document.querySelectorAll('#codeBlock')
-    const foreignLanBlocks = document.querySelectorAll('#foreignLanguageBlock')
-
-    codeBlocks.forEach((codeBlock) => {
-      const previouseEle = codeBlock?.previousElementSibling // mostly <p> or <ul> in my usecase
-
-      if (previouseEle?.tagName === 'P') {
-        // Filter out h1~h6, table , ul, li. Do not Paraleel then w/ code block
-        previouseEle?.classList.add('columnLeft')
-      } else {
-        // Notice: this intentedly overide .cloumnRight css width and make float:left not work
-        codeBlock.setAttribute('style', 'width: 100%;')
-      }
-    })
-
-    foreignLanBlocks.forEach((foreignLanBlock) => {
-      const previouseEle = foreignLanBlock?.previousElementSibling
-      if (previouseEle && !previouseEle.classList.contains('languageRight')) {
-        previouseEle?.classList.add('languageLeft')
-      }
-    })
-  }, [post])
-
-  useEffect(() => {
-    dirtyLayoutAdjust()
-  })
 
   if (!post) return <div> .... Fetching data..... skeleton component to be added</div>
 
