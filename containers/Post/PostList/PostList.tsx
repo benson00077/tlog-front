@@ -48,7 +48,7 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
 
       <S.Wrapper>
         <h3>Tags</h3>
-        <TagsSection tags={tags} targetTag={targetTag} />
+        <TagsSection tags={tags} targetTag={targetTag} noNavBar={false} />
 
         <h3>Posts</h3>
         <AnimatePresence exitBeforeEnter initial={false}>

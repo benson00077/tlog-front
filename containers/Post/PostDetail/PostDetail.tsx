@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 import * as S from './styled'
-import TagCloud from '../components/Tags/TagsSection'
+import TagsSection from '../components/Tags/TagsSection'
 import { IPostItem } from '../types'
 import { formatDate } from '../../../shared/utils'
 
@@ -74,7 +74,7 @@ function PostDetail({ post }: PostDetailProps) {
         <S.Title>{title}</S.Title>
 
         <S.Info>
-          <TagCloud tags={tags} />
+          <TagsSection tags={tags} noNavBar={true} />
           <S.Date>{formatDate(createdAt)}</S.Date>
         </S.Info>
 

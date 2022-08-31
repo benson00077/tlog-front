@@ -1,38 +1,41 @@
-import Link from 'next/link'
 import TagWithIcon, { iconsMap } from './TagWithIcon'
+import NoScrollLink from '../../../../components/NoScrollLink/NoScrollLink'
 import * as S from './styled'
 
 type props = {
   tags: string[]
   targetTag?: string[] | string | undefined
+  noNavBar: boolean
 }
 
-export default function TagsSection({ tags, targetTag }: props) {
-  const tagsWithIcon = Object.keys(iconsMap)
-  const tagsWithoutIcon = tags.filter((tag) => !iconsMap.hasOwnProperty(tag))
+export default function TagsSection({ tags, targetTag, noNavBar }: props) {
+  const tagsWithIcon = noNavBar ? null : Object.keys(iconsMap)
+  const tagsWithoutIcon = noNavBar ? tags : tags.filter((tag) => !iconsMap.hasOwnProperty(tag))
 
   return (
     <>
       <S.TagsCloud>
         {tagsWithoutIcon.map((tag) => (
-          <Link href={`/post?tag=${tag}`} key={tag}>
+          <NoScrollLink href={`/post?tag=${tag}`} key={tag}>
             <a>
               <S.Tag isSelected={targetTag === tag}>{tag}</S.Tag>
             </a>
-          </Link>
+          </NoScrollLink>
         ))}
       </S.TagsCloud>
 
-      <S.TagsNavBar>
-        {tagsWithIcon.map((tag) => (
-          <Link href={`/post?tag=${tag}`} key={tag}>
-            <a>
-              <TagWithIcon tag={tag} size={30} />
-              <p> {tag} </p>
-            </a>
-          </Link>
-        ))}
-      </S.TagsNavBar>
+      {tagsWithIcon && (
+        <S.TagsNavBar>
+          {tagsWithIcon.map((tag) => (
+            <NoScrollLink href={`/post?tag=${tag}`} key={tag}>
+              <a>
+                <TagWithIcon tag={tag} size={30} />
+                <p> {tag} </p>
+              </a>
+            </NoScrollLink>
+          ))}
+        </S.TagsNavBar>
+      )}
     </>
   )
 }
