@@ -18,7 +18,7 @@ export const useFocus = ({ component, ifFocus = false }: FocusProviderProps) => 
       show: false,
     }
     if (component === 'NavBar') {
-      thresholdCirteria.show = scrollTop <= 100 || direction !== Direction.Down
+      thresholdCirteria.show = scrollTop <= 100 || direction !== Direction.Down || isBottomOfPage
     }
     if (component === 'Toc') {
       thresholdCirteria.show = scrollTop <= 1500 || isBottomOfPage

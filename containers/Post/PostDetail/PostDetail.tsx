@@ -3,17 +3,15 @@ import * as S from './styled'
 import TagsSection from '../components/Tags/TagsSection'
 import { IPostItem } from '../types'
 import { formatDate } from '../../../shared/utils'
-
+import MetaHead from '../../../components/MetaHead/MetaHead'
+import TableContent from './TableContent/TableContent'
 // markdown
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 /* eslint @typescript-eslint/no-var-requires: "off" */
 const remarkSectionize = require('remark-sectionize') // import not work
-
 import { CustomMarkdown } from './CustomMarkdown'
-import MetaHead from '../../../components/MetaHead/MetaHead'
-import TableContent from './TableContent/TableContent'
 
 type PostDetailProps = {
   post: IPostItem

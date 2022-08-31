@@ -4,7 +4,6 @@ import mediaQueryBreakpoints from '../../../../styled/mediaQueryBreakpoints'
 import { rootWidth } from '../styled'
 
 type TocProps = {
-  translateX: string
   opacity: string
 }
 export const Toc = styled.div<TocProps>`
@@ -22,7 +21,6 @@ export const Toc = styled.div<TocProps>`
     }
   }
   div {
-    transform: translateX(${(props) => props.translateX});
     opacity: ${(props) => props.opacity};
     transition: all 0.75s ease;
   }

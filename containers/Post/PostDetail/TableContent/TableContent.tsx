@@ -53,7 +53,7 @@ function TableContent({ deps }: TableContentProps) {
   }, [globalThis?.localStorage?.theme, deps.markdownRef.current, tocRef.current])
 
   return (
-    <Toc ref={tocRef} translateX={focus ? '0px' : '100%'} opacity={focus ? '1' : '0'}>
+    <Toc ref={tocRef} opacity={focus ? '1' : '0'}>
       <div>
         <aside className="tableOfContents"></aside>
       </div>
