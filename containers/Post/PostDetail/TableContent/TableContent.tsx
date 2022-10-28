@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, RefObject, useState } from 'react'
+import React, { useEffect, useRef, RefObject } from 'react'
 import { IPostItem } from '../../types'
 import { Toc } from './styled'
 import { setupTocbot } from '../utils'
@@ -33,7 +33,7 @@ function TableContent({ deps }: TableContentProps) {
    *          inject style so as to aligned with the design
    *          for child node position sticky.(work when position absolute in TOC)
    *  NOTICE:
-   *          timeout is needed since
+   *          setTimeout is needed since
    *          markdown.offsetTop changes after photo above it loaded.
    *
    *          markdown.offsetParent = S.PostRoot, so navHeightInt is needed as wlll

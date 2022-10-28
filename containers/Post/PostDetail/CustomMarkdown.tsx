@@ -10,8 +10,6 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark
 // import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 // import vs2015 from 'react-syntax-highlighter/dist/cjs/styles/hljs/vs2015'
 
-// TODO: consider use p tag to have multi speaking language block
-// sth like @KOREAN in markdown
 export function CustomMarkdown() {
   const isExpand = useRef(false)
   const isMermaidLoaded = useRef(false)
@@ -34,7 +32,6 @@ export function CustomMarkdown() {
       if (matchMermaid) {
         return <CustomMermaid isMermaidLoaded={isMermaidLoaded.current}>{children}</CustomMermaid>
       }
-      // TODO: return block for multi speaking language block
       if (matchForeignLanguage) return <p>{children}</p>
       if (match) {
         return (

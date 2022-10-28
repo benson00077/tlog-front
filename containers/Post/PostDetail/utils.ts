@@ -1,5 +1,8 @@
 import tocbot from 'tocbot'
 
+/**
+ *  NOTE: toc is not shown in server side (checked by View Page Source)
+ */
 export function setupTocbot() {
   tocbot.init({
     tocSelector: '.tableOfContents',
