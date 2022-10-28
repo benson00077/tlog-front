@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { GlobalThemeProps } from '../../styled/globalStyles'
+import { GlobalThemeProps } from 'styled/globalStyles'
 
 export const PreLoaderScreen = styled.div`
   position: relative;

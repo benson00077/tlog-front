@@ -1,5 +1,5 @@
-import { Home } from '../containers/Home/Home'
-import PageTransition from '../components/PageTransition/PageTransition'
+import { Home } from 'containers/Home/Home'
+import PageTransition from 'components/PageTransition/PageTransition'
 
 const Index = () => {
   return (

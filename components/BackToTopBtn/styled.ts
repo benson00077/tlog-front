@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import mediaQueryBreakpoints from '../../styled/mediaQueryBreakpoints'
-import { flexMixin } from '../../styled/mixins'
+import mediaQueryBreakpoints from 'styled/mediaQueryBreakpoints'
+import { flexMixin } from 'styled/mixins'
 
 type ButtonProps = {
   isDisplay: boolean

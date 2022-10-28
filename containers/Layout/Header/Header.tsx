@@ -1,5 +1,5 @@
-import NoScrollLink from '../../../components/NoScrollLink/NoScrollLink'
-import { useFocus } from '../../../hooks/useFocus'
+import NoScrollLink from 'components/NoScrollLink/NoScrollLink'
+import { useFocus } from 'hooks/useFocus'
 import Logo from './Logo'
 import * as S from './styled'
 

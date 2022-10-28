@@ -1,10 +1,10 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
-import BackToTopBtn from '../../components/BackToTopBtn/BackToTopBtn'
-import PostDetail from '../../containers/Post/PostDetail/PostDetail'
-import PageTransition from '../../components/PageTransition/PageTransition'
-import { GET_POST_BY_ID, POSTS } from '../../containers/Post/typeDefs'
-import { GetPostByIdQuery, GetPostByIdVar, PostQuery, PostVars } from '../../containers/Post/types'
-import { addApolloState, initializeApollo } from '../../graphql/apollo'
+import BackToTopBtn from 'components/BackToTopBtn/BackToTopBtn'
+import PostDetail from 'containers/Post/PostDetail/PostDetail'
+import PageTransition from 'components/PageTransition/PageTransition'
+import { GET_POST_BY_ID, POSTS } from 'containers/Post/typeDefs'
+import { GetPostByIdQuery, GetPostByIdVar, PostQuery, PostVars } from 'containers/Post/types'
+import { addApolloState, initializeApollo } from 'graphql/apollo'
 
 type IndexProps = InferGetStaticPropsType<typeof getStaticProps>
 

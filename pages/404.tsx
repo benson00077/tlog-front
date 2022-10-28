@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import NoScrollLink from '../components/NoScrollLink/NoScrollLink'
-import { GlobalThemeProps } from '../styled/globalStyles'
-import { flexMixin } from '../styled/mixins'
+import NoScrollLink from 'components/NoScrollLink/NoScrollLink'
+import { GlobalThemeProps } from 'styled/globalStyles'
+import { flexMixin } from 'styled/mixins'
 
 const SRoot = styled.div`
   ${flexMixin('space-around')};

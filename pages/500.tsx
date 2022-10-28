@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { flexMixin } from '../styled/mixins'
+import { flexMixin } from 'styled/mixins'
 
 const SRoot = styled.div`
   ${flexMixin('space-around')};

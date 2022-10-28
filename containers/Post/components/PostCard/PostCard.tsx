@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import NoScrollLink from '../../../../components/NoScrollLink/NoScrollLink'
-import { formatDate } from '../../../../shared/utils'
+import NoScrollLink from 'components/NoScrollLink/NoScrollLink'
+import { formatDate } from 'shared/utils'
 import { IPostItem } from '../../types'
 import TagWithIcon from '../Tags/TagWithIcon'
 import * as S from './styled'

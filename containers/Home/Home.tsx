@@ -1,5 +1,5 @@
 import * as S from './styled'
-import MetaHead from '../../components/MetaHead/MetaHead'
+import MetaHead from 'components/MetaHead/MetaHead'
 
 export function Home() {
   return (

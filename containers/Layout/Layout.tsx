@@ -1,7 +1,7 @@
 import { Footer } from './Footer/Footer'
 import Header from './Header/Header'
 import * as S from './styled'
-import { ScrollProvider } from '../../hooks/ScrollProvider'
+import { ScrollProvider } from 'hooks/ScrollProvider'
 
 type LayoutProps = {
   children: React.ReactChild

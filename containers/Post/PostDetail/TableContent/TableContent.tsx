@@ -2,8 +2,8 @@ import React, { useEffect, useRef, RefObject } from 'react'
 import { IPostItem } from '../../types'
 import { Toc } from './styled'
 import { setupTocbot } from '../utils'
-import { h2marginTop, navHeightInt, pxPerRem } from '../../../../styled/position'
-import { useFocus } from '../../../../hooks/useFocus'
+import { h2marginTop, navHeightInt, pxPerRem } from 'styled/position'
+import { useFocus } from 'hooks/useFocus'
 
 type TableContentProps = {
   deps: {

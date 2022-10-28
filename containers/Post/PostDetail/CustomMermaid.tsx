@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect } from 'react'
-import { useThemeMode } from '../../../hooks/useThemeMode'
+import { useThemeMode } from 'hooks/useThemeMode'
 import mermaid, { Config } from 'mermaid'
 
 type CustomMermaydType = {

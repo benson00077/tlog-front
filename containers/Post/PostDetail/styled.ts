@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { GlobalThemeProps } from '../../../styled/globalStyles'
-import mediaQueryBreakpoints from '../../../styled/mediaQueryBreakpoints'
-import { flexMixin } from '../../../styled/mixins'
-import { h2marginTop } from '../../../styled/position'
+import { GlobalThemeProps } from 'styled/globalStyles'
+import mediaQueryBreakpoints from 'styled/mediaQueryBreakpoints'
+import { flexMixin } from 'styled/mixins'
+import { h2marginTop } from 'styled/position'
 
 export const rootWidth = '58rem'
 const parallelLayout = {

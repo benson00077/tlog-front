@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { isMobile, isSafari } from '../../shared/utils'
+import { isMobile, isSafari } from 'shared/utils'
 
 const variants = {
   hidden: { opacity: 0, x: -200, y: 0 },

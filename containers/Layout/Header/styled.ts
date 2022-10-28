@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { flexMixin } from '../../../styled/mixins'
-import { navHeight } from '../../../styled/position'
+import { flexMixin } from 'styled/mixins'
+import { navHeight } from 'styled/position'
 
 type NavBarProps = {
   translateY: string

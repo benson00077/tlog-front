@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { GlobalThemeProps } from '../../../../styled/globalStyles'
-import mediaQueryBreakpoints from '../../../../styled/mediaQueryBreakpoints'
-import { flexMixin } from '../../../../styled/mixins'
+import { GlobalThemeProps } from 'styled/globalStyles'
+import mediaQueryBreakpoints from 'styled/mediaQueryBreakpoints'
+import { flexMixin } from 'styled/mixins'
 
 type styledProps = {
   theme: GlobalThemeProps['theme']

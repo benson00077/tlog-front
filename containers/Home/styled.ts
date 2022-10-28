@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { flexMixin } from '../../styled/mixins'
+import { flexMixin } from 'styled/mixins'
 
 export const Main = styled.section`
   margin: 0 auto;

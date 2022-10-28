@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { navHeight } from '../../styled/position'
+import { navHeight } from 'styled/position'
 
 export const Layouts = styled.section`
   display: flex;

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { GlobalThemeProps } from '../../../styled/globalStyles'
-import { flexMixin } from '../../../styled/mixins'
+import { GlobalThemeProps } from 'styled/globalStyles'
+import { flexMixin } from 'styled/mixins'
 
 const SRandomWave = styled.div`
   .wave {
