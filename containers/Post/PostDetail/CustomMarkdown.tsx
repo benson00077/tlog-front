@@ -22,42 +22,54 @@ export function CustomMarkdown() {
       const match = /language-(\w+)/.exec(className || '')
       const matchForeignLanguage = /language-foreign/.exec(className || '')
       const matchMermaid = /mermaid/.exec(className)
+      const isQuote = !inline && !match && !matchForeignLanguage && !matchMermaid
 
+      if (inline) {
+        return (
+          <code className={className} {...props}>
+            {children}
+          </code>
+        )
+      }
       if (matchMermaid) {
         return <CustomMermaid isMermaidLoaded={isMermaidLoaded.current}>{children}</CustomMermaid>
       }
-      if (!inline && matchForeignLanguage) {
-        // TODO: return block for multi speaking language block
-        return <p>{children}</p>
+      // TODO: return block for multi speaking language block
+      if (matchForeignLanguage) return <p>{children}</p>
+      if (match) {
+        return (
+          <SyntaxHighlighter
+            children={String(children).replace(/\n$/, '')}
+            style={vscDarkPlus}
+            customStyle={{ borderRadius: '0.5rem', background: '#2a2a2a' }}
+            showLineNumbers={true}
+            showInlineLineNumbers={false}
+            lineNumberStyle={{
+              minWidth: '3.25em',
+              paddingRight: '1em',
+              textAlign: 'right',
+              color: '#5b5b5b',
+            }}
+            wrapLongLines={false}
+            language={match[1]}
+            PreTag="div"
+            onClick={(e: React.MouseEvent<HTMLElement>) => {
+              const preTag = e.currentTarget
+              isExpand.current ? preTag.classList.remove('expand') : preTag.classList.add('expand')
+              isExpand.current = !isExpand.current
+            }}
+            {...props}
+          />
+        )
       }
-      return !inline && match ? (
-        <SyntaxHighlighter
-          children={String(children).replace(/\n$/, '')}
-          style={vscDarkPlus}
-          customStyle={{ borderRadius: '0.5rem', background: '#2a2a2a' }}
-          showLineNumbers={true}
-          showInlineLineNumbers={false}
-          lineNumberStyle={{
-            minWidth: '3.25em',
-            paddingRight: '1em',
-            textAlign: 'right',
-            color: '#5b5b5b',
-          }}
-          wrapLongLines={false}
-          language={match[1]}
-          PreTag="div"
-          onClick={(e: React.MouseEvent<HTMLElement>) => {
-            const preTag = e.currentTarget
-            isExpand.current ? preTag.classList.remove('expand') : preTag.classList.add('expand')
-            isExpand.current = !isExpand.current
-          }}
-          {...props}
-        />
-      ) : (
-        <code className={className} {...props}>
-          {children}
-        </code>
-      )
+      if (isQuote) {
+        return (
+          <code className={className} {...props}>
+            {children}
+          </code>
+        )
+      }
+      // throw new Error('Something went wrong parsing markdown code blocks...')
     },
     pre({ node, children, ...props }: any) {
       // Add real code block a className
@@ -67,17 +79,17 @@ export function CustomMarkdown() {
       const matchForeignLanguage = /language-foreign/.exec(codeTagClassName || '')
       if (matchForeignLanguage) {
         return (
-          <div id="foreignLanguageBlock" className={'languageRight'} ref={setLanguageLeft}>
+          <div id="foreignLanguageBlock" className="languageRight" ref={setLanguageLeft}>
             {children}
           </div>
         )
       }
       return match ? (
-        <pre id="codeBlock" className={'columnRight'} {...props} ref={setColumnLeft}>
+        <pre id="codeBlock" className="columnRight" {...props} ref={setColumnLeft}>
           {children}
         </pre>
       ) : (
-        <div className={'quote'}>
+        <div className="quote">
           <pre {...props}>{children}</pre>
         </div>
       )
