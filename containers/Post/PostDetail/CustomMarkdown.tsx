@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import * as S from './styled'
 import { Triangle } from './Triangle'
 import { setLanguageLeft, setColumnLeft } from './utils'
+import { CustomMermaid } from './CustomMermaid'
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus'
@@ -13,12 +14,18 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark
 // sth like @KOREAN in markdown
 export function CustomMarkdown() {
   const isExpand = useRef(false)
+  const isMermaidLoaded = useRef(false)
   const isSectionNotCollasped = useRef(false)
 
   return {
     code({ node, inline, className, children, ...props }: any) {
       const match = /language-(\w+)/.exec(className || '')
       const matchForeignLanguage = /language-foreign/.exec(className || '')
+      const matchMermaid = /mermaid/.exec(className)
+
+      if (matchMermaid) {
+        return <CustomMermaid isMermaidLoaded={isMermaidLoaded.current}>{children}</CustomMermaid>
+      }
       if (!inline && matchForeignLanguage) {
         // TODO: return block for multi speaking language block
         return <p>{children}</p>
