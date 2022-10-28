@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import { useThemeMode } from '../../../hooks/useThemeMode'
 import mermaid, { Config } from 'mermaid'
 
@@ -14,11 +14,11 @@ export function CustomMermaid({ children, isMermaidLoaded }: CustomMermaydType) 
     setMermaid(theme === 'dark' ? 'dark' : 'default')
   }
 
-  return (
-    <div className="mermaid" ref={withMemoized}>
-      {children}
-    </div>
-  )
+  useEffect(() => {
+    withMemoized()
+  }, [theme])
+
+  return <div className="mermaid">{children}</div>
 }
 
 /**
