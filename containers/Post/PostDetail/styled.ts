@@ -180,10 +180,12 @@ export const Markdown = styled.div`
     padding: 0.2rem 0.4rem;
   }
 
-  // -- quote in markdown as used in github ( pre > code )
+  // -- quoteblock , starts w/ > , which can be nested
+  // -- quote in markdown as used in github ( pre > code ), starts w/ 2 tabs
+  blockquote,
   .quote {
-    padding: 1.5rem 1rem;
-    margin: 2rem 0 4rem 0;
+    padding: 1rem 1rem 10px;
+    /* margin: 2rem 0 4rem 0; */
     background: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
     border-left: 0.3rem solid ${({ theme }: GlobalThemeProps) => theme.colors.sloganBlue};
     border-radius: 0.5rem;

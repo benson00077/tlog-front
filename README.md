@@ -18,6 +18,7 @@
   - [3.1. Patterns to follow for parallel struture in Blog post data](#31-patterns-to-follow-for-parallel-struture-in-blog-post-data)
   - [3.2. Patterns to follor for better heading in blog post detail pages](#32-patterns-to-follor-for-better-heading-in-blog-post-detail-pages)
   - [3.3. Heading 1 be converted to 2 automatically in front-end](#33-heading-1-be-converted-to-2-automatically-in-front-end)
+  - [3.4 About blckquote / quote](#34-about-blckquote--quote)
 - [4. 👉 Roadmap](#4--roadmap)
 - [5. 👉 Acknowledgments](#5--acknowledgments)
   - [5.1. Dev Note](#51-dev-note)
@@ -160,6 +161,28 @@ Hello, this paragraph is parallel w/ the below text
 
   <p align="right">(<a href="#user-content-readme-top">back to top</a>)</p>
 
+## 3.4 About blckquote / quote
+
+- Use following two type of quote in markdown
+  ```
+      1. quote starts w/ two tabs 
+
+      > 2. quote starts with symbol '>'
+      >> 3. quote inside quote
+  ```
+- They are redered as below
+  ```html
+  <div class="quote">
+    <pre> <code> 1. quote starts w/ two tabs <code> </pre>
+  </div>
+
+  <blockquote>
+    <p> 2. quote starts with symbol '>' </p>
+    <blockquote>
+      <p> 3. quote inside quote </p>
+    </blockquote>  
+  </blockquote>
+  ```
 <!-- ROADMAP -->
 
 # 4. 👉 Roadmap
