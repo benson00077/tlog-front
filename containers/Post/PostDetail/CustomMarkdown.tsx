@@ -66,7 +66,7 @@ export function CustomMarkdown() {
           </code>
         )
       }
-      // throw new Error('Something went wrong parsing markdown code blocks...')
+      throw new Error('Something went wrong parsing markdown code blocks...')
     },
     pre({ node, children, ...props }: any) {
       // Add real code block a className
