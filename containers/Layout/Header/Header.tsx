@@ -20,12 +20,12 @@ export default function Header() {
         <NoScrollLink href="/post">
           <a>Blog</a>
         </NoScrollLink>
-        <NoScrollLink href="/archive">
+        {/* <NoScrollLink href="/archive">
           <a>Archive</a>
         </NoScrollLink>
         <NoScrollLink href="/about">
           <a>About</a>
-        </NoScrollLink>
+        </NoScrollLink> */}
       </S.NavBarLinks>
     </S.NavBar>
   )
