@@ -1,7 +1,9 @@
+'use client'
+
 import { Home } from 'containers/Home/Home'
 import PageTransition from 'components/PageTransition/PageTransition'
 
-const Index = () => {
+const Page = () => {
   return (
     <PageTransition>
       <Home />
@@ -9,4 +11,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Page

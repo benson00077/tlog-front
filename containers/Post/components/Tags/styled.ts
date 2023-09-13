@@ -40,7 +40,7 @@ export const TagsNavBar = styled.div<GlobalThemeProps>`
   /* background: ${(props) => props.theme.background.tagNavBar}; */
   max-width: ${mediaQueryBreakpoints.size.laptop};
 
-  a {
+  div {
     ${flexMixin()};
     padding: 20px 10px;
     background: ${(props) => props.theme.background.tagNavBar};

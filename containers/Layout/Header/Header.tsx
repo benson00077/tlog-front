@@ -1,24 +1,30 @@
 import NoScrollLink from 'components/NoScrollLink/NoScrollLink'
 import { useFocus } from 'hooks/useFocus'
 import Logo from './Logo'
-import * as S from './styled'
 
 export default function Header() {
-  const { focus } = useFocus({
-    component: 'NavBar',
-    ifFocus: true,
-  })
+  // const { focus } = useFocus({
+  //   component: 'NavBar',
+  //   ifFocus: true,
+  // })
+  const focus = true
 
   return (
-    <S.NavBar translateY={focus ? '0px' : '-100%'} opacity={focus ? '1' : '0'}>
+    // <S.NavBar translateY={focus ? '0px' : '-100%'} opacity={focus ? '1' : '0'}>
+    <div
+      className={`flex items-center justify-between fixed w-full h-12 py-0 z-10 select-none ${
+        focus ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'
+      }`}
+    >
       <NoScrollLink href="/" passHref>
-        <a>
-          <Logo />
-        </a>
+        <Logo />
       </NoScrollLink>
-      <S.NavBarLinks>
-        <NoScrollLink href="/post">
-          <a>Blog</a>
+      <div className="flex items-start">
+        <NoScrollLink href="/post" className="relative flex justify-center mx-6 text-xs item-center">
+          Blog
+        </NoScrollLink>
+        <NoScrollLink href="/about" className="relative flex justify-center mx-6 text-xs item-center">
+          About
         </NoScrollLink>
         {/* <NoScrollLink href="/archive">
           <a>Archive</a>
@@ -26,7 +32,7 @@ export default function Header() {
         <NoScrollLink href="/about">
           <a>About</a>
         </NoScrollLink> */}
-      </S.NavBarLinks>
-    </S.NavBar>
+      </div>
+    </div>
   )
 }

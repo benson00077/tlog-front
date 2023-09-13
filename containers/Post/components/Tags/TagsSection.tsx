@@ -17,9 +17,9 @@ export default function TagsSection({ tags, targetTag, noNavBar }: props) {
       <S.TagsCloud>
         {tagsWithoutIcon.map((tag) => (
           <NoScrollLink href={`/post?tag=${tag}`} key={tag}>
-            <a>
+            <div>
               <S.Tag isSelected={targetTag === tag}>{tag}</S.Tag>
-            </a>
+            </div>
           </NoScrollLink>
         ))}
       </S.TagsCloud>
@@ -28,10 +28,10 @@ export default function TagsSection({ tags, targetTag, noNavBar }: props) {
         <S.TagsNavBar>
           {tagsWithIcon.map((tag) => (
             <NoScrollLink href={`/post?tag=${tag}`} key={tag}>
-              <a>
+              <div>
                 <TagWithIcon tag={tag} size={30} />
                 <p> {tag} </p>
-              </a>
+              </div>
             </NoScrollLink>
           ))}
         </S.TagsNavBar>

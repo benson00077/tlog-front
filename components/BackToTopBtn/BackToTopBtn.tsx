@@ -1,3 +1,5 @@
+'use client'
+
 import throttle from 'lodash/throttle'
 import { useEffect, useRef, useState } from 'react'
 import * as S from './styled'

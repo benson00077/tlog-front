@@ -1,41 +1,12 @@
-import styled from 'styled-components'
-import { GlobalThemeProps } from 'styled/globalStyles'
-import { flexMixin } from 'styled/mixins'
-
-const SRandomWave = styled.div`
-  .wave {
-    background: ${({ theme }: GlobalThemeProps) => theme.colors.footerBgWage};
-    width: 100%;
-    height: 10.5rem;
-    clip-path: url('#wave2');
-    position: relative; // for z-index
-    z-index: -1; // for not cover BackToTopBtn
-    svg {
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  .underWave {
-    height: 7rem;
-    background-color: ${({ theme }: GlobalThemeProps) => theme.colors.footerBgUnderWave};
-    ${flexMixin('center')};
-    flex-direction: column;
-    color: ${({ theme }: GlobalThemeProps) => theme.colors.footerText};
-
-    p {
-      line-height: 1.5rem;
-      font-size: 0.8rem;
-    }
-  }
-`
+'use client'
 
 export function Footer() {
   return (
     <div>
-      <SRandomWave>
-        <div className="wave">
-          <svg width="1440" height="699" viewBox="0 0 1440 699" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div>
+        {/* <div style={{background: 'rgba(0, 0, 0, 0) linear-gradient(rgba(19, 12, 62, 0.8) 7%, rgb(30, 19, 87) 70%) repeat scroll 0% 0%'}}> */}
+        <div className={`h-40 bg-gradient-to-b from-indigo-900/70 to-indigo-950/90 [clip-path:url('#wave2')] -z-10`}>
+          <svg className="w-full h-full" viewBox="0 0 1440 699" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <clipPath id="wave2">
                 {/* <path d="M872.997 77.086C660.195 -4.80687 653.497 83.6068 489.997 97.5861C326.497 111.565 310.746 85.3511 145.358 66.805C-20.0297 48.2589 -65.6199 90.9733 -144.742 110.754C-144.742 198.686 -150 739 -150 739L1508.86 739L1508.86 0.403809C1508.86 0.403809 1086.19 159.129 872.997 77.086Z">
@@ -46,11 +17,11 @@ export function Footer() {
           </svg>
         </div>
 
-        <div className="underWave">
-          <p> Powered by Benson Tuan </p>
-          <p> Site made with React, Next.js </p>
+        <div className="flex flex-col items-center justify-center h-28 bg-gradient-to-b from-indigo-950/90 to-indigo-950 text-neutral-100">
+          <p className="text-sm"> Powered by Benson Tuan </p>
+          <p className="text-sm"> Site made with React, Next.js </p>
         </div>
-      </SRandomWave>
+      </div>
     </div>
   )
 }

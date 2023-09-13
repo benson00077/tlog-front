@@ -1,9 +1,8 @@
 import React from 'react'
-import { LogoRoot } from './styled'
 
 function Logo() {
   return (
-    <LogoRoot>
+    <div className="relative w-12 top-1 left-1">
       <svg viewBox="0 0 400 400" version="1.1" id="svg_null">
         <g id="root" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
           {/* <rect id="background" fill="#ffffff" x="0" y="0" width="500" height="500"></rect> */}
@@ -85,7 +84,7 @@ function Logo() {
           </g>
         </g>
       </svg>
-    </LogoRoot>
+    </div>
   )
 }
 

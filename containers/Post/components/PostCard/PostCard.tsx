@@ -17,7 +17,7 @@ export default function PostCard({ post }: Props) {
   return (
     <S.Box>
       <NoScrollLink href={`/post/${_id}`} passHref>
-        <a onMouseEnter={() => setShowPoster(true)} onMouseLeave={() => setShowPoster(false)}>
+        <div onMouseEnter={() => setShowPoster(true)} onMouseLeave={() => setShowPoster(false)}>
           <S.postPoster showPoster={showPoster}>
             <img src={posterUrl} alt={title} />
           </S.postPoster>
@@ -38,7 +38,7 @@ export default function PostCard({ post }: Props) {
               <span className="date">{formatDate(createdAt)}</span>
             </div>
           </S.postInfo>
-        </a>
+        </div>
       </NoScrollLink>
     </S.Box>
   )

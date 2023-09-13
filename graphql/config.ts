@@ -6,7 +6,7 @@ import { onError } from '@apollo/client/link/error'
  *  TODO: HttpLink -> BatchHttpLink
  *  TOOD: err of different NODE_ENV and Authentication like login
  */
-const serverURI =
+export const serverURI =
   process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_API_URL_PRO : process.env.NEXT_PUBLIC_API_URL_DEV
 export const httpLink = new HttpLink({
   uri: serverURI,

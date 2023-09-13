@@ -7,7 +7,7 @@ type LayoutProps = {
   children: React.ReactChild
 }
 
-export function Layout({ children }: LayoutProps) {
+export function LegacyLayout({ children }: LayoutProps) {
   return (
     <S.Layouts>
       <ScrollProvider>

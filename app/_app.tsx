@@ -7,9 +7,10 @@ import { useThemeMode } from 'hooks/useThemeMode'
 import { darkTheme, lightTheme } from 'styled/theme'
 import TogglerButton from 'components/TogglerButton/ToggleButton'
 import { useEffect, useState } from 'react'
-import { Layout } from 'containers/Layout/Layout'
+import { LegacyLayout } from 'containers/Layout/Layout'
 import { AnimatePresence } from 'framer-motion'
 
+// function layout({ children }: { children: React.ReactChild}) {
 /**
  *  NOTICE:
  *      <Component key={...}> for <AnimatePresence> detecting exit animation of page transiion
@@ -53,13 +54,13 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <GlobalStyle />
         <ApolloProvider client={apolloStore}>
           <TogglerButton themeToggler={themeToggler} />
-          <Layout>
+          <LegacyLayout>
             <>
               <AnimatePresence exitBeforeEnter initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
                 <Component {...pageProps} key={`KeyForAnimatePresence_${router.route}`} />
               </AnimatePresence>
             </>
-          </Layout>
+          </LegacyLayout>
         </ApolloProvider>
       </ThemeProvider>
     </>

@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react'
 import { useThemeMode } from 'hooks/useThemeMode'
-import mermaid, { Config } from 'mermaid'
+import mermaid, { MermaidConfig } from 'mermaid'
 
 type CustomMermaydType = {
   children: ReactNode
@@ -26,8 +26,8 @@ export function CustomMermaid({ children, isMermaidLoaded }: CustomMermaydType) 
  *
  *  NOTE: mermaid block is not shown in server side (checked by View Page Source)
  */
-export function setMermaid(theme: Config['theme']) {
-  const mermaidConfig: Config = {
+export function setMermaid(theme: MermaidConfig['theme']) {
+  const mermaidConfig: MermaidConfig = {
     startOnLoad: true,
     theme: theme,
     securityLevel: 'loose',

@@ -23,9 +23,7 @@ export default function Custom404() {
     <SRoot>
       <h1>Error: 404 - Page Not Found</h1>
       <NoScrollLink href="/">
-        <a>
-          <SHomeBtn>Back 2 Home</SHomeBtn>
-        </a>
+        <SHomeBtn>Back 2 Home</SHomeBtn>
       </NoScrollLink>
     </SRoot>
   )
