@@ -1,4 +1,4 @@
-import PostList from 'containers/Post/PostList/PostList'
+import { PostList } from 'containers/Post/PostList/PostList'
 import BackToTopBtn from 'components/BackToTopBtn/BackToTopBtn'
 import { addApolloState, initializeApollo } from 'graphql/apollo'
 import { POSTS, GET_ALL_TAGS } from 'containers/Post/typeDefs'
@@ -8,9 +8,6 @@ import { ApolloError } from '@apollo/client'
 import Error from 'next/error'
 import PageTransition from 'components/PageTransition/PageTransition'
 import { getClient } from 'graphql/ApolloClient'
-
-// type IndexProps = InferGetServerSidePropsType<typeof getServerSideProps>;
-// type IndexProps = InferGetStaticPropsType<typeof getStaticProps>
 
 async function fetchAllTags() {
   const { data } = await getClient().query<GetAllTagsQuery>({
@@ -31,14 +28,6 @@ async function fetchAllPosts() {
   return data.posts
 }
 export default async function Page() {
-  // TODO: what happened when  production mode ? page/500.tsx or this com?
-  // if (props.error) {
-  //   const error: ApolloError = JSON.parse(props?.error)
-  //   if (error.networkError) {
-  //     return <Error statusCode={503} message="Database is down" />
-  //   }
-  // }
-
   const posts = await fetchAllPosts()
   const tags = await fetchAllTags()
 
@@ -51,42 +40,3 @@ export default async function Page() {
     // {/* </PageTransition> */}
   )
 }
-
-// export const getStaticProps: GetStaticProps = async () => {
-//   const apolloClient = initializeApollo()
-
-//   try {
-//     const {
-//       data: { getAllTags: tags },
-//     } = await apolloClient.query<GetAllTagsQuery>({
-//       query: GET_ALL_TAGS,
-//     })
-
-//     const {
-//       data: { posts: posts },
-//     } = await apolloClient.query<PostQuery, PostVars>({
-//       query: POSTS,
-//       variables: {
-//         input: {
-//           page: 1,
-//           pageSize: 10,
-//         },
-//       },
-//     })
-
-//     return addApolloState(apolloClient, {
-//       props: {
-//         posts,
-//         tags,
-//       },
-//       revalidate: 60,
-//     })
-//   } catch (err) {
-//     const error = JSON.stringify(err)
-//     return {
-//       props: {
-//         error,
-//       },
-//     }
-//   }
-// }

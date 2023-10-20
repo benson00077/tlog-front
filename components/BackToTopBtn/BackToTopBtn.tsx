@@ -2,7 +2,7 @@
 
 import throttle from 'lodash/throttle'
 import { useEffect, useRef, useState } from 'react'
-import * as S from './styled'
+import { BiArrowToTop } from 'react-icons/bi'
 
 /**
  *  Inproving scrolling performance
@@ -12,7 +12,7 @@ import * as S from './styled'
 
 function BackToTopBtn() {
   const [scrollTopCount, setScrollTopCount] = useState(0)
-  const threshold = useRef(800)
+  const threshold = useRef(400)
 
   // FIXME: should I use useCallback?
   //  https://stackoverflow.com/a/57556594/16124226
@@ -60,12 +60,16 @@ function BackToTopBtn() {
     }
   }, [])
 
+  const isShow = scrollTopCount >= threshold.current
   return (
     <>
-      {/* // isShow = scrollTopCount >= BackToTop_ThreshHold (like 800 or sth) } */}
-      <S.Button isDisplay={scrollTopCount >= threshold.current} onClick={scrollToTop}>
-        <p>🔝</p>
-      </S.Button>
+      <BiArrowToTop
+        size={40}
+        onClick={scrollToTop}
+        className={`${
+          isShow ? 'z-10 opacity-100 h-auto' : 'opacity-0 h-0'
+        } fixed cursor-pointer select-none bottom-8 right-8 hover:scale-105`}
+      />
     </>
   )
 }

@@ -1,9 +1,9 @@
-import { useState } from 'react'
+'use client'
 import NoScrollLink from 'components/NoScrollLink/NoScrollLink'
 import { formatDate } from 'shared/utils'
 import { IPostItem } from '../../types'
 import TagWithIcon from '../Tags/TagWithIcon'
-import * as S from './styled'
+import Image from 'next/image'
 
 type Props = {
   post: IPostItem
@@ -11,35 +11,40 @@ type Props = {
 
 export default function PostCard({ post }: Props) {
   const { _id, createdAt, posterUrl, title, pv, like, tags, summary } = post
-  const [showPoster, setShowPoster] = useState(false)
 
-  // TODO: Link and anchor tag wrap cause S.Box &:nth-of-type{} css failed
   return (
-    <S.Box>
+    <section className="relative block overflow-hidden rounded-lg shadow-2xl cursor-pointer group">
       <NoScrollLink href={`/post/${_id}`} passHref>
-        <div onMouseEnter={() => setShowPoster(true)} onMouseLeave={() => setShowPoster(false)}>
-          <S.postPoster showPoster={showPoster}>
-            <img src={posterUrl} alt={title} />
-          </S.postPoster>
+        <div className="h-0">
+          <Image
+            src={posterUrl}
+            alt={title}
+            fill
+            style={{ objectFit: 'cover' }}
+            className="absolute transition-all opacity-0 group-hover:opacity-100 blur group-hover:blur-0 group-hover:scale-105 -z-10"
+          />
+        </div>
+        <div className="group-hover:absolute group-hover:w-full group-hover:h-full group-hover:bg-white group-hover:opacity-10"></div>
 
-          <S.postInfo>
-            <span className="tag">
-              <TagWithIcon tag={tags[0]} size={40} />
-            </span>
-            <h2>{title}</h2>
-            <p className="summary">{summary.length > 40 ? summary.slice(0, 40) + '...' : summary}</p>
-            <div className="secondaryInfo">
-              {/* <div>
+        <div className="p-4">
+          <div className="flex justify-center">
+            <TagWithIcon tag={tags[0]} size={40} />
+          </div>
+          <h5 className="py-10 text-2xl font-bold tracking-tight text-center text-gray-900 dark:text-white">{title}</h5>
+          <div className="h-28">
+            <p className="px-10 text-center line-clamp-3 mt-50">{summary}</p>
+          </div>
+          <div className="flex justify-end">
+            {/* <div>
                 <span>Preview: {pv}</span>
                 </div>
                 <div>
                 <span>Likes: {like}</span>
               </div> */}
-              <span className="date">{formatDate(createdAt)}</span>
-            </div>
-          </S.postInfo>
+            <span className="opacity-50">{formatDate(createdAt)}</span>
+          </div>
         </div>
       </NoScrollLink>
-    </S.Box>
+    </section>
   )
 }

@@ -1,14 +1,12 @@
 'use client'
-
 import { useLazyQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
+import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import MetaHead from 'components/MetaHead/MetaHead'
 import PostCard from '../components/PostCard/PostCard'
 import TagsSection from '../components/Tags/TagsSection'
 import { POSTS } from '../typeDefs'
 import { IPost, IPostItem, PostQuery, PostVars } from '../types'
-import * as S from './styled'
 import { AnimatePresence, motion } from 'framer-motion'
 import PreLoader from 'components/PreLoader/PreLoader'
 
@@ -17,43 +15,24 @@ type PostListProps = {
   SSGposts: IPost
 }
 
-export default function PostList({ tags, SSGposts }: PostListProps) {
-  const {
-    query: { tag: targetTag },
-  } = useRouter()
-
-  const [getPosts, { data: postsData }] = useLazyQuery<PostQuery, PostVars>(POSTS, {
-    notifyOnNetworkStatusChange: true,
-  })
-
-  function fetchPosts(currPage = 1, tag?: string) {
-    getPosts({
-      variables: {
-        input: {
-          page: currPage,
-          pageSize: 10,
-          tag,
-        },
-      },
-    })
-  }
-
-  useEffect(() => {
-    fetchPosts(1, targetTag as string)
-  }, [targetTag])
-
-  const posts = targetTag ? postsData?.posts : SSGposts
+export function PostList({ tags, SSGposts }: PostListProps) {
+  const query = useSearchParams()
+  const targetTag = query.get('tag') || ''
+  const posts = SSGposts
 
   return (
-    <>
-      <MetaHead title="Blog - Benson" description="I share anything that may help others, and technologies I'm using" />
+    <section className="flex flex-col items-center justify-center">
+      <h3 className="pb-8">Tags</h3>
+      <TagsSection tags={tags} targetTag={targetTag} noNavBar={false} />
 
-      <S.Wrapper>
-        <h3>Tags</h3>
-        <TagsSection tags={tags} targetTag={targetTag} noNavBar={false} />
-
-        <h3>Posts</h3>
-        <AnimatePresence exitBeforeEnter initial={false}>
+      <h3 className="pb-8">Posts</h3>
+      <div className="grid w-5/6 max-w-5xl grid-cols-2 gap-4 md:grid-cols-3">
+        {posts.items.map((post: IPostItem) => {
+          if (!targetTag) return <PostCard post={post} key={post._id} />
+          return post.tags.includes(targetTag) ? <PostCard post={post} key={post._id} /> : null
+        })}
+      </div>
+      {/* <AnimatePresence exitBeforeEnter initial={false}>
           {posts ? (
             <motion.div
               initial={{ opacity: 0, x: -200, y: 0 }}
@@ -70,8 +49,7 @@ export default function PostList({ tags, SSGposts }: PostListProps) {
           ) : (
             <PreLoader />
           )}
-        </AnimatePresence>
-      </S.Wrapper>
-    </>
+        </AnimatePresence> */}
+    </section>
   )
 }

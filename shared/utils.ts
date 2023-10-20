@@ -1,5 +1,6 @@
 export const formatDate = (ISOString: string) => {
-  return new Date(ISOString).toLocaleDateString()
+  const myBcp47LanguageTags = ['ko-KR', 'zh-TW']
+  return new Date(ISOString).toLocaleDateString(myBcp47LanguageTags[1])
 }
 
 export const isSafari =
