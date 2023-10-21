@@ -6,7 +6,6 @@ import { IPostItem } from '../types'
 import { formatDate } from 'shared/utils'
 import Image from 'next/image'
 import TableContent from './TableContent/TableContent'
-import styles from './mdStyled.module.css'
 // markdown
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -58,7 +57,7 @@ function PostDetail({ post }: PostDetailProps) {
             remarkPlugins={[remarkGfm, remarkSectionize]}
             rehypePlugins={[rehypeRaw]}
             components={CustomMarkdown()}
-            className={`postContentByToc ${styles.md}`}
+            className={`postContentByToc my-markdown`}
           >
             {content}
           </ReactMarkdown>

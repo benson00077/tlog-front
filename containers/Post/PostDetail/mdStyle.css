@@ -1,0 +1,59 @@
+/* Code block for code. not quote in markdown. not inline code */
+.my-markdown .columnLeft {
+  display: block;
+  padding-right: 2rem;
+  @apply float-none w-full xl:float-left xl:w-1/3;
+}
+.my-markdown .columnRight {
+  clear: right;
+  line-height: 1.5;
+  @apply float-none w-full xl:float-left xl:w-2/3 xl:mt-4;
+}
+.my-markdown .columnRight::after {
+  content: ' ';
+}
+.my-markdown .clearFloat {
+  clear: both;
+}
+/* Code block for lanague translation contents */
+.my-markdown .languageLeft {
+  display: block;
+  clear: both;
+  padding-right: 2rem;
+  @apply float-none w-full xl:float-left xl:w-1/2;
+}
+.my-markdown .languageRight {
+  clear: right;
+  line-height: 1.5;
+  @apply float-none w-full xl:float-left xl:w-1/2 xl:mt-4;
+}
+.my-markdown .languageRight::afte {
+  content: ' ';
+}
+
+
+/* Table from Flowbite */
+.my-markdown .md-table {
+  @apply w-full text-sm text-left text-gray-500 dark:text-gray-400;
+}
+.my-markdown .md-table > thead {
+  @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400
+}
+.my-markdown .md-table > thead > tr > th {
+  @apply px-6 py-3
+}
+.my-markdown .md-table > tbody > tr  {
+  @apply bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600
+}
+.my-markdown .md-table > tbody > tr:not(:last-child)  {
+  @apply border-b
+}
+.my-markdown .md-table > tbody > tr > th  {
+  @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white
+}
+.my-markdown .md-table > tbody > tr > td {
+  @apply px-6 py-3
+}
+
+
+

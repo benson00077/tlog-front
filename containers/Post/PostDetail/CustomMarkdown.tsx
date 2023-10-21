@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
-import * as S from './styled'
 import { Triangle } from './Triangle'
 import { setLanguageLeft, setColumnLeft } from './utils'
 import { CustomMermaid } from './CustomMermaid'
+import styles from './mdStyle.module.css'
+import './mdStyle.css'
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus'
@@ -20,11 +21,12 @@ export function CustomMarkdown() {
       const match = /language-(\w+)/.exec(className || '')
       const matchForeignLanguage = /language-foreign/.exec(className || '')
       const matchMermaid = /mermaid/.exec(className)
+      //FIXME: quote should use > in markdown, instead of ```...```
       const isQuote = !inline && !match && !matchForeignLanguage && !matchMermaid
 
       if (inline) {
         return (
-          <code className={className} {...props}>
+          <code className={styles['inline-code']} {...props}>
             {children}
           </code>
         )
@@ -61,7 +63,7 @@ export function CustomMarkdown() {
       }
       if (isQuote) {
         return (
-          <code className={className} {...props}>
+          <code className={`${className} ${styles.quote}`} {...props}>
             {children}
           </code>
         )
@@ -81,21 +83,27 @@ export function CustomMarkdown() {
           </div>
         )
       }
-      return match ? (
-        <pre id="codeBlock" className="columnRight" {...props} ref={setColumnLeft}>
-          {children}
-        </pre>
-      ) : (
-        <div className="quote">
+      if (match) {
+        return (
+          <pre id="codeBlock" className="columnRight" {...props} ref={setColumnLeft}>
+            {children}
+          </pre>
+        )
+      }
+      /** markdown quote: 2 tabs, or ```...``` , or > */
+      return (
+        <div className={`${styles.quote}`}>
           <pre {...props}>{children}</pre>
         </div>
       )
     },
     table({ node, inline, className, children, ...props }: any) {
       return (
-        <S.Table className="clearFloat">
-          <table {...props}>{children}</table>
-        </S.Table>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="md-table" {...props}>
+            {children}
+          </table>
+        </div>
       )
     },
     // p({ node, children, ...props }: any) { return <p {...props}>{children}</p> },
@@ -103,67 +111,79 @@ export function CustomMarkdown() {
     h1({ node, children, ...props }: any) {
       return (
         <>
-          <Triangle />
-          <h2 id={children[0]} className="clearFloat" {...props}>
+          <h1 id={children[0]} className={`mt-11 mb-5 text-5xl clearFloat`} {...props}>
             {children}
-          </h2>
+          </h1>
         </>
       )
     },
     h2({ node, children, ...props }: any) {
       return (
-        <h3 id={children[0]} className="clearFloat" {...props}>
-          {children}
-        </h3>
+        <>
+          <Triangle />
+          <h2 id={children[0]} className={`clearFloat mt-10 mb-5 text-3xl`} {...props}>
+            {children}
+          </h2>
+        </>
       )
     },
     h3({ node, children, ...props }: any) {
       return (
-        <h4 id={children[0]} className="clearFloat" {...props}>
+        <h3 id={children[0]} className={`clearFloat mt-7 mb-5 text-2xl`} {...props}>
           {children}
-        </h4>
+        </h3>
       )
     },
     h4({ node, children, ...props }: any) {
       return (
-        <h5 className="clearFloat" {...props}>
+        <h4 className={`clearFloat text-xl`} {...props}>
           {children}
-        </h5>
+        </h4>
       )
     },
     h5({ node, children, ...props }: any) {
       return (
-        <h6 className="clearFloat" {...props}>
+        <h5 className={`clearFloat text-lg`} {...props}>
           {children}
-        </h6>
+        </h5>
       )
     },
     h6({ node, children, ...props }: any) {
       return (
-        <h6 className="clearFloat" {...props}>
+        <h6 className={`clearFloat`} {...props}>
           {children}
         </h6>
       )
     },
     p({ node, children, ...props }: any) {
       return (
-        <p className="clearFloat indent2" {...props}>
+        <p className="my-4 leading-6 clearFloat" {...props}>
           {children}
         </p>
       )
     },
     ul({ node, children }: any) {
-      return <ul className="clearFloat indent4">{children}</ul>
+      return <ul className={`${styles.indent2} list-disc clearFloat`}>{children}</ul>
     },
     ol({ node, children }: any) {
-      return <ol className="clearFloat indent4">{children}</ol>
+      return <ol className={`${styles.indent2} list-decimal clearFloat`}>{children}</ol>
+    },
+    li({ node, children }: any) {
+      return <li className="leading-6">{children}</li>
     },
     a({ node, children, ...props }: any) {
       return (
-        <a target="_blank" {...props}>
+        <a target="_blank" className="font-medium text-blue-600 dark:text-blue-500 hover:underline" {...props}>
           {children}
         </a>
       )
+    },
+    blockquote({ node, children, ...props }: any) {
+      // return <blockquote className="pt-4 pr-4 pb-2.5 rounded">{children}</blockquote>
+      return <blockquote className={`${styles.quote}`}>{children}</blockquote>
+    },
+    strong({ node, children, ...props }: any) {
+      return <strong className="font-semibold text-gray-900 dark:text-white">{children}</strong>
     },
   }
 }
