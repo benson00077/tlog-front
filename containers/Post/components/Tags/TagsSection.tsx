@@ -8,7 +8,7 @@ type props = {
 }
 
 export default function TagsSection({ tags, targetTag, noNavBar }: props) {
-  const tagsWithIcon = noNavBar ? [''] : Object.keys(iconsMap)
+  const tagsWithIcon = noNavBar ? [] : Object.keys(iconsMap)
   const tagsWithoutIcon = noNavBar ? tags : tags.filter((tag) => !iconsMap.hasOwnProperty(tag))
 
   return (

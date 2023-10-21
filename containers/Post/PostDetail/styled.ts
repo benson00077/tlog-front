@@ -14,36 +14,6 @@ const parallelLayout = {
   },
 }
 
-export const Poster = styled.img`
-  ${flexMixin()};
-  width: 100%;
-  object-fit: cover; // from background-size
-  object-position: center center; // from background-position
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px ${({ theme }: GlobalThemeProps) => theme.colors.oneOpcityBlack},
-    0 4px 6px -2px ${({ theme }: GlobalThemeProps) => theme.colors.oneOpcityBlack};
-`
-
-export const Title = styled.h1`
-  margin: 2rem 0;
-  font-size: 2.4rem;
-  line-height: 1.6;
-  text-align: center;
-`
-
-export const Summary = styled.blockquote`
-  width: 100%;
-  text-align: center;
-  margin: 2rem 0 4rem 0;
-  padding: 1rem;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: ${({ theme }: GlobalThemeProps) => theme.text.base};
-  background: ${({ theme }: GlobalThemeProps) => theme.background.summaryBg};
-  border-left: 0.3rem solid ${({ theme }: GlobalThemeProps) => theme.colors.summaryBar};
-  border-radius: 0.5rem;
-`
-
 export const PostRoot = styled.article`
   ${flexMixin('center')};
   flex-direction: column;
@@ -100,10 +70,10 @@ export const PostRoot = styled.article`
 
   a {
     position: relative;
-    color: ${({ theme }: GlobalThemeProps) => theme.colors.linkBlue};
+    // color: ${({ theme }: GlobalThemeProps) => theme.colors.linkBlue};
 
     &:hover {
-      text-decoration: underline ${({ theme }: GlobalThemeProps) => theme.colors.linkBase};
+      // text-decoration: underline ${({ theme }: GlobalThemeProps) => theme.colors.linkBase};
     }
   }
 
@@ -134,7 +104,7 @@ export const PostRoot = styled.article`
       left: -0.5em;
       top: -0.1em;
       border: 2px solid;
-      border-color: ${({ theme }: GlobalThemeProps) => theme.colors.textHighlight};
+      // border-color: ${({ theme }: GlobalThemeProps) => theme.colors.textHighlight};
       position: absolute;
       border-right-color: transparent;
       width: 100%;
@@ -151,7 +121,7 @@ export const PostRoot = styled.article`
       top: 0.1em;
       padding: 0.1em 0.25em;
       border: 2px solid;
-      border-color: ${({ theme }: GlobalThemeProps) => theme.colors.textHighlight};
+      // border-color: ${({ theme }: GlobalThemeProps) => theme.colors.textHighlight};
       border-left-color: transparent;
       border-top-color: transparent;
       position: absolute;
@@ -174,7 +144,7 @@ export const Markdown = styled.div`
   // -- inline code
   p code,
   li code {
-    background: ${({ theme }: GlobalThemeProps) => theme.background.inlineCode};
+    // background: ${({ theme }: GlobalThemeProps) => theme.background.inlineCode};
     font-size: 90%;
     border-radius: 0.4rem;
     padding: 0.2rem 0.4rem;
@@ -186,8 +156,8 @@ export const Markdown = styled.div`
   .quote {
     padding: 1rem 1rem 10px;
     /* margin: 2rem 0 4rem 0; */
-    background: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
-    border-left: 0.3rem solid ${({ theme }: GlobalThemeProps) => theme.colors.sloganBlue};
+    // background: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
+    // border-left: 0.3rem solid ${({ theme }: GlobalThemeProps) => theme.colors.sloganBlue};
     border-radius: 0.5rem;
 
     pre {
@@ -292,7 +262,7 @@ export const Markdown = styled.div`
         left: -1.5rem;
         height: 100%;
         width: 2px;
-        background-color: ${({ theme }: GlobalThemeProps) => theme.border};
+        // background-color: ${({ theme }: GlobalThemeProps) => theme.border};
       }
 
       /* as thread-line-child */
@@ -303,8 +273,8 @@ export const Markdown = styled.div`
         left: -1.5rem;
         height: 20px;
         width: 20px;
-        border-left: 2px ${({ theme }: GlobalThemeProps) => theme.border} solid;
-        border-bottom: 2px ${({ theme }: GlobalThemeProps) => theme.border} solid;
+        // border-left: 2px ${({ theme }: GlobalThemeProps) => theme.border} solid;
+        // border-bottom: 2px ${({ theme }: GlobalThemeProps) => theme.border} solid;
         border-bottom-left-radius: 10px;
       }
 
@@ -317,8 +287,8 @@ export const Markdown = styled.div`
         left: -1.5rem;
         height: 100%;
         width: 2px;
-        border-left: 2.5px ${({ theme }: GlobalThemeProps) => theme.background.primary} solid;
-        background-color: ${({ theme }: GlobalThemeProps) => theme.background.primary};
+        // border-left: 2.5px ${({ theme }: GlobalThemeProps) => theme.background.primary} solid;
+        // background-color: ${({ theme }: GlobalThemeProps) => theme.background.primary};
       }
     }
   }
@@ -333,23 +303,10 @@ export const Icon = styled.svg<IconProps>`
   position: absolute;
   top: 1.3rem;
   left: calc(-1.5rem - 10.4px / 2);
-  box-shadow: 0 -16px 2px 8px ${({ theme }: GlobalThemeProps) => theme.background.primary};
+  // box-shadow: 0 -16px 2px 8px ${({ theme }: GlobalThemeProps) => theme.background.primary};
 `
 export const ThreadLineTriangle = styled.polygon`
-  fill: ${({ theme }: GlobalThemeProps) => theme.border};
-`
-
-export const Info = styled.div`
-  ${flexMixin('center')};
-  margin: 0 auto;
-  text-align: center;
-  line-height: 1.6;
-  color: ${({ theme }: GlobalThemeProps) => theme.text.secondary};
-`
-
-export const Date = styled.time`
-  position: absolute;
-  right: 1rem;
+  // fill: ${({ theme }: GlobalThemeProps) => theme.border};
 `
 
 export const Table = styled.div`
@@ -360,13 +317,13 @@ export const Table = styled.div`
     border-collapse: collapse;
 
     tr:nth-of-type(2n) {
-      background-color: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
+      // background-color: ${({ theme }: GlobalThemeProps) => theme.background.secondary};
     }
 
     td,
     th {
       line-height: 1.4;
-      border: 1px solid ${({ theme }: GlobalThemeProps) => theme.border};
+      // border: 1px solid ${({ theme }: GlobalThemeProps) => theme.border};
       padding: 0.8rem;
     }
 
