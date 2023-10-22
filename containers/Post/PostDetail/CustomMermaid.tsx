@@ -1,24 +1,32 @@
-import React, { ReactNode, useEffect } from 'react'
-import { useThemeMode } from 'hooks/useThemeMode'
+'use client'
+import React, { ReactNode } from 'react'
+// import { useThemeMode } from 'hooks/useThemeMode'
 import mermaid, { MermaidConfig } from 'mermaid'
 
 type CustomMermaydType = {
   children: ReactNode
-  isMermaidLoaded: boolean
 }
-export function CustomMermaid({ children, isMermaidLoaded }: CustomMermaydType) {
-  const { theme } = useThemeMode()
+//FIXME: Hydration failed because the initial UI does not match what was rendered on the server.
+// \_ Maybe until mermaid support server side render
 
-  const withMemoized = () => {
-    if (isMermaidLoaded) return
-    setMermaid(theme === 'dark' ? 'dark' : 'default')
-  }
+// export function CustomMermaid({ children, isMermaidLoaded }: CustomMermaydType) {
+export function CustomMermaid({ children }: CustomMermaydType) {
+  // const { theme } = useThemeMode()
 
-  useEffect(() => {
-    withMemoized()
-  }, [theme])
+  // const withMemoized = () => {
+  //   if (isMermaidLoaded) return
+  //   setMermaid(theme === 'dark' ? 'dark' : 'default')
+  // }
 
-  return <div className="mermaid">{children}</div>
+  // useEffect(() => {
+  //   withMemoized()
+  // }, [theme])
+
+  return (
+    <div className="mermaid" ref={() => setMermaid('dark')}>
+      {children}
+    </div>
+  )
 }
 
 /**
@@ -39,5 +47,6 @@ export function setMermaid(theme: MermaidConfig['theme']) {
    *          setTimeout as a workaround,
    *          theme would somehow be mismatch w/o setTimeout here
    */
-  setTimeout(() => mermaid.contentLoaded())
+  // setTimeout(() => mermaid.contentLoaded())
+  mermaid.contentLoaded()
 }

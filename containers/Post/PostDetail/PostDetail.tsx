@@ -17,9 +17,7 @@ type PostDetailProps = {
 }
 
 function PostDetail({ post }: PostDetailProps) {
-  const markdownRef = useRef<HTMLDivElement>(null)
-
-  if (!post) return <div> .... Fetching data..... skeleton component to be added</div>
+  // const markdownRef = useRef<HTMLDivElement>(null)
 
   const { title, posterUrl, summary, tags, content, createdAt, lastModifiedDate, pv, like, prev, next } = post
   const TagsSection = tagsSection()
@@ -50,7 +48,8 @@ function PostDetail({ post }: PostDetailProps) {
           <p className="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">{summary}</p>
         </blockquote>
 
-        <div ref={markdownRef} className="w-full">
+        {/* <div ref={markdownRef} className="w-full"> */}
+        <div className="w-full">
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkSectionize]}
             rehypePlugins={[rehypeRaw]}

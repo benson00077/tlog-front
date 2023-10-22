@@ -1,20 +1,13 @@
-import React, { useRef } from 'react'
+import 'server-only'
+import React, { Suspense, useRef } from 'react'
 import { Triangle } from './Triangle'
 import { setLanguageLeft, setColumnLeft } from './utils'
 import { CustomMermaid } from './CustomMermaid'
 import './mdStyle.css'
-
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus'
-/** ^^^ Don't use esm module. see: https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/230 */
-// import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-// import vs2015 from 'react-syntax-highlighter/dist/cjs/styles/hljs/vs2015'
+import { CustomSyntaxHighlighter } from './CustomSyntaxHighlighter'
+import { CodeBlock, ForeignLanguageBlock } from './CustomMarkdownEle'
 
 export function CustomMarkdown() {
-  const isExpand = useRef(false)
-  const isMermaidLoaded = useRef(false)
-  const isSectionNotCollasped = useRef(false)
-
   return {
     code({ node, inline, className, children, ...props }: any) {
       const match = /language-(\w+)/.exec(className || '')
@@ -31,33 +24,19 @@ export function CustomMarkdown() {
         )
       }
       if (matchMermaid) {
-        return <CustomMermaid isMermaidLoaded={isMermaidLoaded.current}>{children}</CustomMermaid>
+        // return <CustomMermaid isMermaidLoaded={isMermaidLoaded.current}>{children}</CustomMermaid>
+        return (
+          <Suspense fallback={<div>Parsing Mermaid...</div>}>
+            <CustomMermaid>{children}</CustomMermaid>
+          </Suspense>
+        )
+        // return <div>Mermaid</div>
       }
       if (matchForeignLanguage) return <p>{children}</p>
       if (match) {
+        const codeBlockLanguage = match[1]
         return (
-          <SyntaxHighlighter
-            children={String(children).replace(/\n$/, '')}
-            style={vscDarkPlus}
-            customStyle={{ borderRadius: '0.5rem', background: '#2a2a2a' }}
-            showLineNumbers={true}
-            showInlineLineNumbers={false}
-            lineNumberStyle={{
-              minWidth: '3.25em',
-              paddingRight: '1em',
-              textAlign: 'right',
-              color: '#5b5b5b',
-            }}
-            wrapLongLines={false}
-            language={match[1]}
-            PreTag="div"
-            onClick={(e: React.MouseEvent<HTMLElement>) => {
-              const preTag = e.currentTarget
-              isExpand.current ? preTag.classList.remove('expand') : preTag.classList.add('expand')
-              isExpand.current = !isExpand.current
-            }}
-            {...props}
-          />
+          <CustomSyntaxHighlighter language={codeBlockLanguage} children={children} forwardedProps={{ ...props }} />
         )
       }
       if (isQuote) {
@@ -76,18 +55,10 @@ export function CustomMarkdown() {
       const match = /language-(\w+)/.exec(codeTagClassName || '') // belike [ "language-js", "js" ] | null
       const matchForeignLanguage = /language-foreign/.exec(codeTagClassName || '')
       if (matchForeignLanguage) {
-        return (
-          <div id="foreignLanguageBlock" className="languageRight" ref={setLanguageLeft}>
-            {children}
-          </div>
-        )
+        return <ForeignLanguageBlock>{children}</ForeignLanguageBlock>
       }
       if (match) {
-        return (
-          <pre id="codeBlock" className="columnRight" {...props} ref={setColumnLeft}>
-            {children}
-          </pre>
-        )
+        return <CodeBlock {...props}>{children}</CodeBlock>
       }
       /** markdown quote: 2 tabs, or ```...``` , or > */
       return (
