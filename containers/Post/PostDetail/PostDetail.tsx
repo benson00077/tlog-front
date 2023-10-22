@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import TagsSection from '../components/Tags/TagsSection'
+import tagsSection from '../components/Tags/TagsSection'
 import { IPostItem } from '../types'
 import { formatDate } from 'shared/utils'
 import Image from 'next/image'
@@ -24,6 +24,7 @@ function PostDetail({ post }: PostDetailProps) {
   if (!post) return <div> .... Fetching data..... skeleton component to be added</div>
 
   const { title, posterUrl, summary, tags, content, createdAt, lastModifiedDate, pv, like, prev, next } = post
+  const TagsSection = tagsSection()
 
   return (
     <>
@@ -42,9 +43,9 @@ function PostDetail({ post }: PostDetailProps) {
           {title}
         </h1>
 
-        <div>
-          <TagsSection targetTag={['']} tags={tags} noNavBar={true} />
-          <time>{formatDate(createdAt)}</time>
+        <div className="relative flex justify-center w-full">
+          <TagsSection.withoutIcon tags={tags} targetTag={['']} />
+          <time className="absolute right-1">{formatDate(createdAt)}</time>
         </div>
 
         <blockquote className="p-4 my-4 border-l-4 border-gray-300 rounded bg-gray-50 dark:border-gray-500 dark:bg-gray-700">
