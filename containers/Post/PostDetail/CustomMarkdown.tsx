@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import { Triangle } from './Triangle'
 import { setLanguageLeft, setColumnLeft } from './utils'
 import { CustomMermaid } from './CustomMermaid'
-import styles from './mdStyle.module.css'
 import './mdStyle.css'
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
@@ -26,7 +25,7 @@ export function CustomMarkdown() {
 
       if (inline) {
         return (
-          <code className={styles['inline-code']} {...props}>
+          <code className="inline-code" {...props}>
             {children}
           </code>
         )
@@ -63,7 +62,7 @@ export function CustomMarkdown() {
       }
       if (isQuote) {
         return (
-          <code className={`${className} ${styles.quote}`} {...props}>
+          <code className={`${className} quote`} {...props}>
             {children}
           </code>
         )
@@ -92,7 +91,7 @@ export function CustomMarkdown() {
       }
       /** markdown quote: 2 tabs, or ```...``` , or > */
       return (
-        <div className={`${styles.quote}`}>
+        <div className="quote">
           <pre {...props}>{children}</pre>
         </div>
       )
@@ -106,7 +105,6 @@ export function CustomMarkdown() {
         </div>
       )
     },
-    // p({ node, children, ...props }: any) { return <p {...props}>{children}</p> },
     // NOTE: prevent using h1 in markdown content. Post title would be the only h1 for SEO
     h1({ node, children, ...props }: any) {
       return (
@@ -163,10 +161,10 @@ export function CustomMarkdown() {
       )
     },
     ul({ node, children }: any) {
-      return <ul className={`${styles.indent2} list-disc clearFloat`}>{children}</ul>
+      return <ul className={`indent2 list-disc clearFloat`}>{children}</ul>
     },
     ol({ node, children }: any) {
-      return <ol className={`${styles.indent2} list-decimal clearFloat`}>{children}</ol>
+      return <ol className={`indent2 list-decimal clearFloat`}>{children}</ol>
     },
     li({ node, children }: any) {
       return <li className="leading-6">{children}</li>
@@ -180,7 +178,7 @@ export function CustomMarkdown() {
     },
     blockquote({ node, children, ...props }: any) {
       // return <blockquote className="pt-4 pr-4 pb-2.5 rounded">{children}</blockquote>
-      return <blockquote className={`${styles.quote}`}>{children}</blockquote>
+      return <blockquote className="quote">{children}</blockquote>
     },
     strong({ node, children, ...props }: any) {
       return <strong className="font-semibold text-gray-900 dark:text-white">{children}</strong>
