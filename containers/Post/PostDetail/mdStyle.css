@@ -79,17 +79,21 @@
 .my-markdown section {
   /* clear-both: since code block have float:right */
   @apply relative clear-both my-2;
+  /* from: main > section.w-5/6 (remain 1/6 for leftside+rightside) */
+  /* --left-side-empty-space: 8.3%;  */
 }
 /* as thread-line */
-section:has(section)::before {
-  @apply absolute block h-full bg-gray-300 -left-6;
+.my-markdown section:has(section)::before {
+  /* @apply absolute block h-full bg-gray-300 -left-[180px] z-30; */
+  @apply absolute block h-full bg-gray-300 -left-[180px] -z-10;
   content: '';
   width: 2px;
   height: 100%;
 }
 /* as thread-line-child: git-line-corner */
-section:has(section) section h3::before {
-  @apply absolute block -top-2 -left-5;
+.my-markdown section:has(section) section h3::before {
+  /* @apply absolute block -left-[180px] z-50; */
+  @apply absolute block -left-[180px] z-10;
   content: '';
   bottom: 100%;
   width: 20px;
@@ -97,13 +101,13 @@ section:has(section) section h3::before {
   border-bottom: solid 2px #e1e4e8;
   border-left: solid 2px #e1e4e8;
   border-bottom-left-radius: 16px;
-  transform: translateX(-1px) translateY(2px);
+  transform: translateY(20px);
 }
 /* as thread-line-child: override line after git-line-corner*/
-section:has(section) > section:last-child::before {
-  @apply absolute block h-full border-l-2 border-stone-200 dark:border-gray-800 -left-6;
+.my-markdown section:has(section) > section:last-child::before {
+  /* @apply absolute block h-full border-l-2 border-stone-200 dark:border-gray-800 -left-[180px] z-40; */
+  @apply absolute block h-full border-l-2 border-stone-200 dark:border-gray-800 -left-[180px] z-0;
   content: '';
-  top: 14.5px; 
   width: 15px;
 }
 /* similar to thread-line-child's height */

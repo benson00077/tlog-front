@@ -12,9 +12,11 @@ export default function Header() {
   return (
     // <S.NavBar translateY={focus ? '0px' : '-100%'} opacity={focus ? '1' : '0'}>
     <div
-      className={`flex items-center justify-between fixed w-full h-12 py-0 z-10 select-none ${
+      className={`flex items-center justify-between fixed w-full h-12 py-0 z-20 select-none ${
         focus ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'
-      }`}
+      } backdrop-filter backdrop-blur-lg bg-opacity-30
+      border-b border-gray-900/50
+      `}
     >
       <NoScrollLink href="/" passHref>
         <Logo />

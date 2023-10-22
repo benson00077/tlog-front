@@ -118,7 +118,9 @@ export function CustomMarkdown() {
     h2({ node, children, ...props }: any) {
       return (
         <>
-          <h2 id={children[0]} className={`sticky top-0 clearFloat mt-10 mb-5 text-3xl`} {...props}>
+          {/* mask for git-line icon */}
+          <div className="absolute left-[-194px] w-12 h-14 bg-gray-800 z-10"></div>
+          <h2 id={children[0]} className={`z-30 sticky top-[6px] clearFloat mt-10 mb-5 text-3xl`} {...props}>
             <Triangle />
             {children}
           </h2>

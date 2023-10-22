@@ -1,5 +1,3 @@
-'use client'
-
 import { useRef } from 'react'
 import tagsSection from '../components/Tags/TagsSection'
 import { IPostItem } from '../types'
