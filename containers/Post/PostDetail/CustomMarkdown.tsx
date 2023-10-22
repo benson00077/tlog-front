@@ -118,8 +118,8 @@ export function CustomMarkdown() {
     h2({ node, children, ...props }: any) {
       return (
         <>
-          <Triangle />
-          <h2 id={children[0]} className={`clearFloat mt-10 mb-5 text-3xl`} {...props}>
+          <h2 id={children[0]} className={`sticky top-0 clearFloat mt-10 mb-5 text-3xl`} {...props}>
+            <Triangle />
             {children}
           </h2>
         </>

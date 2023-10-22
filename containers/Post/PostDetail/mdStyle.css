@@ -14,7 +14,7 @@
   border-radius: 0.4rem;
   padding: 0.2rem 0.4rem; */
   /* Flowbite kbd */
-  @apply px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500
+  @apply px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500;
 }
 
 /* Code block for code. not quote in markdown. not inline code */
@@ -50,29 +50,60 @@
   content: ' ';
 }
 
-
 /* Table from Flowbite */
 .my-markdown .md-table {
   @apply w-full text-sm text-left text-gray-500 dark:text-gray-400;
 }
 .my-markdown .md-table > thead {
-  @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400
+  @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
 }
 .my-markdown .md-table > thead > tr > th {
-  @apply px-6 py-3
+  @apply px-6 py-3;
 }
-.my-markdown .md-table > tbody > tr  {
-  @apply bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600
+.my-markdown .md-table > tbody > tr {
+  @apply bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600;
 }
-.my-markdown .md-table > tbody > tr:not(:last-child)  {
-  @apply border-b
+.my-markdown .md-table > tbody > tr:not(:last-child) {
+  @apply border-b;
 }
-.my-markdown .md-table > tbody > tr > th  {
-  @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white
+.my-markdown .md-table > tbody > tr > th {
+  @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white;
 }
 .my-markdown .md-table > tbody > tr > td {
-  @apply px-6 py-3
+  @apply px-6 py-3;
 }
 
-
-
+/**
+*  leverage the <section> inserted by remark-sectionize plugin
+*/
+.my-markdown section {
+  /* clear-both: since code block have float:right */
+  @apply relative clear-both my-2;
+}
+/* as thread-line */
+section:has(section)::before {
+  @apply absolute block h-full bg-gray-300 -left-6;
+  content: '';
+  width: 2px;
+  height: 100%;
+}
+/* as thread-line-child: git-line-corner */
+section:has(section) section h3::before {
+  @apply absolute block -top-2 -left-5;
+  content: '';
+  bottom: 100%;
+  width: 20px;
+  height: 20px;
+  border-bottom: solid 2px #e1e4e8;
+  border-left: solid 2px #e1e4e8;
+  border-bottom-left-radius: 16px;
+  transform: translateX(-1px) translateY(2px);
+}
+/* as thread-line-child: override line after git-line-corner*/
+section:has(section) > section:last-child::before {
+  @apply absolute block h-full border-l-2 border-stone-200 dark:border-gray-800 -left-6;
+  content: '';
+  top: 14.5px; 
+  width: 15px;
+}
+/* similar to thread-line-child's height */

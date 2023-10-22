@@ -59,18 +59,3 @@ export const Markdown = styled.div`
     }
   }
 `
-type IconProps = {
-  width: string
-  height: string
-}
-export const Icon = styled.svg<IconProps>`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  position: absolute;
-  top: 1.3rem;
-  left: calc(-1.5rem - 10.4px / 2);
-  // box-shadow: 0 -16px 2px 8px ${({ theme }: GlobalThemeProps) => theme.background.primary};
-`
-export const ThreadLineTriangle = styled.polygon`
-  // fill: ${({ theme }: GlobalThemeProps) => theme.border};
-`

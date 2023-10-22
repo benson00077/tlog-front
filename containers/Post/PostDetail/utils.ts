@@ -28,7 +28,7 @@ export function setLanguageLeft(foreignLangBlock: HTMLDivElement) {
 /**
  *  @Usage Callback ref for UI Layout of
  *         columnLeft (text) <-> columnRight (code)
- *  @Note  Callback only trigger on client side, no server sdie call.
+ *  @Note  Callback only trigger on client side, no server side call.
  */
 export function setColumnLeft(columnRight: HTMLPreElement) {
   const previouseEle = columnRight?.previousElementSibling // mostly <p> or <ul> in my usecase

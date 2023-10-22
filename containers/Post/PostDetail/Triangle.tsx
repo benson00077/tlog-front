@@ -1,5 +1,3 @@
-import { Icon, ThreadLineTriangle } from './styled'
-
 type triangleProps = {
   w?: number
   h?: number
@@ -15,8 +13,8 @@ export const Triangle = ({ w = 12, h = 12, direction = 'bottom' }: triangleProps
   }
 
   return (
-    <Icon width={w + 'px'} height={h + 'px'}>
-      <ThreadLineTriangle points={points[direction].join(' ')} />
-    </Icon>
+    <svg width={w} height={h} className="absolute top-[1.3rem] left-[-1.5rem] shadow-[0_-16px_2px_8px_rgba(31,41,55)] ">
+      <polygon fill="#5b5b5b" points={points[direction].join(' ')}></polygon>
+    </svg>
   )
 }

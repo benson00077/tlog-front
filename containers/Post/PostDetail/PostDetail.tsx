@@ -52,7 +52,6 @@ function PostDetail({ post }: PostDetailProps) {
           <p className="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">{summary}</p>
         </blockquote>
 
-        {/* Look S.PostRoot and S.Markdown */}
         <div ref={markdownRef} className="w-full">
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkSectionize]}
