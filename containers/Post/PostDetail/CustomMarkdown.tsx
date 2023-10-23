@@ -92,6 +92,8 @@ export function CustomMarkdown() {
           {/* mask for git-line icon */}
           <div className="absolute left-[-194px] w-12 h-14 bg-gray-800 z-10"></div>
           <h2 id={children[0]} className={`z-30 sticky top-[6px] clearFloat mt-10 mb-5 text-3xl`} {...props}>
+            {/* For html anchor tag target: pt-12 as offset for nav bar's h-12 */}
+            <span id={children[0].replace(/ /g, '-').toLowerCase()}></span>
             <Triangle />
             {children}
           </h2>
@@ -101,6 +103,8 @@ export function CustomMarkdown() {
     h3({ node, children, ...props }: any) {
       return (
         <h3 id={children[0]} className={`clearFloat mt-7 mb-5 text-2xl`} {...props}>
+          {/* For html anchor tag target: pt-12 as offset for nav bar's h-12 */}
+          <span id={children[0].replace(/ /g, '-').toLowerCase()} className="pt-12"></span>
           {children}
         </h3>
       )

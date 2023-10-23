@@ -3,7 +3,7 @@ import tagsSection from '../components/Tags/TagsSection'
 import { IPostItem } from '../types'
 import { formatDate } from 'shared/utils'
 import Image from 'next/image'
-import TableContent from './TableContent/TableContent'
+import { TableContent } from './TableContent'
 // markdown
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -24,8 +24,6 @@ function PostDetail({ post }: PostDetailProps) {
 
   return (
     <>
-      {/* <TableContent deps={{ post, markdownRef }} /> */}
-
       <section className="flex flex-col items-center justify-center w-5/6 pl-[17%]">
         <Image
           src={posterUrl}
@@ -50,6 +48,12 @@ function PostDetail({ post }: PostDetailProps) {
 
         {/* <div ref={markdownRef} className="w-full"> */}
         <div className="w-full">
+          <div className="sticky h-0 mt-10 top-12">
+            {/* FIXME: RESPONSIVE Support */}
+            <div className="absolute -right-[10vw]">
+              <TableContent markdownContent={content} />
+            </div>
+          </div>
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkSectionize]}
             rehypePlugins={[rehypeRaw]}
