@@ -22,13 +22,14 @@ export function TableContent({ markdownContent }: TableContentProps) {
 }
 
 type Toc = {
-  level: number
+  level: number // markdown heading level from 1-6,
   id: number
+  rootTitleId: number // sibling heading's root heading id
   title: string
   anchor: string
 }
 function mdContentParser(markdown: string): Toc[] {
-  /** Aviod anchor elements and codeblocks could contains hash symbols, which will be misinterpreted as headers */
+  /** Aviod anchor elements and codeblocks, which could contains hash symbols and misinterpreted as headers */
   const regexReplaceCode = /(```.+?```)/gms
   const regexRemoveLinks = /\[(.*?)\]\(.*?\)/g
 
@@ -38,7 +39,8 @@ function mdContentParser(markdown: string): Toc[] {
   const regexHeader = /#{1,6}.+/g
   const titles = markdownWithoutCodeBlocks.match(regexHeader)
 
-  let globalID = 0
+  let rootTitleId = 0
+  let notLv1TitleCount = 0
   console.log(33, titles)
 
   if (!titles) return []
@@ -49,10 +51,12 @@ function mdContentParser(markdown: string): Toc[] {
     const level = tempTitle.match(/#/g)!.length - 1
     const title = tempTitle.replace(/#/g, '')!.trim()
     const anchor = `#${title.replace(/ /g, '-').toLowerCase()}`
-    level === 1 ? (globalID += 1) : globalID
+    if (level !== 1) notLv1TitleCount += 1
+    if (i !== 0 && level === 1) rootTitleId = rootTitleId + 1 + notLv1TitleCount
     return {
       level: level,
-      id: globalID,
+      id: i,
+      rootTitleId: rootTitleId,
       title: title,
       anchor: anchor,
     }

@@ -78,7 +78,7 @@
 */
 .my-markdown section {
   /* clear-both: since code block have float:right */
-  @apply relative clear-both my-2;
+  @apply relative clear-both mb-4;
   /* from: main > section.w-5/6 (remain 1/6 for leftside+rightside) */
   /* --left-side-empty-space: 8.3%;  */
 }

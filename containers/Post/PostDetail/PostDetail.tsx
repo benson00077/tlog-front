@@ -24,41 +24,44 @@ function PostDetail({ post }: PostDetailProps) {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center w-5/6 pl-[17%]">
-        <Image
-          src={posterUrl}
-          alt={title}
-          width={900}
-          height={550}
-          style={{ objectFit: 'cover' }}
-          className="rounded-lg"
-        />
-        <h1 className="my-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-          {title}
-        </h1>
+      <section className="grid grid-cols-12">
+        <div className="flex flex-col items-center justify-center col-span-10 col-start-2">
+          <Image
+            src={posterUrl}
+            alt={title}
+            width={900}
+            height={550}
+            style={{ objectFit: 'cover' }}
+            className="rounded-lg"
+          />
+          <h1 className="my-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+            {title}
+          </h1>
 
-        <div className="relative flex justify-center w-full">
-          <TagsSection.withoutIcon tags={tags} targetTag={['']} />
-          <time className="absolute right-1">{formatDate(createdAt)}</time>
-        </div>
-
-        <blockquote className="p-4 my-4 border-l-4 border-gray-300 rounded bg-gray-50 dark:border-gray-500 dark:bg-gray-700">
-          <p className="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">{summary}</p>
-        </blockquote>
-
-        {/* <div ref={markdownRef} className="w-full"> */}
-        <div className="w-full">
-          <div className="sticky h-0 mt-10 top-12">
-            {/* FIXME: RESPONSIVE Support */}
-            <div className="absolute -right-[10vw]">
-              <TableContent markdownContent={content} />
-            </div>
+          <div className="relative flex justify-center w-full">
+            <TagsSection.withoutIcon tags={tags} targetTag={['']} />
+            <time className="absolute right-1">{formatDate(createdAt)}</time>
           </div>
+
+          <blockquote className="p-4 my-4 border-l-4 border-gray-300 rounded bg-gray-50 dark:border-gray-500 dark:bg-gray-700">
+            <p className="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">{summary}</p>
+          </blockquote>
+        </div>
+      </section>
+
+      <section className="grid grid-cols-12">
+        <aside className="sticky h-0 col-span-2 col-start-11 top-12">
+          <div className="mt-10 ml-4">
+            <TableContent markdownContent={content} />
+          </div>
+        </aside>
+
+        <div className="w-full col-span-8 col-start-3">
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkSectionize]}
             rehypePlugins={[rehypeRaw]}
             components={CustomMarkdown()}
-            className={`postContentByToc my-markdown`}
+            className={`my-markdown`}
           >
             {content}
           </ReactMarkdown>
