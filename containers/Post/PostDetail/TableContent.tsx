@@ -1,18 +1,21 @@
-import 'server-only'
-import React from 'react'
+// import 'server-only'
+'use client'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import { useHeadingObserver } from 'hooks/useHeadingObserver'
 
 type TableContentProps = {
   markdownContent: string
 }
 export function TableContent({ markdownContent }: TableContentProps) {
   const toc = mdContentParser(markdownContent)
-  console.log(44, toc)
+  const { activeId } = useHeadingObserver()
+  console.log(555, activeId)
   return (
     <ul>
       {toc.map(({ level, id, title, anchor }) => {
         return (
-          <li key={id} className={`ml-${level}`}>
+          <li key={id} className={`ml-${level} ${'#' + activeId === anchor ? 'underline' : ''}`}>
             <Link href={anchor}>{title}</Link>
           </li>
         )
@@ -41,7 +44,6 @@ function mdContentParser(markdown: string): Toc[] {
 
   let rootTitleId = 0
   let notLv1TitleCount = 0
-  console.log(33, titles)
 
   if (!titles) return []
 
