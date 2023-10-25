@@ -3,14 +3,14 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useHeadingObserver } from 'hooks/useHeadingObserver'
+import { getAnchor } from './utils'
 
 type TableContentProps = {
   markdownContent: string
 }
 export function TableContent({ markdownContent }: TableContentProps) {
   const toc = mdContentParser(markdownContent)
-  const { activeId } = useHeadingObserver()
-  console.log(555, activeId)
+  const { activeId } = useHeadingObserver([...toc.map((t) => t.anchor)])
   return (
     <ul>
       {toc.map(({ level, id, title, anchor }) => {
@@ -52,7 +52,7 @@ function mdContentParser(markdown: string): Toc[] {
     if (!match) throw Error('Failed to parse header in your markdown content')
     const level = tempTitle.match(/#/g)!.length - 1
     const title = tempTitle.replace(/#/g, '')!.trim()
-    const anchor = `#${title.replace(/ /g, '-').toLowerCase()}`
+    const { anchorHref } = getAnchor(title)
     if (level !== 1) notLv1TitleCount += 1
     if (i !== 0 && level === 1) rootTitleId = rootTitleId + 1 + notLv1TitleCount
     return {
@@ -60,7 +60,7 @@ function mdContentParser(markdown: string): Toc[] {
       id: i,
       rootTitleId: rootTitleId,
       title: title,
-      anchor: anchor,
+      anchor: anchorHref,
     }
   })
 

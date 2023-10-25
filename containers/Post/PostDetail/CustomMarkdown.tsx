@@ -1,11 +1,11 @@
 import 'server-only'
-import React, { Suspense, useRef } from 'react'
+import React, { Suspense } from 'react'
 import { Triangle } from './Triangle'
-import { setLanguageLeft, setColumnLeft } from './utils'
 import { CustomMermaid } from './CustomMermaid'
 import './mdStyle.css'
 import { CustomSyntaxHighlighter } from './CustomSyntaxHighlighter'
 import { CodeBlock, ForeignLanguageBlock } from './CustomMarkdownEle'
+import { getAnchor } from './utils'
 
 export function CustomMarkdown() {
   return {
@@ -87,14 +87,17 @@ export function CustomMarkdown() {
       )
     },
     h2({ node, children, ...props }: any) {
-      const anchor = children[0].replace(/ /g, '-').toLowerCase()
+      const { anchorTargetId } = getAnchor(children[0])
       return (
         <>
           {/* mask for git-line icon */}
           <div className="absolute left-[-194px] w-12 h-14 bg-gray-800 z-10"></div>
+          {/*
+           * NOTICE: span intendedly outside h2, or achor position be wrong for sticky h2
+           *      \_ h-[36px] = text-3xl line-height of h2
+           */}
+          <span id={anchorTargetId}></span>
           <h2 id={children[0]} className={`z-30 sticky top-[6px] clearFloat mt-10 mb-5 text-3xl`} {...props}>
-            {/* For html anchor tag target: pt-12 as offset for nav bar's h-12 */}
-            <span id={anchor}></span>
             <Triangle />
             {children}
           </h2>
@@ -102,13 +105,17 @@ export function CustomMarkdown() {
       )
     },
     h3({ node, children, ...props }: any) {
-      const anchor = children[0].replace(/ /g, '-').toLowerCase()
+      /** 'z' to avoid id begins with digits. ref: https://stackoverflow.com/questions/70579/html-valid-id-attribute-values */
+      // const anchor = `z${children[0].replace(/ /g, '-').replace(/\./g, '-').toLowerCase()}`
+      const { anchorTargetId } = getAnchor(children[0])
       return (
-        <h3 id={children[0]} className={`clearFloat mt-7 mb-5 text-2xl`} {...props}>
-          {/* For html anchor tag target: pt-12 as offset for nav bar's h-12 */}
-          <span id={anchor} className="pt-12"></span>
-          {children}
-        </h3>
+        <>
+          <h3 id={children[0]} className={`clearFloat mt-7 mb-5 text-2xl`} {...props}>
+            {/* NOTICE: offset: span mt-12 = nav pt-12 */}
+            <span id={anchorTargetId} className="pt-12"></span>
+            {children}
+          </h3>
+        </>
       )
     },
     h4({ node, children, ...props }: any) {
