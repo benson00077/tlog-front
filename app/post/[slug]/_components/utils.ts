@@ -1,21 +1,3 @@
-import tocbot from 'tocbot'
-
-/**
- *  NOTE: toc is not shown in server side (checked by View Page Source)
- *  @deprecated
- */
-export function setupTocbot() {
-  tocbot.init({
-    tocSelector: '.tableOfContents',
-    contentSelector: '.postContentByToc',
-    headingSelector: 'h1, h2, h3',
-    hasInnerContainers: true,
-    collapseDepth: 0,
-    isCollapsedClass: 'is-collapsed',
-    collapsibleClass: 'is-collapsible',
-  })
-}
-
 export function getAnchor(markdownHeading: string) {
   /** 'z' to avoid id begins with digits. ref: https://stackoverflow.com/questions/70579/html-valid-id-attribute-values */
   const anchorTargetId = `z${markdownHeading.replace(/ /g, '-').replace(/\./g, '-').toLowerCase()}`

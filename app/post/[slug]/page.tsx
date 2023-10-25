@@ -1,8 +1,8 @@
-import BackToTopBtn from 'components/BackToTopBtn/BackToTopBtn'
-import PostDetail from 'containers/Post/PostDetail/PostDetail'
-import { GET_POST_BY_ID } from 'containers/Post/typeDefs'
-import { GetPostByIdQuery, GetPostByIdVar } from 'containers/Post/types'
-import { getClient } from 'graphql/ApolloClient'
+import BackToTopBtn from 'app/_components/BackToTopBtn/BackToTopBtn'
+import PostDetail from 'app/post/[slug]/_components/PostDetail'
+import { GET_POST_BY_ID } from 'app/post/typeDefs'
+import { GetPostByIdQuery, GetPostByIdVar } from 'app/post/types'
+import { getClient } from 'app/graphql/ApolloClient'
 
 async function fetchPost(postId: string) {
   const result = await getClient().query<GetPostByIdQuery, GetPostByIdVar>({

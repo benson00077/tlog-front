@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import NoScrollLink from 'components/NoScrollLink/NoScrollLink'
+import NoScrollLink from 'app/_components/NoScrollLink/NoScrollLink'
 import { GlobalThemeProps } from 'styled/globalStyles'
 import { flexMixin } from 'styled/mixins'
 

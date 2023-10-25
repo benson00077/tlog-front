@@ -1,11 +1,11 @@
 import './globals.css'
-import { Footer } from 'containers/Layout/Footer/Footer'
-import Header from 'containers/Layout/Header/Header'
+import { Footer } from 'app/Footer'
+import Header from 'app/Header'
 import React from 'react'
 
 function layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh">
+    <html lang="zh" className="dark">
       <title>Home - Benson</title>
       <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,shrink-to-fit=no" />
       <meta name="description" content="My blog home page" />

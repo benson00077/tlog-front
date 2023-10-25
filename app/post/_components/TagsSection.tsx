@@ -1,5 +1,5 @@
 import TagWithIcon, { iconsMap } from './TagWithIcon'
-import NoScrollLink from 'components/NoScrollLink/NoScrollLink'
+import NoScrollLink from 'app/_components/NoScrollLink/NoScrollLink'
 
 type props = {
   tags: string[]

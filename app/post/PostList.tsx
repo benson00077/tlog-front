@@ -2,13 +2,12 @@
 import { useLazyQuery } from '@apollo/client'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
-import MetaHead from 'components/MetaHead/MetaHead'
-import PostCard from '../components/PostCard/PostCard'
-import tagsSection from '../components/Tags/TagsSection'
-import { POSTS } from '../typeDefs'
-import { IPost, IPostItem, PostQuery, PostVars } from '../types'
+import PostCard from './_components/PostCard'
+import tagsSection from './_components/TagsSection'
+import { POSTS } from './typeDefs'
+import { IPost, IPostItem, PostQuery, PostVars } from './types'
 import { AnimatePresence, motion } from 'framer-motion'
-import PreLoader from 'components/PreLoader/PreLoader'
+import PreLoader from 'app/_components/PreLoader/PreLoader'
 
 type PostListProps = {
   tags: string[]

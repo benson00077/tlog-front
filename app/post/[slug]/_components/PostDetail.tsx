@@ -1,7 +1,7 @@
 import { useRef } from 'react'
-import tagsSection from '../components/Tags/TagsSection'
-import { IPostItem } from '../types'
-import { formatDate } from 'shared/utils'
+import tagsSection from '../../_components/TagsSection'
+import { IPostItem } from '../../types'
+import { formatDate } from 'app/_utils/utils'
 import Image from 'next/image'
 import { TableContent } from './TableContent'
 // markdown

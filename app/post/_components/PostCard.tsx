@@ -1,8 +1,8 @@
 'use client'
-import NoScrollLink from 'components/NoScrollLink/NoScrollLink'
-import { formatDate } from 'shared/utils'
-import { IPostItem } from '../../types'
-import TagWithIcon from '../Tags/TagWithIcon'
+import NoScrollLink from 'app/_components/NoScrollLink/NoScrollLink'
+import { formatDate } from 'app/_utils/utils'
+import { IPostItem } from '../types'
+import TagWithIcon from './TagWithIcon'
 import Image from 'next/image'
 
 type Props = {

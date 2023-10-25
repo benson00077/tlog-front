@@ -1,13 +1,13 @@
-import { PostList } from 'containers/Post/PostList/PostList'
-import BackToTopBtn from 'components/BackToTopBtn/BackToTopBtn'
-import { addApolloState, initializeApollo } from 'graphql/apollo'
-import { POSTS, GET_ALL_TAGS } from 'containers/Post/typeDefs'
-import { GetAllTagsQuery, PostQuery, PostVars } from 'containers/Post/types'
+import { PostList } from 'app/post/PostList'
+import BackToTopBtn from 'app/_components/BackToTopBtn/BackToTopBtn'
+import { addApolloState, initializeApollo } from 'app/graphql/apollo'
+import { POSTS, GET_ALL_TAGS } from 'app/post/typeDefs'
+import { GetAllTagsQuery, PostQuery, PostVars } from 'app/post/types'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { ApolloError } from '@apollo/client'
 import Error from 'next/error'
-import PageTransition from 'components/PageTransition/PageTransition'
-import { getClient } from 'graphql/ApolloClient'
+import PageTransition from 'app/_components/PageTransition/PageTransition'
+import { getClient } from 'app/graphql/ApolloClient'
 
 async function fetchAllTags() {
   const { data } = await getClient().query<GetAllTagsQuery>({
