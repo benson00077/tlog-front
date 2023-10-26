@@ -6,7 +6,6 @@ import { GetAllTagsQuery, PostQuery, PostVars } from 'app/post/types'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { ApolloError } from '@apollo/client'
 import Error from 'next/error'
-import PageTransition from 'app/_components/PageTransition/PageTransition'
 import { getClient } from 'app/graphql/ApolloClient'
 
 async function fetchAllTags() {
@@ -32,11 +31,9 @@ export default async function Page() {
   const tags = await fetchAllTags()
 
   return (
-    // <PageTransition>
     <>
       <PostList SSGposts={posts} tags={tags ? tags.tags : []} />
       <BackToTopBtn />
     </>
-    // {/* </PageTransition> */}
   )
 }
