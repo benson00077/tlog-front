@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import tagsSection from '../../_components/TagsSection'
 import { IPostItem } from '../../types'
 import { formatDate } from 'app/_utils/utils'
@@ -20,7 +19,7 @@ function PostDetail({ post }: PostDetailProps) {
   // const markdownRef = useRef<HTMLDivElement>(null)
 
   const { title, posterUrl, summary, tags, content, createdAt, lastModifiedDate, pv, like, prev, next } = post
-  const TagsSection = tagsSection()
+  const TagsWithoutIcon = tagsSection().withoutIcon
 
   return (
     <>
@@ -39,7 +38,7 @@ function PostDetail({ post }: PostDetailProps) {
           </h1>
 
           <div className="relative flex justify-center w-full">
-            <TagsSection.withoutIcon tags={tags} targetTag={['']} />
+            <TagsWithoutIcon tags={tags} targetTag={['']} />
             <time className="absolute right-1">{formatDate(createdAt)}</time>
           </div>
 

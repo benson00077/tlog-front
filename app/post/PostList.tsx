@@ -1,13 +1,8 @@
 'use client'
-import { useLazyQuery } from '@apollo/client'
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
 import PostCard from './_components/PostCard'
 import tagsSection from './_components/TagsSection'
-import { POSTS } from './typeDefs'
-import { IPost, IPostItem, PostQuery, PostVars } from './types'
-import { AnimatePresence, motion } from 'framer-motion'
-import PreLoader from 'app/_components/PreLoader/PreLoader'
+import { IPost, IPostItem } from './types'
 
 type PostListProps = {
   tags: string[]
@@ -18,16 +13,16 @@ export function PostList({ tags, SSGposts }: PostListProps) {
   const query = useSearchParams()
   const targetTag = query.get('tag') || ''
   const posts = SSGposts
-  const TagsSection = tagsSection()
+  const { withIcon: TagsWithIcon, withoutIcon: TagsWithoutIcon } = tagsSection()
 
   return (
     <section className="flex flex-col items-center justify-center">
       <h3 className="pb-8">Tags</h3>
       <section className="w-1/2">
-        <TagsSection.withoutIcon tags={tags} targetTag={targetTag} />
+        <TagsWithoutIcon tags={tags} targetTag={targetTag} />
       </section>
       <section className="flex flex-row flex-wrap justify-around w-1/2 mt-8 bg-slate-600/30 mb-28">
-        <TagsSection.withIcon />
+        <TagsWithIcon />
       </section>
 
       <h3 className="pb-8">Posts</h3>
