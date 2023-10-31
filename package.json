@@ -1,6 +1,9 @@
 {
   "name": "tlog-front",
   "private": true,
+  "engines": {
+    "node": "21.1"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -22,7 +25,7 @@
     "graphql": "^16.8.0",
     "lodash": "^4.17.21",
     "mermaid": "^9.1.7",
-    "next": "^13.4.19",
+    "next": "^14.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
