@@ -1,3 +1,6 @@
+/**
+ *  @deprecated
+ */
 import { ApolloClient, from, InMemoryCache, NormalizedCacheObject } from '@apollo/client'
 import { concatPagination } from '@apollo/client/utilities'
 import { NextApiRequest, NextApiResponse } from 'next'
@@ -5,7 +8,6 @@ import { useMemo } from 'react'
 import merge from 'deepmerge'
 import { errorLink, httpLink } from './config'
 import isEqual from 'lodash/isEqual'
-
 /**
  *  My FINAL solution refer to
  *  - https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js

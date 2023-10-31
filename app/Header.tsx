@@ -1,5 +1,4 @@
 import NoScrollLink from 'app/_components/NoScrollLink/NoScrollLink'
-import { useFocus } from 'app/_hooks/useFocus'
 import Logo from './Logo'
 
 export default function Header() {
