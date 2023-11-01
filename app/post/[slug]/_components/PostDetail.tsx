@@ -58,6 +58,7 @@ function PostDetail({ post }: PostDetailProps) {
         <div className="w-full col-span-8 col-start-3">
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkSectionize]}
+            //use rehype-mermaid? https://github.com/remcohaszing/rehype-mermaid
             rehypePlugins={[rehypeRaw]}
             components={CustomMarkdown()}
             className={`my-markdown`}

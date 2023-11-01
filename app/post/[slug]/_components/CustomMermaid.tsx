@@ -8,6 +8,8 @@ type CustomMermaydType = {
 }
 //FIXME: Hydration failed because the initial UI does not match what was rendered on the server.
 // \_ Maybe until mermaid support server side render
+//  \_ ref: https://github.com/remcohaszing/rehype-mermaid
+//     ref: https://github.com/orgs/remarkjs/discussions/932
 
 // export function CustomMermaid({ children, isMermaidLoaded }: CustomMermaydType) {
 export function CustomMermaid({ children }: CustomMermaydType) {
