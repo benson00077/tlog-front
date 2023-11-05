@@ -1,0 +1,45 @@
+import { Footer } from '../Footer'
+ 
+# Welcome to my MDX page!
+ 
+This is some **bold** and _italics_ text.
+ 
+This is a list in markdown:
+ 
+- One
+- Two
+- Three
+ 
+Checkout my React component:
+ 
+<Footer />
+
+
+```js title="🤩 Class Foo"
+/** 系統層 */
+class Foo {
+  constructor(){
+    this.events = {};
+  }
+
+  // 收集依賴
+  addEventListener(name, cb) {
+    this.events.hasOwnProperty(name)
+      ? this.events[name].push(cb)
+      : this.events[name] = [cb]
+  }
+  // 通知觸發
+  fire(name, e) {
+    this.events[name].forEach(cb => {
+      cb(e)
+    })
+  }
+}
+/** 應用層 */
+let foo = new Foo()
+foo.addEventListener('click', (e)=>{console.log(e)})
+
+/** 系統層 */
+let e = {event: 'bar'}
+foo.fire('click', e) //放入給應用層使用的參數
+```
