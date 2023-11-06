@@ -5,7 +5,6 @@ import { MDXRemote, compileMDX } from 'next-mdx-remote/rsc'
 import { Suspense } from 'react'
 import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
-import remarkFrontmatter from 'remark-frontmatter'
 /* eslint @typescript-eslint/no-var-requires: "off" */
 const remarkSectionize = require('remark-sectionize') // import not work
 
@@ -38,8 +37,9 @@ export default async function Page() {
   const { content, frontmatter } = await compileMDX({
     source: post.content,
     options: {
+      parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkFrontmatter, remarkSectionize],
+        remarkPlugins: [remarkGfm, remarkSectionize],
         rehypePlugins: [rehypePrettyCode],
       },
     },
@@ -49,8 +49,9 @@ export default async function Page() {
     },
   })
 
-  console.log('content', post.content)
+  // console.log('content', post.content)
   console.log('frontmatter', frontmatter)
+  const fm = frontmatter as any
 
   return (
     <>
@@ -59,6 +60,7 @@ export default async function Page() {
           source={post.content}
           components={useMDXComponents}
         /> */}
+        <div>{fm.title}</div>
         {content}
       </Suspense>
     </>
