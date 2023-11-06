@@ -1,5 +1,5 @@
 import React from 'react'
-import Post, { meta } from './mdx/page.mdx'
+import Post, { meta } from './(mdx)/page.mdx'
 
 //ref: https://github.com/vercel/next.js/issues/50734
 export default function Page() {
