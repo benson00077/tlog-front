@@ -3,6 +3,7 @@ import createMDX from '@next/mdx'
 import rehypeRaw from 'rehype-raw'
 import remarkRehype from 'remark-rehype'
 import rehypePrettyCode from 'rehype-pretty-code'
+import remarkFrontmatter from 'remark-frontmatter'
 /* eslint @typescript-eslint/no-var-requires: "off" */
 import remarkSectionize from 'remark-sectionize'
 
@@ -46,7 +47,7 @@ const options = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkFrontmatter, remarkSectionize],
     rehypePlugins: [[rehypePrettyCode, options]],
   },
 })

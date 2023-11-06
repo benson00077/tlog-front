@@ -5,6 +5,9 @@ import { MDXRemote, compileMDX } from 'next-mdx-remote/rsc'
 import { Suspense } from 'react'
 import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
+import remarkFrontmatter from 'remark-frontmatter'
+/* eslint @typescript-eslint/no-var-requires: "off" */
+const remarkSectionize = require('remark-sectionize') // import not work
 
 async function fetchAllPosts() {
   const { data } = await getClient().query<PostQuery, PostVars>({
@@ -32,11 +35,11 @@ async function fetchPost(postId: string) {
 export default async function Page() {
   const posts = await fetchAllPosts()
   const post = await fetchPost(posts.items[0]._id)
-  const source = await compileMDX({
+  const { content, frontmatter } = await compileMDX({
     source: post.content,
     options: {
       mdxOptions: {
-        remarkPlugins: [remarkGfm],
+        remarkPlugins: [remarkGfm, remarkFrontmatter, remarkSectionize],
         rehypePlugins: [rehypePrettyCode],
       },
     },
@@ -46,7 +49,8 @@ export default async function Page() {
     },
   })
 
-  // console.log(post.content)
+  console.log('content', post.content)
+  console.log('frontmatter', frontmatter)
 
   return (
     <>
@@ -55,7 +59,7 @@ export default async function Page() {
           source={post.content}
           components={useMDXComponents}
         /> */}
-        {source.content}
+        {content}
       </Suspense>
     </>
   )
