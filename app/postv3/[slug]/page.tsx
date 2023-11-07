@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAllPostsMeta, getFileNamefromId, getPageData } from './util'
+import { getAllPostsMeta, getFileNamefromId, getPageData } from '../util'
 import dynamic from 'next/dynamic'
 import { formatDate } from '../../_utils/utils'
 import Image from 'next/image'
