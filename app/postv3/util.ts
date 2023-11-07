@@ -39,6 +39,9 @@ export async function getAllPostsMeta(): Promise<MetaData[]> {
   return metas
 }
 
+/**
+ * NOTICE: fileName should be same to meta.title
+ */
 export async function getFileNamefromId(id: string) {
   const map: Record<string, unknown> = {}
   for (const file of fileNames) {
