@@ -1,13 +1,19 @@
+import { PostList } from 'app/post/PostList'
+import BackToTopBtn from 'app/_components/BackToTopBtn/BackToTopBtn'
+import { addApolloState, initializeApollo } from 'app/graphql/apollo'
+import { POSTS, GET_ALL_TAGS } from 'app/post/typeDefs'
+import { GetAllTagsQuery, PostQuery, PostVars } from 'app/post/types'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { ApolloError } from '@apollo/client'
+import Error from 'next/error'
 import { getClient } from 'app/graphql/ApolloClient'
-import { GET_POST_BY_ID, POSTS } from 'app/post/typeDefs'
-import { GetPostByIdQuery, GetPostByIdVar, PostQuery, PostVars } from 'app/post/types'
-import { MDXRemote, compileMDX } from 'next-mdx-remote/rsc'
-import { Suspense } from 'react'
-import remarkGfm from 'remark-gfm'
-import rehypePrettyCode from 'rehype-pretty-code'
-/* eslint @typescript-eslint/no-var-requires: "off" */
-const remarkSectionize = require('remark-sectionize') // import not work
 
+async function fetchAllTags() {
+  const { data } = await getClient().query<GetAllTagsQuery>({
+    query: GET_ALL_TAGS,
+  })
+  return data.getAllTags
+}
 async function fetchAllPosts() {
   const { data } = await getClient().query<PostQuery, PostVars>({
     query: POSTS,
@@ -20,49 +26,14 @@ async function fetchAllPosts() {
   })
   return data.posts
 }
-
-async function fetchPost(postId: string) {
-  const result = await getClient().query<GetPostByIdQuery, GetPostByIdVar>({
-    query: GET_POST_BY_ID,
-    variables: {
-      id: postId,
-    },
-  })
-  return result.data.getPostById
-}
-
 export default async function Page() {
   const posts = await fetchAllPosts()
-  const post = await fetchPost(posts.items[0]._id)
-  const { content, frontmatter } = await compileMDX({
-    source: post.content,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkSectionize],
-        rehypePlugins: [rehypePrettyCode],
-      },
-    },
-    components: {
-      h1: ({ children }) => <h1 style={{ fontSize: '100px' }}>{children}</h1>,
-      h2: ({ children }) => <h2 style={{ fontSize: '100px' }}>{children}</h2>,
-    },
-  })
-
-  // console.log('content', post.content)
-  console.log('frontmatter', frontmatter)
-  const fm = frontmatter as any
+  const tags = await fetchAllTags()
 
   return (
     <>
-      <Suspense fallback={<>Loading...</>}>
-        {/* <MDXRemote
-          source={post.content}
-          components={useMDXComponents}
-        /> */}
-        <div>{fm.title}</div>
-        {content}
-      </Suspense>
+      <PostList SSGposts={posts} tags={tags ? tags.tags : []} />
+      <BackToTopBtn />
     </>
   )
 }
