@@ -19,15 +19,15 @@ export async function getPageData(mdxFileName: string): Promise<MetaData> {
 }
 
 export async function getAllPostsMeta(): Promise<MetaData[]> {
-  const posts = []
+  const metas = []
   for (const file of fileNames) {
     const { meta } = await getPageData(file)
-    posts.push(meta)
+    metas.push(meta)
   }
-  posts.sort((a: MetaData, b: MetaData) => {
+  metas.sort((a: MetaData, b: MetaData) => {
     return a.date < b.date ? 1 : -1
   })
-  return posts
+  return metas
 }
 
 export function convertDate(date: string): string {
