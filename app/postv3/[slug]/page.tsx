@@ -5,7 +5,9 @@ import dynamic from 'next/dynamic'
 // generate route segments
 export async function generateStaticParams() {
   const metas = await getAllPostsMeta()
-  return metas
+  return metas.map((meta) => ({
+    slug: meta.id,
+  }))
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
