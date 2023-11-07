@@ -39,6 +39,11 @@ export async function getAllPostsMeta(): Promise<MetaData[]> {
   return metas
 }
 
-export function convertDate(date: string): string {
-  return new Date(date).toDateString()
+export async function getFileNamefromId(id: string) {
+  const map: Record<string, unknown> = {}
+  for (const file of fileNames) {
+    const meta = (await getPageData(file)) as MetaData
+    map[meta.id] = meta.title
+  }
+  return map[id]
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAllPostsMeta, getPageData } from './util'
+import { getAllPostsMeta, getFileNamefromId, getPageData } from './util'
 import dynamic from 'next/dynamic'
 import { formatDate } from '../../_utils/utils'
 import Image from 'next/image'
@@ -8,16 +8,16 @@ import Image from 'next/image'
 export async function generateStaticParams() {
   const metas = await getAllPostsMeta()
   return metas.map((meta) => ({
-    //TODO: 改成走ID？
-    slug: meta.fileName,
+    slug: meta.id,
   }))
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params
-  const meta = await getPageData(`${slug}.mdx`)
+  const fileName = await getFileNamefromId(slug)
+  const meta = await getPageData(`${fileName}.mdx`)
   const { title, updatedAt, description, posterURL } = meta
-  const Post = dynamic(() => import(`../(mdx)/${slug}.mdx`))
+  const Post = dynamic(() => import(`../(mdx)/${fileName}.mdx`))
 
   if (!Post) return <div>Loading...</div>
   return (
