@@ -10,82 +10,113 @@ id: d1b8f648-bd46-4106-8ad0-c93a3d816f94
 
 https://github.com/vercel/next.js/issues/50138
 
+```ts
+export interface MetaData extends frontMatter {
+  fileName: string
+}
+```
+
+```typescript title="MetaData3.ts" /string/
+export interface MetaData3 extends frontMatter {
+  fileName: string
+}
+```
+
+```tsx title="MetaData3.tsx" {2,5-6}
+export default async function Page({ params }: { params: { slug: string } }) {
+  const post = await fetchPost(params.slug)
+  return (
+    <>
+      <PostDetail post={post} />
+      <BackToTopBtn />
+    </>
+  )
+}
+```
+
 ## 1. 開始之前
 
 在看這篇文章之前，你可能需要先瞭解以下概念
+
 - Class 與 new 與 this
 - 異步 與 Callback
 
 看這篇文章之後，你可以預期你將會：
+
 - 瞭解觀察者模式
 - 瞭解 Promise 的實作
   - 了解 then 的作用：收集 Callback
   - 了解如何實作出鏈式調用（難點）
 
 這篇文章並不會解釋：
+
 - 宏任務、微任務
 - async 、await
 
-## 2. Callback Function 
+## 2. Callback Function
+
 > 看不懂 call back 的時候，就回頭區分一下：應用層 (application programming) 與系統層 (system programming)。
 
-可以參考[維基百科](https://en.wikipedia.org/wiki/Callback_(computer_programming))的範例圖：
+可以參考[維基百科](<https://en.wikipedia.org/wiki/Callback_(computer_programming)>)的範例圖：
 ![img]("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Callback-notitle.svg/2880px-Callback-notitle.svg.png")
 
 實際上應用層、系統層這兩者也可以都是應用層的兩個檔案，或是兩個函數。總之後文會統一用這兩層來比喻。
 
 ## 3. 設計事件監聽
+
 > 我們都熟悉事件監聽怎麼應用，但如果是要設計出支援事件監聽的 API 呢？
 
 可以先分析一下，事件監聽大致上會是這樣的：
+
 1. 在應用層：給事件名稱
 2. 在應用層：給延遲調用的函數（後稱回調函數），同個事件名可給多次
 3. 在應用層：我不知道回調函數的參數會是誰，要找系統層文件定義
 4. 在系統層：調用該函數，給定要暴露給應用層的參數
 
-```js
+```js title="listener.js" {0-2,4} showLineNumbers
 // 應用層
-btn.AddEventListener('click', (e)=>{
-  console.log(e)　
+btn.AddEventListener('click', (e) => {
+  console.log(e)
 })
 // 系統層
 btn.fire('click')
 ```
+
 站在**系統層**來思考，我們必定需要容器來收集回調函數、然後要在對的時機取出後執行。像這種收集依賴 → 觸發通知 → 取出依賴執行的方式，其實可以借用觀察者模式的概念來做。
 
 ```js
 /** 系統層 */
 class Foo {
-  constructor(){
-    this.events = {};
+  constructor() {
+    this.events = {}
   }
 
   // 收集依賴
   addEventListener(name, cb) {
-    this.events.hasOwnProperty(name)
-      ? this.events[name].push(cb)
-      : this.events[name] = [cb]
+    this.events.hasOwnProperty(name) ? this.events[name].push(cb) : (this.events[name] = [cb])
   }
   // 通知觸發
   fire(name, e) {
-    this.events[name].forEach(cb => {
+    this.events[name].forEach((cb) => {
       cb(e)
     })
   }
 }
 /** 應用層 */
 let foo = new Foo()
-foo.addEventListener('click', (e)=>{console.log(e)})
+foo.addEventListener('click', (e) => {
+  console.log(e)
+})
 
 /** 系統層 */
-let e = {event: 'bar'}
+let e = { event: 'bar' }
 foo.fire('click', e) //放入給應用層使用的參數
 ```
 
 這個例子有點爛，畢竟 fire() 基本上跟應用層還是同一層，沒有區隔出來，不過大致勾勒出雛形足矣。
 
-
 ## 4. 設計 Promise
+
 > 這次換站在系統層來觀察 Promise
 
 ### 4.1. 應用層案例
@@ -95,16 +126,17 @@ foo.fire('click', e) //放入給應用層使用的參數
 ```js
 const promise1 = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve('foo');
-  }, 300);
-});
+    resolve('foo')
+  }, 300)
+})
 
 promise1.then((value) => {
-  console.log(value);　// "foo"
-});
+  console.log(value) // "foo"
+})
 ```
 
 ### 4.2. 系統層分析
+
 分析一下， Promise 大致上會是這樣的：
 
 - Promise 的建構子會放 executor()，在 new 時立刻執行（new 跟建構子都屬於 Class 的範疇）。
@@ -113,6 +145,7 @@ promise1.then((value) => {
 - executor() 內的異步任務被執行，觸發 resolve/reject ，從成功 / 失敗列隊中取出回調函數（依賴）執行。
 
 這裡牽涉到太多回調函數，需要一個個釐清。區分應用層和系統層的話，會是這樣的：
+
 - executor() 是應用層定義的，
 - executor() 的參數，即 resolve, reject 函數，是系統層定義的
 - then() 是系統層定義的
@@ -123,6 +156,7 @@ promise1.then((value) => {
 ### 4.3. 實作設計
 
 現在用前面講的模式來勾勒 Promise 的大致形狀。在寫前面事件監聽時，我們是先寫收集依賴的邏輯，再寫通知觸發、取出依賴執行的邏輯。依樣畫葫蘆的話，可以先寫出 then() 收集依賴的邏輯，再寫 resolve() 取出依賴執行的邏輯。寫完後大概會長得像這樣。
+
 ```js
 /** 系統層 */
 class MyPromise() {
@@ -163,16 +197,18 @@ p1.then(res => console.log(res))
 ```
 
 ### 4.4. Method Chaining
+
 > 方法回傳物件，就能達到鍊式調用
 
-
 ## 5. 談談實際經驗
+
 > 了解 Promise 的大致實作，就一定能懂應用層的各種機制。
 
 ### 5.1. 調適競態問題
-以下用原生的 fetch() 改寫我遇過的競態問題。當我在 service1 的 fetch() 還沒回傳任何結果時，就點選了其他的選單，導致這時 service2 所依賴的 id 就跟著被改變。
-```js
 
+以下用原生的 fetch() 改寫我遇過的競態問題。當我在 service1 的 fetch() 還沒回傳任何結果時，就點選了其他的選單，導致這時 service2 所依賴的 id 就跟著被改變。
+
+```js
 /** A層 */
 function service1(id, success) {
   let url = `api1/${id}`
@@ -184,20 +220,21 @@ function service2(id, success) {
 }
 
 /** B層  */
-service1('foo', succ)
-  .then(service2('ap2.com'))
+service1('foo', succ).then(service2('ap2.com'))
 
 function succ(data) {
   // do sth with data
   let id = data.id
-  service2(id, ()=>{})
+  service2(id, () => {})
 }
 ```
 
 ### 5.2. 時序問題
+
 常出現在面試的同異步時序問題
+
 ```js
-console.log(1);
+console.log(1)
 const promise = new Promise((resolve, reject) => {
   console.log(2)
   resolve()
@@ -206,5 +243,5 @@ const promise = new Promise((resolve, reject) => {
 promise.then(() => {
   console.log(4)
 })
-console.log(5)  
+console.log(5)
 ```

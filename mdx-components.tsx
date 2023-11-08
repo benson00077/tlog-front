@@ -2,6 +2,8 @@ import type { MDXComponents } from 'mdx/types'
 import { Suspense } from 'react'
 import { CustomMermaid } from './app/post/[slug]/_components/CustomMermaid'
 import { CustomSyntaxHighlighter } from './app/post/[slug]/_components/CustomSyntaxHighlighter'
+import './mdx-components-style.css'
+import MdxCodeTitle from './app/_components/MdxCodeTitle'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -33,6 +35,25 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     },
     strong({ node, children, ...props }: any) {
       return <strong className="font-semibold text-gray-900 dark:text-white">{children}</strong>
+    },
+    // pre({ children, ...props }) {
+    //   return (
+    //     <pre {...props} className={`${props.className} rounded`}>
+    //       {children}
+    //     </pre>
+    //   )
+    // },
+    div({ children, ...props }) {
+      if (Object.keys(props).includes('data-rehype-pretty-code-title')) {
+        const language = (props as any)['data-language']
+        if (!language) throw new Error(`Cannot find data-language, props: ${{ ...props }}`)
+        return (
+          <div {...props}>
+            <MdxCodeTitle language={language}>{children}</MdxCodeTitle>
+          </div>
+        )
+      }
+      return <div {...props}>{children}</div>
     },
     ...components,
   }
