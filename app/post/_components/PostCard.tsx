@@ -7,14 +7,15 @@ import Image from 'next/image'
 
 type Props = {
   post: IPostItem
+  href: string
 }
 
-export default function PostCard({ post }: Props) {
+export default function PostCard({ post, href: url }: Props) {
   const { _id, createdAt, posterUrl, title, pv, like, tags, summary } = post
 
   return (
     <section className="relative block overflow-hidden rounded-lg shadow-2xl cursor-pointer group">
-      <NoScrollLink href={`/post/${_id}`} passHref>
+      <NoScrollLink href={url} passHref>
         <div className="h-0">
           <Image
             src={posterUrl}

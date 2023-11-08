@@ -43,7 +43,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params
   const post = await fetchPost(slug)
   const { content, frontmatter } = await compileMDX({
-    source: post.content,
+    //TODO
+    // source: post.content,
+    source: `#Pending Postv2`,
     options: {
       parseFrontmatter: true,
       mdxOptions: {

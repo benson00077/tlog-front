@@ -38,7 +38,7 @@ function PostDetail({ post }: PostDetailProps) {
           </h1>
 
           <div className="relative flex justify-center w-full">
-            <TagsWithoutIcon tags={tags} targetTag={['']} />
+            <TagsWithoutIcon tags={tags} targetTag={['']} baseHref="/post" />
             <time className="absolute right-1">{formatDate(createdAt)}</time>
           </div>
 
