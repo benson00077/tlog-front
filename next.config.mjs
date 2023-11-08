@@ -42,7 +42,7 @@ const nextConfig = {
 
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
-  // See Options section below.
+  theme: 'dark-plus'
 }
 
 const withMDX = createMDX({
