@@ -56,7 +56,7 @@ span[data-highlighted-chars] {
 }
 
 /* block quote styling */
-.my-markdown .quote {
+#my-markdown .quote {
   padding: 1rem 1rem 10px;
   background: rgb(29, 31, 39);
   border-left: 0.3rem solid rgb(119, 171, 183);

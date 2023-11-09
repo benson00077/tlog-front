@@ -60,7 +60,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </aside>
 
         <div className="w-full col-span-8 col-start-3">
-          <div className="my-markdown">
+          <div id="my-markdown">
             <Post />
           </div>
         </div>

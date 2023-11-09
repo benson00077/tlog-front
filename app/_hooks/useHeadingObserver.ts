@@ -37,7 +37,7 @@ export function useHeadingObserver(anchors: string[]) {
       })
 
       /** Corner case: when scroll to very top and bottom */
-      const markdownEle = document.querySelector('.my-markdown')
+      const markdownEle = document.querySelector('.my-markdown') || document.querySelector('#my-markdown')
       if (!markdownEle) throw Error("Oops! what's your markdown element ?")
       if (!(markdownEle instanceof HTMLElement)) throw Error('Oops! Wrongly select SVGElement or sth...')
       const isOutOfTopBoundary = window.scrollY <= markdownEle.offsetTop
