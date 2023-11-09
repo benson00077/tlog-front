@@ -1,10 +1,9 @@
 import type { MDXComponents } from 'mdx/types'
 import { Suspense } from 'react'
-import { CustomMermaid } from './app/post/[slug]/_components/CustomMermaid'
-import { CustomSyntaxHighlighter } from './app/post/[slug]/_components/CustomSyntaxHighlighter'
 import './mdx-components-style.css'
 import MdxCodeTitle from './app/_components/MdxCodeTitle'
 import { getAnchor } from 'app/post/[slug]/_components/utils'
+import MdxMermaid from 'app/_components/MdxMermaid'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -65,6 +64,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     //     </pre>
     //   )
     // },
+    code({ children, ...props }) {
+      const language = (props as { 'data-language': string })['data-language']
+      switch (language) {
+      case 'mermaid':
+        return (
+          <Suspense fallback={<div>Parsing Mermaid...</div>}>
+            <code {...props}></code>
+            <MdxMermaid>{children}</MdxMermaid>
+          </Suspense>
+        )
+      default:
+        return <code {...props}>{children}</code>
+      }
+    },
     div({ children, ...props }) {
       if (Object.keys(props).includes('data-rehype-pretty-code-title')) {
         const language = (props as any)['data-language']

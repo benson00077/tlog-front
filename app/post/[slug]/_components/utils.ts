@@ -1,6 +1,8 @@
 export function getAnchor(markdownHeading: string) {
   /** 'z' to avoid id begins with digits. ref: https://stackoverflow.com/questions/70579/html-valid-id-attribute-values */
-  const anchorTargetId = `z${markdownHeading.replace(/ /g, '-').replace(/\./g, '-').toLowerCase()}`
+  /** regex ref: https://stackoverflow.com/questions/9635625/javascript-regex-to-remove-illegal-characters-from-dom-id */
+  // const anchorTargetId = `z${markdownHeading.replace(/[^\w-]+/g, '-').toLowerCase()}`
+  const anchorTargetId = `z${markdownHeading.replace(/[^\w\u4e00-\u9fa5a-zA-Z0-9]+/g, '-').toLowerCase()}`
   const anchorHref = '#' + anchorTargetId
   return {
     anchorTargetId,
