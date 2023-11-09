@@ -51,19 +51,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       )
     },
     blockquote({ node, children, ...props }: any) {
-      //TODO: add .quote
       return <blockquote className="quote">{children}</blockquote>
     },
     strong({ node, children, ...props }: any) {
       return <strong className="font-semibold text-gray-900 dark:text-white">{children}</strong>
     },
-    // pre({ children, ...props }) {
-    //   return (
-    //     <pre {...props} className={`${props.className} rounded`}>
-    //       {children}
-    //     </pre>
-    //   )
-    // },
     code({ children, ...props }) {
       const language = (props as { 'data-language': string })['data-language']
       switch (language) {
