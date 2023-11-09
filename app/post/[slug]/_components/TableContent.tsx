@@ -15,7 +15,7 @@ export function TableContent({ markdownContent }: TableContentProps) {
     <ul>
       {toc.map(({ level, id, title, anchor }) => {
         return (
-          <li key={id} className={`ml-${level} ${'#' + activeId === anchor ? 'underline' : ''}`}>
+          <li key={id} className={`ml-${level} ${'#' + activeId === anchor ? 'underline' : ''} select-none`}>
             <Link href={anchor}>{title}</Link>
           </li>
         )
