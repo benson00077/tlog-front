@@ -1,9 +1,10 @@
 import React from 'react'
-import { getAllPostsMeta, getFileNamefromId, getPageData } from '../util'
+import { getAllPostsMeta, getFileNamefromId, getPostBody, getPostMeta } from '../util'
 import dynamic from 'next/dynamic'
 import { formatDate } from '../../_utils/utils'
 import Image from 'next/image'
 import tagsSection from 'app/post/_components/TagsSection'
+import { TableContent } from 'app/post/[slug]/_components/TableContent'
 
 // generate route segments
 export async function generateStaticParams() {
@@ -16,9 +17,9 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params
   const fileName = await getFileNamefromId(slug)
-  const meta = await getPageData(`${fileName}.mdx`)
+  const meta = await getPostMeta(`${fileName}.mdx`)
+  const content = await getPostBody(`${fileName}.mdx`)
   const { title, updatedAt, description, posterURL, tags } = meta
-  console.log(meta)
 
   const Post = dynamic(() => import(`../(mdx)/${fileName}.mdx`))
   const TagsWithoutIcon = tagsSection().withoutIcon
@@ -53,11 +54,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
       <section className="grid grid-cols-12">
         <aside className="sticky h-0 col-span-2 col-start-11 top-12">
-          <div className="mt-10 ml-4">{/* <TableContent markdownContent={content} /> */}</div>
+          <div className="mt-10 ml-4">
+            <TableContent markdownContent={content} />
+          </div>
         </aside>
 
         <div className="w-full col-span-8 col-start-3">
-          <Post />
+          <div className="my-markdown">
+            <Post />
+          </div>
         </div>
       </section>
     </>
