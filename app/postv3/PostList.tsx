@@ -9,9 +9,7 @@ type PostListProps = {
 }
 
 export function PostList({ metas, selectedTag }: PostListProps) {
-  //TODO: consider using url/file directory trick,
-  // \_ /postv3/filter?tag=Javascript, to keep SEO for this page /postv3 .
-  const targetTag = ''
+  const targetTag = selectedTag ? selectedTag : ''
 
   const { withIcon: TagsWithIcon, withoutIcon: TagsWithoutIcon } = tagsSection()
   const adaptor = (metas: MetaData[]) => {
@@ -41,10 +39,10 @@ export function PostList({ metas, selectedTag }: PostListProps) {
     <section className="flex flex-col items-center justify-center">
       <h3 className="pb-8">Tags</h3>
       <section className="w-1/2">
-        <TagsWithoutIcon tags={tags[0]} targetTag={targetTag} baseHref="/postv3" />
+        <TagsWithoutIcon tags={tags[0]} targetTag={targetTag} baseHref="/postv3/filter" />
       </section>
       <section className="flex flex-row flex-wrap justify-around w-1/2 mt-8 bg-slate-600/30 mb-28">
-        <TagsWithIcon baseHref="/postv3" />
+        <TagsWithIcon baseHref="/postv3/filter" />
       </section>
 
       <h3 className="pb-8">Posts</h3>
