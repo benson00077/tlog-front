@@ -9,6 +9,7 @@ import remarkSectionize from 'remark-sectionize'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   reactStrictMode: true,
   experimental: {

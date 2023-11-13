@@ -14,7 +14,8 @@ async function fetchAllTags() {
   })
   return data.getAllTags
 }
-async function fetchAllPosts() {
+
+export async function fetchAllPosts() {
   const { data } = await getClient().query<PostQuery, PostVars>({
     query: POSTS,
     variables: {
@@ -26,6 +27,7 @@ async function fetchAllPosts() {
   })
   return data.posts
 }
+
 export default async function Page() {
   const posts = await fetchAllPosts()
   const tags = await fetchAllTags()

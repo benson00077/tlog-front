@@ -9,6 +9,8 @@ type PostListProps = {
 }
 
 export function PostList({ metas, selectedTag }: PostListProps) {
+  //TODO: consider using url/file directory trick,
+  // \_ /postv3/filter?tag=Javascript, to keep SEO for this page /postv3 .
   const targetTag = ''
 
   const { withIcon: TagsWithIcon, withoutIcon: TagsWithoutIcon } = tagsSection()
