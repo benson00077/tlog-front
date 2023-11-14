@@ -1,6 +1,4 @@
-'use client'
 import React from 'react'
-import { PostList } from '../PostList'
 import { getAllPostsMeta } from '../util'
 import WithSearchParams from './WithSeacrhParams'
 
