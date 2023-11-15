@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react'
 
 /**
- * Retrieve text back cause rehypePrettyCode have parsed then into ReactNode with nested <span>
+ * Retrieve text back cause rehypePrettyCode have parsed then into ReactNode with nested `<span>`
  * - ref: https://stackoverflow.com/questions/74438949/how-to-access-the-child-of-a-prop-in-react-typescript
  */
 export function extractText(children: React.ReactNode): (string | number)[] {

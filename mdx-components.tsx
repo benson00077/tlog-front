@@ -4,6 +4,7 @@ import './mdx-components-style.css'
 import MdxCodeTitle from './app/_components/MdxCodeTitle'
 import { getAnchor } from 'app/post/[slug]/_components/utils'
 import MdxMermaid from 'app/_components/MdxMermaid'
+import MdxTranslationBlock from 'app/_components/MdxTranslationBlock'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
