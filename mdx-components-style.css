@@ -24,6 +24,15 @@ code[data-line-numbers-max-digits='3'] > [data-line]::before {
   width: 3rem;
 }
 
+/* Hide scroll bar for code block */
+pre {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+pre::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
 /* Code block styling */
 div[data-rehype-pretty-code-fragment] {
   @apply my-6
